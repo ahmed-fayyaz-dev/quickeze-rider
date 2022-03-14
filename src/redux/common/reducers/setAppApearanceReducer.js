@@ -1,7 +1,7 @@
-import * as types from "../constants/constants";
-import { Appearance } from "react-native";
+import { Appearance } from 'react-native';
+import * as types from '../constants/constants';
 
-let initial = {
+const initial = {
   loading: false,
   data: Appearance.getColorScheme(),
   error: null,
@@ -9,7 +9,9 @@ let initial = {
 export default function (state = initial, action) {
   switch (action.type) {
     case types.APP_APPEARANCE:
-      return { ...state, loading: false, data: action.payload, error: null };
+      return {
+        ...state, loading: false, data: action.payload, error: null,
+      };
     default:
       return state;
   }

@@ -1,5 +1,5 @@
-import React from "react";
-import { StyleSheet } from "react-native";
+import React from 'react';
+import { StyleSheet } from 'react-native';
 import {
   Title,
   Text,
@@ -8,9 +8,11 @@ import {
   Caption,
   Paragraph,
   withTheme,
-} from "react-native-paper";
+} from 'react-native-paper';
 
-import { title, caption, text, buttonText } from "../styles";
+import {
+  title, caption, text, buttonText,
+} from '../styles';
 
 function CText(props) {
   return (
@@ -93,8 +95,8 @@ export const CustomCaption = withTheme(CCaption);
 const styles = StyleSheet.create({
   defaultStyle: {
     // fontFamily: `Poppins_400Regular`,
-    textAlign: "center",
-    textAlignVertical: "center",
+    textAlign: 'center',
+    textAlignVertical: 'center',
   },
 
   text: {
@@ -109,7 +111,7 @@ const styles = StyleSheet.create({
 
   title: {
     fontSize: title,
-    fontWeight: "800",
+    fontWeight: '800',
     // lineHeight: RFValue(20),
   },
 

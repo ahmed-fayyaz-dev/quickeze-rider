@@ -1,23 +1,25 @@
-import React, {useState, useEffect, useRef, useCallback} from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import React, {
+  useState, useEffect, useRef, useCallback,
+} from 'react';
+import { NavigationContainer } from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {Appearance, I18nManager} from 'react-native';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {Provider as PaperProvider} from 'react-native-paper';
+import { Appearance, I18nManager } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Provider as PaperProvider } from 'react-native-paper';
 import i18n from 'i18n-js';
 
-import {callApi} from '../constants/apiCall';
-import {setLanguage} from '../redux/common/actions/actions';
-import {submitGetDashboardData} from '../screens/dashboard/actions/actions';
-import {submitLoginAccount} from '../screens/login/actions/actions';
+import { callApi } from '../constants/apiCall';
+import { setLanguage } from '../redux/common/actions/actions';
+import { submitGetDashboardData } from '../screens/dashboard/actions/actions';
+import { submitLoginAccount } from '../screens/login/actions/actions';
 
-import {getStorageItem} from '../constants';
-import {CombinedLightTheme, CombinedDarkTheme} from '../styles/theme';
+import { getStorageItem } from '../constants';
+import { CombinedLightTheme, CombinedDarkTheme } from '../styles/theme';
 
 import RootNavigator from './rootNavigator';
 
-//App nav
+// App nav
 function AppNavigator(props) {
   const {
     submitLoginAccount,
@@ -54,7 +56,7 @@ function AppNavigator(props) {
     };
   }, [themeListener]);
 
-  const changeTheme = c => {
+  const changeTheme = (c) => {
     if (c == 'dark') {
       setTheme(CombinedDarkTheme);
     } else {
@@ -62,7 +64,7 @@ function AppNavigator(props) {
     }
   };
 
-  const themeListener = useCallback(({colorScheme}) => {
+  const themeListener = useCallback(({ colorScheme }) => {
     changeTheme(colorScheme || 'light');
   }, []);
 
@@ -94,13 +96,13 @@ function AppNavigator(props) {
     const password = await getStorageItem('password');
 
     if (id && password) {
-      let data = {
+      const data = {
         email: id.toLocaleLowerCase(),
-        password: password,
+        password,
       };
 
       await callApi({
-        data: data,
+        data,
         callApiReducer: submitLoginReducer,
         submitCallApi: submitLoginAccount,
 
@@ -126,14 +128,15 @@ function AppNavigator(props) {
       <PaperProvider
         theme={theme}
         settings={{
-          icon: props => <Ionicons {...props} />,
-        }}>
+          icon: (props) => <Ionicons {...props} />,
+        }}
+      >
         <NavigationContainer theme={theme}>
           <RootNavigator loggedIn={loggedIn} />
         </NavigationContainer>
       </PaperProvider>
     );
-  } else return null;
+  } return null;
 }
 
 function mapStateToProps({

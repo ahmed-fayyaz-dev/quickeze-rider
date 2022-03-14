@@ -1,4 +1,4 @@
-import {SENTRY_DSN as sentryDsn, SERVER_URL as serverurl} from '@env';
+import { SENTRY_DSN as sentryDsn, SERVER_URL as serverurl } from '@env';
 
 export const SENTRY_DSN = sentryDsn;
 

@@ -1,6 +1,6 @@
-import * as types from "../constants/constants";
+import * as types from '../constants/constants';
 
-let initial = {
+const initial = {
   loading: false,
   data: null,
   error: null,
@@ -8,7 +8,9 @@ let initial = {
 export default function (state = initial, action) {
   switch (action.type) {
     case types.ADDRESS:
-      return { ...state, loading: false, data: action.payload, error: null };
+      return {
+        ...state, loading: false, data: action.payload, error: null,
+      };
     default:
       return state;
   }

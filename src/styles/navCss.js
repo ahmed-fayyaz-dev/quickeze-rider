@@ -1,4 +1,4 @@
-import {colorDictionary} from './theme';
+import { colorDictionary } from './theme';
 
 export const drawerIcon = 'reorder-three';
 

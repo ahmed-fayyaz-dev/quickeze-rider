@@ -1,3 +1,3 @@
-import {SERVER_URL} from 'appConstants';
+import { SERVER_URL } from 'appConstants';
 
 export const ServerUrl = SERVER_URL;

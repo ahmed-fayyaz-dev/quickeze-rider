@@ -1,4 +1,4 @@
-import {DarkTheme, DefaultTheme} from 'react-native-paper';
+import { DarkTheme, DefaultTheme } from 'react-native-paper';
 import {
   DefaultTheme as defThemeNav,
   DarkTheme as darkThemeNav,

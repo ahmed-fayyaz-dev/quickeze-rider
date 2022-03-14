@@ -2,7 +2,7 @@ import React from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import {View, Dimensions, Platform} from 'react-native';
+import { View, Dimensions, Platform } from 'react-native';
 import * as Device from 'expo-device';
 
 export const windowWidth = Dimensions.get('window').width;
@@ -43,7 +43,7 @@ export const setStorageItem = async (key, value) => {
   }
 };
 
-export const getStorageItem = async key => {
+export const getStorageItem = async (key) => {
   try {
     const jsonValue = await AsyncStorage.getItem(key);
     return jsonValue != null ? JSON.parse(jsonValue) : null;
@@ -53,7 +53,7 @@ export const getStorageItem = async key => {
   }
 };
 
-export const removeStorageItem = async key => {
+export const removeStorageItem = async (key) => {
   try {
     return await AsyncStorage.removeItem(key);
   } catch (e) {
@@ -62,23 +62,25 @@ export const removeStorageItem = async key => {
   }
 };
 
-export const BottomBarIcons = ({name, size, color}) => (
-  <View style={{}}>
-    <Ionicons name={name} size={size} color={color} />
-  </View>
-);
-export const IonIcons = ({name, size, color, style}) => (
-  <Ionicons name={name} size={size} color={color} style={style} />
-);
+export function BottomBarIcons({ name, size, color }) {
+  return (
+    <View style={{}}>
+      <Ionicons name={name} size={size} color={color} />
+    </View>
+  );
+}
+export function IonIcons({
+  name, size, color, style,
+}) {
+  return <Ionicons name={name} size={size} color={color} style={style} />;
+}
 
-export const validateEmail = email => {
-  var re =
-    /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)/;
+export const validateEmail = (email) => {
+  const re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)/;
   return re.test(email);
 };
 
 export function validatePassword(val) {
-  var re =
-    /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()+=-?;,./{}|":<>[\]\\' ~_]).{8,}/;
+  const re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()+=-?;,./{}|":<>[\]\\' ~_]).{8,}/;
   return re.test(val);
 }

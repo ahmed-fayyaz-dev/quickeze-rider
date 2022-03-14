@@ -1,28 +1,27 @@
-import React from "react";
-import { View, Image, StyleSheet } from "react-native";
-import { Surface, useTheme } from "react-native-paper";
-import Animated, { RollOutRight, RollInLeft } from "react-native-reanimated";
+import React from 'react';
+import { View, Image, StyleSheet } from 'react-native';
+import { Surface, useTheme } from 'react-native-paper';
+import Animated, { RollOutRight, RollInLeft } from 'react-native-reanimated';
 
-import { bRms, mgHs, mgVs } from "../styles";
-import { CustomCaption, CustomTitle } from "./customText";
-import globalStyles from "../styles/index";
-import { GapH } from "./gap";
+import globalStyles, { bRms, mgHs, mgVs } from '../styles';
+import { CustomCaption, CustomTitle } from './customText';
+import { GapH } from './gap';
 
 const absoluteTop = 20;
 
-export const StickyHeader = ({
+export function StickyHeader({
   title,
   subtitle,
   profileUrl,
   subtitle2,
   setMarginToAvoid,
-}) => {
+}) {
   const { colors } = useTheme();
   const style = styles(colors);
   const gStyle = globalStyles(colors);
 
   const onLayout = (event) => {
-    var { height } = event.nativeEvent.layout;
+    const { height } = event.nativeEvent.layout;
     setMarginToAvoid(height - absoluteTop);
   };
 
@@ -43,7 +42,7 @@ export const StickyHeader = ({
           style={[style.roundImage]}
         />
 
-        <GapH small={true} />
+        <GapH small />
         <View style={style.textView}>
           <CustomTitle>{title}</CustomTitle>
           <CustomCaption numberOfLines={2}>{subtitle}</CustomCaption>
@@ -52,38 +51,37 @@ export const StickyHeader = ({
       </Surface>
     </Animated.View>
   );
-};
+}
 
-const styles = (colors) =>
-  StyleSheet.create({
-    container: {
-      width: "100%",
-      top: absoluteTop,
-      alignSelf: "center",
-      position: "absolute",
-    },
+const styles = (colors) => StyleSheet.create({
+  container: {
+    width: '100%',
+    top: absoluteTop,
+    alignSelf: 'center',
+    position: 'absolute',
+  },
 
-    accountInfoCard: {
-      flexDirection: "row",
-      paddingVertical: mgVs,
-      paddingHorizontal: mgHs,
-      borderRadius: bRms,
-      minHeight: 90,
-      alignItems: "center",
-      backgroundColor: colors.surface,
-      justifyContent: "space-between",
-    },
+  accountInfoCard: {
+    flexDirection: 'row',
+    paddingVertical: mgVs,
+    paddingHorizontal: mgHs,
+    borderRadius: bRms,
+    minHeight: 90,
+    alignItems: 'center',
+    backgroundColor: colors.surface,
+    justifyContent: 'space-between',
+  },
 
-    roundImage: {
-      width: 65,
-      height: 65,
-      borderRadius: 65 / 2,
-      overflow: "hidden",
-    },
+  roundImage: {
+    width: 65,
+    height: 65,
+    borderRadius: 65 / 2,
+    overflow: 'hidden',
+  },
 
-    textView: {
-      flex: 1,
-    },
+  textView: {
+    flex: 1,
+  },
 
-    // subtitle: { overflow: "hidden", maxHeight: 40 },
-  });
+  // subtitle: { overflow: "hidden", maxHeight: 40 },
+});

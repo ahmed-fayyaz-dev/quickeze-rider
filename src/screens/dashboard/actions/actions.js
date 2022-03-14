@@ -1,11 +1,11 @@
+import axios from 'axios';
+import { Alert } from 'react-native';
 import * as types from '../constants/constants';
 import * as commonTypes from '../../../redux/common/constants/constants';
 
-import axios from 'axios';
-import {ServerUrl} from '../../../redux/helper/helper';
-import {Alert} from 'react-native';
+import { ServerUrl } from '../../../redux/helper/helper';
 
-import {deviceInfo, versionCode, success} from '../../../constants';
+import { deviceInfo, versionCode, success } from '../../../constants';
 
 const getConfig = (data, type, getState) => {
   const companyId = getState().companyIdReducer.data;
@@ -20,26 +20,26 @@ const getConfig = (data, type, getState) => {
     },
     data: {
       vtype: type,
-      fyear: fyear,
-      quarter: quarter,
+      fyear,
+      quarter,
       companyID: companyId,
       userID: data?.userID,
-      deviceInfo: deviceInfo,
-      versionCode: versionCode,
+      deviceInfo,
+      versionCode,
     },
   };
 };
 
-//ACTIONS
+// ACTIONS
 
 export function submitGetDashboardData(data) {
   return async (dispatch, getState) => {
-    dispatch({type: types.GET_DASHBOARD_DATA_ALL_ATTEMPT});
+    dispatch({ type: types.GET_DASHBOARD_DATA_ALL_ATTEMPT });
 
     try {
-      return await axios(getConfig(data, 'CM', getState)).then(function (
+      return await axios(getConfig(data, 'CM', getState)).then((
         response,
-      ) {
+      ) => {
         dispatch({
           type: types.GET_DASHBOARD_DATA_ALL_SUCCESS,
           payload: response.data,
@@ -53,10 +53,10 @@ export function submitGetDashboardData(data) {
         'Error! Get Dashboard action was unsucessfull. ',
         `${error}\n*Reseting default settings`,
       );
-      //Reseting Default Settings if API req fail
+      // Reseting Default Settings if API req fail
       dispatch(
-        {type: types.GET_DASHBOARD_DATA_ALL_FAIL, payload: error},
-        {type: commonTypes.G_DATE, payload: new Date()},
+        { type: types.GET_DASHBOARD_DATA_ALL_FAIL, payload: error },
+        { type: commonTypes.G_DATE, payload: new Date() },
       );
 
       throw new Error(error);

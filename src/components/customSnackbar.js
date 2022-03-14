@@ -1,8 +1,8 @@
-import React from "react";
-import { Snackbar } from "react-native-paper";
-import { CustomCaption } from "./customText";
+import React from 'react';
+import { Snackbar } from 'react-native-paper';
+import { CustomCaption } from './customText';
 
-export const CustomSnackbar = ({
+export function CustomSnackbar({
   style,
   visible,
   onDismiss,
@@ -10,18 +10,18 @@ export const CustomSnackbar = ({
   onPress,
   msg,
   duration,
-}) => {
+}) {
   return (
     <Snackbar
       visible={visible}
       onDismiss={onDismiss}
-      duration={duration ? duration : 2000}
+      duration={duration || 2000}
       style={style}
       action={{
-        onPress: onPress,
+        onPress,
       }}
     >
       <CustomCaption style={textStyle}>{msg}</CustomCaption>
     </Snackbar>
   );
-};
+}

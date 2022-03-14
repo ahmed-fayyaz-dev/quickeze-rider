@@ -1,4 +1,4 @@
-import getDashboardDataReducer from "../../../screens/dashboard/reducers/getDashboardDataReducer";
+import getDashboardDataReducer from './getDashboardDataReducer';
 
 const reducers = {
   getDashboardDataReducer,

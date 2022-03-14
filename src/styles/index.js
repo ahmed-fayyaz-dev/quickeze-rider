@@ -1,11 +1,10 @@
-import {StyleSheet, StatusBar} from 'react-native';
-import {useColorScheme} from 'react-native';
+import {StyleSheet, StatusBar, useColorScheme} from 'react-native';
 import {RFValue} from 'react-native-responsive-fontsize';
 import {colorDictionary} from './theme';
 
 export const iconSize = 30;
 export const iconSizeL = 42;
-//will discard these below old extra variables slowly
+// will discard these below old extra variables slowly
 export const mgHl = 30;
 export const mgHs = 10;
 export const mgVl = 30;
@@ -20,7 +19,7 @@ export const pdVms = 15;
 export const pdVs = 10;
 export const pdVss = 5;
 
-//Dashboard App
+// Dashboard App
 export const mgL = 62;
 export const mgM = 35;
 export const mgMs = 20;
@@ -38,7 +37,7 @@ export const bRs = 10;
 export const bRms = 18;
 export const bRm = 50;
 
-//Fonst Sizes
+// Fonst Sizes
 export const title = RFValue(20);
 export const text = RFValue(12);
 export const caption = RFValue(10);
@@ -54,7 +53,12 @@ export const dark = 'dark';
 export const onBackgroundDark = colorDictionary.colorSet.dark.onBackground;
 export const onBackgroundLight = colorDictionary.colorSet.light.onBackground;
 
-export const hitSlopS = {top: 30, bottom: 30, left: 20, right: 20};
+export const hitSlopS = {
+  top: 30,
+  bottom: 30,
+  left: 20,
+  right: 20,
+};
 
 const Styles = () => {
   const zIndexSLocal = zIndexS;
@@ -63,14 +67,14 @@ const Styles = () => {
 
   // props
   let appearance = useColorScheme() || 'light';
-  let appearanceInv =
+  const appearanceInv =
     (useColorScheme() === 'light' ? 'dark' : 'light') || 'dark';
 
-  if (appearance == undefined || appearance == null) {
+  if (appearance === undefined || appearance === null) {
     appearance = 'light';
   }
   return StyleSheet.create({
-    //All these Extra Cluster is to be discarder and use a only a handfull
+    // All these Extra Cluster is to be discarder and use a only a handfull
     mgTl: {marginTop: mgVl},
     mgBl: {marginBottom: mgVl},
     mgRl: {marginRight: mgHl},
@@ -228,7 +232,7 @@ const Styles = () => {
       borderColor: colorDictionary.colorSet[appearance].primary,
     },
 
-    //Discount -App
+    // Discount -App
     container: {
       flex: 1,
       backgroundColor: colorDictionary.colorSet[appearance].background,

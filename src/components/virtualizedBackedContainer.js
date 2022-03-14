@@ -1,5 +1,5 @@
-import React from "react";
-import { FlatList, RefreshControl } from "react-native";
+import React from 'react';
+import { FlatList, RefreshControl } from 'react-native';
 
 export default function VirtualizedView(props) {
   const { style, contentContainerStyle } = props;
@@ -14,14 +14,14 @@ export default function VirtualizedView(props) {
           />
         )
       }
-      key={"VirtualizedView" + Math.random()}
+      key={`VirtualizedView${Math.random()}`}
       ListEmptyComponent={null}
       horizontal={props.horizontal}
-      keyExtractor={() => "dummy"}
+      keyExtractor={() => 'dummy'}
       renderItem={null}
       contentContainerStyle={[{ flexGrow: 1 }, contentContainerStyle]}
       ListHeaderComponent={() => (
-        <React.Fragment>{props.children}</React.Fragment>
+        <>{props.children}</>
       )}
       ListHeaderComponentStyle={style}
     />

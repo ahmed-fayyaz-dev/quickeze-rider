@@ -1,5 +1,5 @@
-import NetInfo from "@react-native-community/netinfo";
-import Toast from "react-native-root-toast";
+import NetInfo from '@react-native-community/netinfo';
+import Toast from 'react-native-root-toast';
 
 export async function callApi({
   data,
@@ -9,31 +9,31 @@ export async function callApi({
   catchFunc,
   errFunc,
 }) {
-  NetInfo.fetch().then(async (state) => {
+  NetInfo.fetch().then(async state => {
     if (state.isConnected != false) {
       setLoading(true);
       submitCallApi(data)
-        .then((res) => {
-          if (res?.status == "success") {
+        .then(res => {
+          if (res?.status === 'success') {
             successFunc(res);
-          } else if (res?.status == "error") {
+          } else if (res?.status === 'error') {
             errFunc(res);
           } else {
-            console.log("callAPI-Else", res);
+            console.log('callAPI-Else', res);
             errFunc(res);
           }
           setLoading(false);
         })
-        .catch((e) => {
+        .catch(e => {
           setLoading(false);
-          console.error("apiCall", e);
+          console.error('apiCall', e);
           catchFunc(e);
         })
         .finally(() => {
           setLoading(false);
         });
     } else {
-      Toast.show("No internet Connectivity !", Toast.durations.SHORT);
+      Toast.show('No internet Connectivity !', Toast.durations.SHORT);
       setLoading(false);
     }
   });

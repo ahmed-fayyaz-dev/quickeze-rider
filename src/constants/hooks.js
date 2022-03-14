@@ -1,6 +1,8 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import {
+  useState, useEffect, useCallback, useRef,
+} from 'react';
 
-/*--useStateWithCallback*/
+/* --useStateWithCallback */
 export const useStateWithCallback = (initialState, callback) => {
   const [state, setState] = useState(initialState);
 
@@ -9,7 +11,7 @@ export const useStateWithCallback = (initialState, callback) => {
   return [state, setState];
 };
 
-/*--CallBackLazily*/
+/* --CallBackLazily */
 export function useStateWithCallbackLazy(initialState) {
   const [state, setState] = useState(initialState);
   const cbRef = useRef(null);
@@ -31,19 +33,15 @@ export function useStateWithCallbackLazy(initialState) {
   return [state, setStateCallback];
 }
 
-//--searchHook To be Implemnted using useEffect
+// --searchHook To be Implemnted using useEffect
 export const searchFilter = (data, searchText) => {
-  var filteredData = [];
-  const stringifiedObjectList = data.map((itemObj) =>
-    JSON.stringify(itemObj).toLowerCase()
-  );
+  let filteredData = [];
+  const stringifiedObjectList = data.map((itemObj) => JSON.stringify(itemObj).toLowerCase());
   // filter on the string array. Just like searching a string
   const filteredStringifiedObjectList = stringifiedObjectList.filter(
-    (itemObj) => itemObj.includes(searchText.toLowerCase())
+    (itemObj) => itemObj.includes(searchText.toLowerCase()),
   );
-  const filtered = filteredStringifiedObjectList.map((item) =>
-    JSON.parse(item)
-  );
+  const filtered = filteredStringifiedObjectList.map((item) => JSON.parse(item));
   filteredData = filtered;
   return filteredData;
 };

@@ -1,35 +1,39 @@
 import React from 'react';
-import {createDrawerNavigator} from '@react-navigation/drawer';
-import {Dimensions, Image, StyleSheet, View} from 'react-native';
-import {useTheme} from 'react-native-paper';
-import {connect} from 'react-redux';
-import {format} from 'date-fns';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import {
+  Dimensions, Image, StyleSheet, View,
+} from 'react-native';
+import { useTheme } from 'react-native-paper';
+import { connect } from 'react-redux';
+import { format } from 'date-fns';
 
-import {icons} from '../../assets/images';
-import {drawerActiveTint, drawerIcon} from '../styles/navCss';
-import {IonIcons} from '../constants';
-import {CustomCaption} from '../components/customText';
-import {mgMs} from '../styles';
+import { icons } from '../../assets/images';
+import { drawerActiveTint, drawerIcon } from '../styles/navCss';
+import { IonIcons } from '../constants';
+import { CustomCaption } from '../components/customText';
+import { mgMs } from '../styles';
 import DrawerContent from '../components/drawer';
 
-import {logout} from '../redux/common/actions/actions';
+import { logout } from '../redux/common/actions/actions';
 
-//screens
+// screens
 import Dashboard from '../screens/dashboard';
-import {Playground} from '../screens/playground';
+import { Playground } from '../screens/playground';
 
 const Drawer = createDrawerNavigator();
 
-const DrawerNav = props => {
-  const {colors} = useTheme();
+function DrawerNav(props) {
+  const { colors } = useTheme();
   const style = styles(colors);
 
-  const DrawerIcons = ({size, focused, icon}) => (
-    <Image
-      source={icon}
-      style={[focused ? null : null, {height: size, width: size}]}
-    />
-  );
+  function DrawerIcons({ size, focused, icon }) {
+    return (
+      <Image
+        source={icon}
+        style={[focused ? null : null, { height: size, width: size }]}
+      />
+    );
+  }
 
   const headerRight = () => (
     <View>
@@ -50,31 +54,32 @@ const DrawerNav = props => {
         drawerActiveBackgroundColor: colors.primary,
         drawerActiveTintColor: drawerActiveTint,
         headerTitleAlign: 'center',
-        headerStyle: {backgroundColor: colors.notification},
+        headerStyle: { backgroundColor: colors.notification },
         headerTintColor: drawerActiveTint,
         drawerStyle: style.drawer,
         drawerItemStyle: style.drawerItem,
-        drawerIcon: ({color, size}) => (
+        drawerIcon: ({ color, size }) => (
           <IonIcons name={drawerIcon} size={size} color={color} />
         ),
       }}
-      drawerContent={dCprops => (
+      drawerContent={(dCprops) => (
         <DrawerContent
           {...dCprops}
           logout={props.logout}
           submitLoginReducer={props.submitLoginReducer.data}
           drawerItemStyle={style.drawerItem}
         />
-      )}>
+      )}
+    >
       <Drawer.Screen
         name="dashboard"
         component={Dashboard}
         options={{
           title: 'Dashboard',
-          headerTitleContainerStyle: {height: 0, width: 0},
-          headerRight: headerRight,
+          headerTitleContainerStyle: { height: 0, width: 0 },
+          headerRight,
 
-          drawerIcon: ({color, focused, size}) => (
+          drawerIcon: ({ color, focused, size }) => (
             <DrawerIcons
               color={color}
               focused={focused}
@@ -88,9 +93,9 @@ const DrawerNav = props => {
       <Drawer.Screen name="playground" component={Playground} />
     </Drawer.Navigator>
   );
-};
+}
 
-function mapStateToProps({submitLoginReducer}) {
+function mapStateToProps({ submitLoginReducer }) {
   return {
     submitLoginReducer,
   };

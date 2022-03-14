@@ -1,4 +1,4 @@
-import * as types from "../constants/constants";
+import * as types from '../constants/constants';
 
 export function logout() {
   return async (dispatch) => {

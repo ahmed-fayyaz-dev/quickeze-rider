@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Animated, {
   BounceInDown,
   BounceOutDown,
@@ -6,17 +6,19 @@ import Animated, {
   FadeIn,
   FadeOut,
 } from 'react-native-reanimated';
-import {connect} from 'react-redux';
-import {useTheme, Divider} from 'react-native-paper';
-import {ScrollView, View, StyleSheet, Image, StatusBar} from 'react-native';
+import { connect } from 'react-redux';
+import { useTheme, Divider } from 'react-native-paper';
+import {
+  ScrollView, View, StyleSheet, Image, StatusBar,
+} from 'react-native';
 
-import {icons} from '../../../assets/images';
-import {GapV} from '../../components/gap';
+import { icons } from '../../../assets/images';
+import { GapV } from '../../components/gap';
 import CustomInput from '../../components/CustomInput';
-import {CustomRoundButton} from '../../components/buttons';
-import {IonIcons, setStorageItem} from '../../constants';
-import {CustomCheckbox} from '../../components/CustomCheckbox';
-import {CustomSnackbar} from '../../components/customSnackbar';
+import { CustomRoundButton } from '../../components/buttons';
+import { IonIcons, setStorageItem } from '../../constants';
+import { CustomCheckbox } from '../../components/CustomCheckbox';
+import { CustomSnackbar } from '../../components/customSnackbar';
 import gloabalStyle, {
   bRm,
   iconSizeL,
@@ -31,12 +33,12 @@ import {
   CustomText,
 } from '../../components/customText';
 
-import {callApi} from '../../constants/apiCall';
-import {submitLoginAccount} from './actions/actions';
-import {submitGetDashboardData} from '../dashboard/actions/actions';
+import { callApi } from '../../constants/apiCall';
+import { submitLoginAccount } from './actions/actions';
+import { submitGetDashboardData } from '../dashboard/actions/actions';
 
-function Login({navigation, submitLoginReducer, submitLoginAccount}) {
-  const {colors} = useTheme();
+function Login({ navigation, submitLoginReducer, submitLoginAccount }) {
+  const { colors } = useTheme();
   const gStyle = gloabalStyle(colors);
   const style = styles(colors);
 
@@ -47,7 +49,7 @@ function Login({navigation, submitLoginReducer, submitLoginAccount}) {
   const [visibleSnack, setVisibleSnack] = useState(false);
   const [snackMsg, setSnackMsg] = useState('');
 
-  //Navigate
+  // Navigate
   function navigate() {
     if (remember) {
       setStorageItem('id', id);
@@ -57,19 +59,19 @@ function Login({navigation, submitLoginReducer, submitLoginAccount}) {
 
     navigation.reset({
       index: 0,
-      routes: [{name: 'drawerNav'}],
+      routes: [{ name: 'drawerNav' }],
     });
   }
 
-  //OnLoginPress
+  // OnLoginPress
   async function handleSubmitLogin() {
-    let data = {
+    const data = {
       email: id.toLocaleLowerCase(),
-      password: password,
+      password,
     };
 
     await callApi({
-      data: data,
+      data,
       setLoading: setLoadingState,
       callApiReducer: submitLoginReducer,
       submitCallApi: submitLoginAccount,
@@ -107,37 +109,38 @@ function Login({navigation, submitLoginReducer, submitLoginAccount}) {
           entering={BounceInDown}
           exiting={BounceOutDown}
           layout={Layout.springify()}
-          style={style.loginView}>
+          style={style.loginView}
+        >
           <IonIcons
             style={style.icon}
-            name={'person-outline'}
+            name="person-outline"
             size={iconSizeL}
           />
 
           <CustomSubheading style={style.title}>LOGIN</CustomSubheading>
 
-          <GapV small={true} />
+          <GapV small />
 
           <CustomInput
             colors={colors}
             onChange={setId}
-            label={'Employee Id'}
+            label="Employee Id"
             state={id}
             roundness={bRm}
           />
 
-          <GapV small={true} />
+          <GapV small />
 
           <CustomInput
             colors={colors}
             onChange={setPassword}
-            label={'Password'}
+            label="Password"
             state={password}
-            secure={true}
+            secure
             roundness={bRm}
           />
 
-          <GapV small={true} />
+          <GapV small />
 
           <View style={gStyle.fdr}>
             <CustomCheckbox
@@ -148,17 +151,17 @@ function Login({navigation, submitLoginReducer, submitLoginAccount}) {
             <CustomText>Remember Me</CustomText>
           </View>
 
-          <GapV large={true} />
+          <GapV large />
 
           <View style={gStyle.bottomContainer}>
             <GapV />
 
             <CustomRoundButton
-              title={'Login'}
+              title="Login"
               colors={colors}
               gStyle={gStyle}
               loading={loading}
-              icon={'arrow-forward'}
+              icon="arrow-forward"
               onPress={onPress}
             />
           </View>
@@ -171,12 +174,12 @@ function Login({navigation, submitLoginReducer, submitLoginAccount}) {
             style={style.image}
           />
 
-          <GapV small={true} />
+          <GapV small />
           <Divider style={[gStyle.divider, style.divider]} />
-          <GapV small={true} />
+          <GapV small />
 
           <CustomCaption style={style.subText}>
-            {'Please Login to your Account'}
+            Please Login to your Account
           </CustomCaption>
 
           <GapV />
@@ -214,53 +217,52 @@ export default connect(mapStateToProps, {
   submitGetDashboardData,
 })(Login);
 
-export const styles = colors =>
-  StyleSheet.create({
-    container: {
-      backgroundColor: colors.notification,
-      flex: 1,
-      paddingTop: StatusBar.currentHeight,
-    },
+export const styles = (colors) => StyleSheet.create({
+  container: {
+    backgroundColor: colors.notification,
+    flex: 1,
+    paddingTop: StatusBar.currentHeight,
+  },
 
-    content: {
-      flexDirection: 'column-reverse',
-    },
+  content: {
+    flexDirection: 'column-reverse',
+  },
 
-    image: {
-      alignSelf: 'center',
-      height: 66,
-    },
+  image: {
+    alignSelf: 'center',
+    height: 66,
+  },
 
-    divider: {
-      alignSelf: 'center',
-      backgroundColor: onBackgroundDark,
-    },
+  divider: {
+    alignSelf: 'center',
+    backgroundColor: onBackgroundDark,
+  },
 
-    subText: {
-      color: onBackgroundDark,
-    },
+  subText: {
+    color: onBackgroundDark,
+  },
 
-    title: {
-      fontWeight: 'bold',
-    },
+  title: {
+    fontWeight: 'bold',
+  },
 
-    icon: {alignSelf: 'center'},
+  icon: { alignSelf: 'center' },
 
-    loginView: {
-      backgroundColor: colors.surface,
-      borderTopStartRadius: 40,
-      borderTopEndRadius: 40,
-      paddingHorizontal: mgMs,
-      paddingTop: mgM,
-      marginHorizontal: mgS,
-      shadowColor: '#000',
-      shadowOffset: {
-        width: 0,
-        height: 8,
-      },
-      shadowOpacity: 0.46,
-      shadowRadius: 11.14,
-      elevation: 17,
-      zIndex: 17,
+  loginView: {
+    backgroundColor: colors.surface,
+    borderTopStartRadius: 40,
+    borderTopEndRadius: 40,
+    paddingHorizontal: mgMs,
+    paddingTop: mgM,
+    marginHorizontal: mgS,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 8,
     },
-  });
+    shadowOpacity: 0.46,
+    shadowRadius: 11.14,
+    elevation: 17,
+    zIndex: 17,
+  },
+});

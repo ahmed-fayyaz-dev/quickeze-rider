@@ -1,26 +1,26 @@
-import React, {useState, useEffect} from 'react';
-import {connect} from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 // import i18n from "i18n-js";
-import {View} from 'react-native';
+import { View } from 'react-native';
 // import { useTheme } from "react-native-paper";
-import Animated, {BounceInUp, Layout, FadeOut} from 'react-native-reanimated';
+import Animated, { BounceInUp, Layout, FadeOut } from 'react-native-reanimated';
 
 /* CustomFuncs/components/etc */
 import gloabalStyle from '../../styles/index';
-import {CustomSnackbar} from '../../components/customSnackbar';
+import { CustomSnackbar } from '../../components/customSnackbar';
 import VirtualizedView from '../../components/virtualizedBackedContainer';
 
 /* REDUX */
-import {submitGetDashboardDataDetail} from '../dashboard/actions/actions';
+import { submitGetDashboardDataDetail } from '../dashboard/actions/actions';
 
 function Temp() {
-  //var
+  // var
   // const t = (v) => i18n.t(v); // Getting translated text
   // const { colors } = useTheme();
   const gStyle = gloabalStyle();
   // const style = styles(colors);
 
-  //states
+  // states
   const [visibleSnack, setVisibleSnack] = useState(false);
   const [snackMsg, setSnackMsg] = useState('');
 
@@ -33,16 +33,15 @@ function Temp() {
     setVisibleSnack(true);
   }
 
-  useEffect(() => {
-    return () => {};
-  }, []);
+  useEffect(() => () => {}, []);
 
   return (
     <Animated.View
       entering={BounceInUp}
       exiting={FadeOut}
       layout={Layout.springify()}
-      style={gStyle.container}>
+      style={gStyle.container}
+    >
       <VirtualizedView contentContainerStyle={[gStyle.fg]}>
         <View style={gStyle.content}>{/* Content */}</View>
       </VirtualizedView>
@@ -59,14 +58,14 @@ function Temp() {
   );
 }
 
-function mapStateToProps({detailsBankBalReducer, submitLoginReducer}) {
+function mapStateToProps({ detailsBankBalReducer, submitLoginReducer }) {
   return {
     detailsBankBalReducer,
     submitLoginReducer,
   };
 }
 
-export default connect(mapStateToProps, {submitGetDashboardDataDetail})(Temp);
+export default connect(mapStateToProps, { submitGetDashboardDataDetail })(Temp);
 
 // const styles = (colors) =>
 //   StyleSheet.create({

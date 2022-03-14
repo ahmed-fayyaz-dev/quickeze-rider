@@ -1,29 +1,30 @@
 import axios from 'axios';
 
-//MiddlewaresForLoginSuccess
+// MiddlewaresForLoginSuccess
 
-//ServiceMiddleware
-export const ServiceMiddleware = store => next => async action => {
+// ServiceMiddleware
+export const ServiceMiddleware = (store) => (next) => async (action) => {
   if (action === undefined || !action.serviceName) {
     if (action === undefined) {
-      action = {type: ''};
+      action = { type: '' };
     }
     next(action);
     return;
   }
 
-  const {serviceName, method, headers, onLoad, onSuccess, onFailure, data} =
-    action;
-  const {dispatch} = store;
+  const {
+    serviceName, method, headers, onLoad, onSuccess, onFailure, data,
+  } = action;
+  const { dispatch } = store;
 
   setBySentType(onLoad, dispatch);
 
   try {
-    let response = await axios({
+    const response = await axios({
       url: serviceName,
-      method: method,
-      headers: headers,
-      data: data,
+      method,
+      headers,
+      data,
     });
 
     setBySentType(onSuccess, dispatch, response.data);
@@ -37,11 +38,11 @@ const setBySentType = (callBack, dispatch, data = {}) => {
     callBack(data, dispatch);
   } else if (!(callBack instanceof Array) && typeof callBack === 'object') {
     if (callBack.payload !== undefined) {
-      callBack.payload = Object.assign({}, data);
+      callBack.payload = { ...data };
     }
     dispatch(callBack);
   } else if (callBack instanceof Array && typeof callBack === 'object') {
-    callBack.forEach(ele => {
+    callBack.forEach((ele) => {
       dispatch(ele);
     });
   }
