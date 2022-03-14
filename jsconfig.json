@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      // "*": ["."],
+      "root/*": ["."],
+      "src/*": ["./src"],
+      "appConstants/*": ["./appConstants"],
+      "components/*": ["./src/components"],
+      "helper/*": ["./src/redux/helper/helper"]
+    }
+  },
+  "exclude": ["node_modules"]
+}

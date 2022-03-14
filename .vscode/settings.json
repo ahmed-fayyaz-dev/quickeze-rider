@@ -1,0 +1,8 @@
+{
+  "path-intellisense.mappings": {
+    "src": "${workspaceRoot}/src",
+    "appConstants": "${workspaceRoot}/appConstants",
+    "components": "${workspaceRoot}/src/components",
+    "helper": "${workspaceRoot}/src/redux/helper/helper"
+  }
+}

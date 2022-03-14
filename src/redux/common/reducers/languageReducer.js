@@ -1,0 +1,15 @@
+import * as types from "../constants/constants";
+
+let initial = {
+  loading: false,
+  data: "en",
+  error: null,
+};
+export default function (state = initial, action) {
+  switch (action.type) {
+    case types.LANGUAGE:
+      return { ...state, loading: false, data: action.payload, error: null };
+    default:
+      return state;
+  }
+}
