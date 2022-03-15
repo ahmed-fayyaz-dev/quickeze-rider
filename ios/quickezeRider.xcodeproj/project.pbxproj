@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* rn67BoilerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* rn67BoilerTests.m */; };
-		10F4E5E9E3E84A3BBF5C22A9 /* libPods-rn67Boiler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C99AA868637C2CC024B0CC /* libPods-rn67Boiler.a */; };
+		00E356F31AD99517003FC87E /* quickezeRiderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* quickezeRiderTests.m */; };
+		10F4E5E9E3E84A3BBF5C22A9 /* libPods-quickezeRider.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C99AA868637C2CC024B0CC /* libPods-quickezeRider.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		A32BF73F9647FD6E01EE2F25 /* libPods-rn67Boiler-rn67BoilerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDBFAC45B7C6765E4A190842 /* libPods-rn67Boiler-rn67BoilerTests.a */; };
+		A32BF73F9647FD6E01EE2F25 /* libPods-quickezeRider-quickezeRiderTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDBFAC45B7C6765E4A190842 /* libPods-quickezeRider-quickezeRiderTests.a */; };
 		B5CCF6D0AC27F1043B5432B9 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6625A7BFF8729F635E7699DB /* ExpoModulesProvider.swift */; };
 		C6D8BB17668BDD83ECB8AE5F /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD41FBF726B5364B4DF78235 /* ExpoModulesProvider.swift */; };
 /* End PBXBuildFile section */
@@ -24,30 +24,30 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = rn67Boiler;
+			remoteInfo = quickezeRider;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00E356EE1AD99517003FC87E /* rn67BoilerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = rn67BoilerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* quickezeRiderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = quickezeRiderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* rn67BoilerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = rn67BoilerTests.m; sourceTree = "<group>"; };
-		04C99AA868637C2CC024B0CC /* libPods-rn67Boiler.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rn67Boiler.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07F961A680F5B00A75B9A /* rn67Boiler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rn67Boiler.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = rn67Boiler/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = rn67Boiler/AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = rn67Boiler/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = rn67Boiler/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = rn67Boiler/main.m; sourceTree = "<group>"; };
-		25363508ED9FC3D78361E20F /* Pods-rn67Boiler-rn67BoilerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rn67Boiler-rn67BoilerTests.debug.xcconfig"; path = "Target Support Files/Pods-rn67Boiler-rn67BoilerTests/Pods-rn67Boiler-rn67BoilerTests.debug.xcconfig"; sourceTree = "<group>"; };
-		57B2C9C1F7CC06BED0210D7B /* Pods-rn67Boiler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rn67Boiler.debug.xcconfig"; path = "Target Support Files/Pods-rn67Boiler/Pods-rn67Boiler.debug.xcconfig"; sourceTree = "<group>"; };
-		6625A7BFF8729F635E7699DB /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-rn67Boiler-rn67BoilerTests/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = rn67Boiler/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		A9AE54FFF87717342D89E41C /* Pods-rn67Boiler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rn67Boiler.release.xcconfig"; path = "Target Support Files/Pods-rn67Boiler/Pods-rn67Boiler.release.xcconfig"; sourceTree = "<group>"; };
-		CDBFAC45B7C6765E4A190842 /* libPods-rn67Boiler-rn67BoilerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rn67Boiler-rn67BoilerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E06821C5E355464E49E1243D /* Pods-rn67Boiler-rn67BoilerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rn67Boiler-rn67BoilerTests.release.xcconfig"; path = "Target Support Files/Pods-rn67Boiler-rn67BoilerTests/Pods-rn67Boiler-rn67BoilerTests.release.xcconfig"; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* quickezeRiderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = quickezeRiderTests.m; sourceTree = "<group>"; };
+		04C99AA868637C2CC024B0CC /* libPods-quickezeRider.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-quickezeRider.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* quickezeRider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = quickezeRider.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = quickezeRider/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = quickezeRider/AppDelegate.m; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = quickezeRider/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = quickezeRider/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = quickezeRider/main.m; sourceTree = "<group>"; };
+		25363508ED9FC3D78361E20F /* Pods-quickezeRider-quickezeRiderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-quickezeRider-quickezeRiderTests.debug.xcconfig"; path = "Target Support Files/Pods-quickezeRider-quickezeRiderTests/Pods-quickezeRider-quickezeRiderTests.debug.xcconfig"; sourceTree = "<group>"; };
+		57B2C9C1F7CC06BED0210D7B /* Pods-quickezeRider.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-quickezeRider.debug.xcconfig"; path = "Target Support Files/Pods-quickezeRider/Pods-quickezeRider.debug.xcconfig"; sourceTree = "<group>"; };
+		6625A7BFF8729F635E7699DB /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-quickezeRider-quickezeRiderTests/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = quickezeRider/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A9AE54FFF87717342D89E41C /* Pods-quickezeRider.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-quickezeRider.release.xcconfig"; path = "Target Support Files/Pods-quickezeRider/Pods-quickezeRider.release.xcconfig"; sourceTree = "<group>"; };
+		CDBFAC45B7C6765E4A190842 /* libPods-quickezeRider-quickezeRiderTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-quickezeRider-quickezeRiderTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E06821C5E355464E49E1243D /* Pods-quickezeRider-quickezeRiderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-quickezeRider-quickezeRiderTests.release.xcconfig"; path = "Target Support Files/Pods-quickezeRider-quickezeRiderTests/Pods-quickezeRider-quickezeRiderTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		FD41FBF726B5364B4DF78235 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-rn67Boiler/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		FD41FBF726B5364B4DF78235 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-quickezeRider/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A32BF73F9647FD6E01EE2F25 /* libPods-rn67Boiler-rn67BoilerTests.a in Frameworks */,
+				A32BF73F9647FD6E01EE2F25 /* libPods-quickezeRider-quickezeRiderTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,20 +63,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10F4E5E9E3E84A3BBF5C22A9 /* libPods-rn67Boiler.a in Frameworks */,
+				10F4E5E9E3E84A3BBF5C22A9 /* libPods-quickezeRider.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* rn67BoilerTests */ = {
+		00E356EF1AD99517003FC87E /* quickezeRiderTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* rn67BoilerTests.m */,
+				00E356F21AD99517003FC87E /* quickezeRiderTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = rn67BoilerTests;
+			path = quickezeRiderTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -87,7 +87,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* rn67Boiler */ = {
+		13B07FAE1A68108700A75B9A /* quickezeRider */ = {
 			isa = PBXGroup;
 			children = (
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -97,23 +97,23 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = rn67Boiler;
+			name = quickezeRider;
 			sourceTree = "<group>";
 		};
-		229F380FAB5667877C114FBA /* rn67Boiler */ = {
+		229F380FAB5667877C114FBA /* quickezeRider */ = {
 			isa = PBXGroup;
 			children = (
 				FD41FBF726B5364B4DF78235 /* ExpoModulesProvider.swift */,
 			);
-			name = rn67Boiler;
+			name = quickezeRider;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				04C99AA868637C2CC024B0CC /* libPods-rn67Boiler.a */,
-				CDBFAC45B7C6765E4A190842 /* libPods-rn67Boiler-rn67BoilerTests.a */,
+				04C99AA868637C2CC024B0CC /* libPods-quickezeRider.a */,
+				CDBFAC45B7C6765E4A190842 /* libPods-quickezeRider-quickezeRiderTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -121,8 +121,8 @@
 		8095D65DDB618AA7230A3E3D /* ExpoModulesProviders */ = {
 			isa = PBXGroup;
 			children = (
-				229F380FAB5667877C114FBA /* rn67Boiler */,
-				E8A7101F917850DB2F417299 /* rn67BoilerTests */,
+				229F380FAB5667877C114FBA /* quickezeRider */,
+				E8A7101F917850DB2F417299 /* quickezeRiderTests */,
 			);
 			name = ExpoModulesProviders;
 			sourceTree = "<group>";
@@ -137,9 +137,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* rn67Boiler */,
+				13B07FAE1A68108700A75B9A /* quickezeRider */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* rn67BoilerTests */,
+				00E356EF1AD99517003FC87E /* quickezeRiderTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				C71573055FD11AF6C9180F30 /* Pods */,
@@ -153,8 +153,8 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* rn67Boiler.app */,
-				00E356EE1AD99517003FC87E /* rn67BoilerTests.xctest */,
+				13B07F961A680F5B00A75B9A /* quickezeRider.app */,
+				00E356EE1AD99517003FC87E /* quickezeRiderTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -162,29 +162,29 @@
 		C71573055FD11AF6C9180F30 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				57B2C9C1F7CC06BED0210D7B /* Pods-rn67Boiler.debug.xcconfig */,
-				A9AE54FFF87717342D89E41C /* Pods-rn67Boiler.release.xcconfig */,
-				25363508ED9FC3D78361E20F /* Pods-rn67Boiler-rn67BoilerTests.debug.xcconfig */,
-				E06821C5E355464E49E1243D /* Pods-rn67Boiler-rn67BoilerTests.release.xcconfig */,
+				57B2C9C1F7CC06BED0210D7B /* Pods-quickezeRider.debug.xcconfig */,
+				A9AE54FFF87717342D89E41C /* Pods-quickezeRider.release.xcconfig */,
+				25363508ED9FC3D78361E20F /* Pods-quickezeRider-quickezeRiderTests.debug.xcconfig */,
+				E06821C5E355464E49E1243D /* Pods-quickezeRider-quickezeRiderTests.release.xcconfig */,
 			);
 			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		E8A7101F917850DB2F417299 /* rn67BoilerTests */ = {
+		E8A7101F917850DB2F417299 /* quickezeRiderTests */ = {
 			isa = PBXGroup;
 			children = (
 				6625A7BFF8729F635E7699DB /* ExpoModulesProvider.swift */,
 			);
-			name = rn67BoilerTests;
+			name = quickezeRiderTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* rn67BoilerTests */ = {
+		00E356ED1AD99517003FC87E /* quickezeRiderTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "rn67BoilerTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "quickezeRiderTests" */;
 			buildPhases = (
 				2ED705A7EA10B2C4C9AFF14F /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -198,14 +198,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = rn67BoilerTests;
-			productName = rn67BoilerTests;
-			productReference = 00E356EE1AD99517003FC87E /* rn67BoilerTests.xctest */;
+			name = quickezeRiderTests;
+			productName = quickezeRiderTests;
+			productReference = 00E356EE1AD99517003FC87E /* quickezeRiderTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* rn67Boiler */ = {
+		13B07F861A680F5B00A75B9A /* quickezeRider */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "rn67Boiler" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "quickezeRider" */;
 			buildPhases = (
 				31C706409F4BFE45F47127C0 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -221,9 +221,9 @@
 			);
 			dependencies = (
 			);
-			name = rn67Boiler;
-			productName = rn67Boiler;
-			productReference = 13B07F961A680F5B00A75B9A /* rn67Boiler.app */;
+			name = quickezeRider;
+			productName = quickezeRider;
+			productReference = 13B07F961A680F5B00A75B9A /* quickezeRider.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -243,7 +243,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "rn67Boiler" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "quickezeRider" */;
 			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -256,8 +256,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* rn67Boiler */,
-				00E356ED1AD99517003FC87E /* rn67BoilerTests */,
+				13B07F861A680F5B00A75B9A /* quickezeRider */,
+				00E356ED1AD99517003FC87E /* quickezeRiderTests */,
 			);
 		};
 /* End PBXProject section */
@@ -302,15 +302,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-rn67Boiler/Pods-rn67Boiler-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-quickezeRider/Pods-quickezeRider-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-rn67Boiler/Pods-rn67Boiler-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-quickezeRider/Pods-quickezeRider-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-rn67Boiler/Pods-rn67Boiler-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-quickezeRider/Pods-quickezeRider-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		2ED705A7EA10B2C4C9AFF14F /* [CP] Check Pods Manifest.lock */ = {
@@ -328,7 +328,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-rn67Boiler-rn67BoilerTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-quickezeRider-quickezeRiderTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -341,15 +341,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-rn67Boiler-rn67BoilerTests/Pods-rn67Boiler-rn67BoilerTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-quickezeRider-quickezeRiderTests/Pods-quickezeRider-quickezeRiderTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-rn67Boiler-rn67BoilerTests/Pods-rn67Boiler-rn67BoilerTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-quickezeRider-quickezeRiderTests/Pods-quickezeRider-quickezeRiderTests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-rn67Boiler-rn67BoilerTests/Pods-rn67Boiler-rn67BoilerTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-quickezeRider-quickezeRiderTests/Pods-quickezeRider-quickezeRiderTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		31C706409F4BFE45F47127C0 /* [CP] Check Pods Manifest.lock */ = {
@@ -367,7 +367,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-rn67Boiler-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-quickezeRider-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -380,15 +380,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-rn67Boiler/Pods-rn67Boiler-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-quickezeRider/Pods-quickezeRider-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-rn67Boiler/Pods-rn67Boiler-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-quickezeRider/Pods-quickezeRider-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-rn67Boiler/Pods-rn67Boiler-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-quickezeRider/Pods-quickezeRider-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C4641C3BCAD96B2DDD715D39 /* [CP] Embed Pods Frameworks */ = {
@@ -397,15 +397,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-rn67Boiler-rn67BoilerTests/Pods-rn67Boiler-rn67BoilerTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-quickezeRider-quickezeRiderTests/Pods-quickezeRider-quickezeRiderTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-rn67Boiler-rn67BoilerTests/Pods-rn67Boiler-rn67BoilerTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-quickezeRider-quickezeRiderTests/Pods-quickezeRider-quickezeRiderTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-rn67Boiler-rn67BoilerTests/Pods-rn67Boiler-rn67BoilerTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-quickezeRider-quickezeRiderTests/Pods-quickezeRider-quickezeRiderTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EF1BED7192EB43EEAA23D0FB /* Upload Debug Symbols to Sentry */ = {
@@ -448,7 +448,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* rn67BoilerTests.m in Sources */,
+				00E356F31AD99517003FC87E /* quickezeRiderTests.m in Sources */,
 				B5CCF6D0AC27F1043B5432B9 /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -468,7 +468,7 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* rn67Boiler */;
+			target = 13B07F861A680F5B00A75B9A /* quickezeRider */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -476,14 +476,14 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 25363508ED9FC3D78361E20F /* Pods-rn67Boiler-rn67BoilerTests.debug.xcconfig */;
+			baseConfigurationReference = 25363508ED9FC3D78361E20F /* Pods-quickezeRider-quickezeRiderTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = rn67BoilerTests/Info.plist;
+				INFOPLIST_FILE = quickezeRiderTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -497,17 +497,17 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/rn67Boiler.app/rn67Boiler";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/quickezeRider.app/quickezeRider";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E06821C5E355464E49E1243D /* Pods-rn67Boiler-rn67BoilerTests.release.xcconfig */;
+			baseConfigurationReference = E06821C5E355464E49E1243D /* Pods-quickezeRider-quickezeRiderTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = rn67BoilerTests/Info.plist;
+				INFOPLIST_FILE = quickezeRiderTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -521,19 +521,19 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/rn67Boiler.app/rn67Boiler";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/quickezeRider.app/quickezeRider";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 57B2C9C1F7CC06BED0210D7B /* Pods-rn67Boiler.debug.xcconfig */;
+			baseConfigurationReference = 57B2C9C1F7CC06BED0210D7B /* Pods-quickezeRider.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = rn67Boiler/Info.plist;
+				INFOPLIST_FILE = quickezeRider/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -544,7 +544,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = rn67Boiler;
+				PRODUCT_NAME = quickezeRider;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -553,12 +553,12 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A9AE54FFF87717342D89E41C /* Pods-rn67Boiler.release.xcconfig */;
+			baseConfigurationReference = A9AE54FFF87717342D89E41C /* Pods-quickezeRider.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = rn67Boiler/Info.plist;
+				INFOPLIST_FILE = quickezeRider/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -569,7 +569,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = rn67Boiler;
+				PRODUCT_NAME = quickezeRider;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -701,7 +701,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "rn67BoilerTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "quickezeRiderTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -710,7 +710,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "rn67Boiler" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "quickezeRider" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -719,7 +719,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "rn67Boiler" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "quickezeRider" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "rn67Boiler.app"
-               BlueprintName = "rn67Boiler"
-               ReferencedContainer = "container:rn67Boiler.xcodeproj">
+               BuildableName = "quickezeRider.app"
+               BlueprintName = "quickezeRider"
+               ReferencedContainer = "container:quickezeRider.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "rn67BoilerTests.xctest"
-               BlueprintName = "rn67BoilerTests"
-               ReferencedContainer = "container:rn67Boiler.xcodeproj">
+               BuildableName = "quickezeRiderTests.xctest"
+               BlueprintName = "quickezeRiderTests"
+               ReferencedContainer = "container:quickezeRider.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "rn67Boiler.app"
-            BlueprintName = "rn67Boiler"
-            ReferencedContainer = "container:rn67Boiler.xcodeproj">
+            BuildableName = "quickezeRider.app"
+            BlueprintName = "quickezeRider"
+            ReferencedContainer = "container:quickezeRider.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "rn67Boiler.app"
-            BlueprintName = "rn67Boiler"
-            ReferencedContainer = "container:rn67Boiler.xcodeproj">
+            BuildableName = "quickezeRider.app"
+            BlueprintName = "quickezeRider"
+            ReferencedContainer = "container:quickezeRider.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

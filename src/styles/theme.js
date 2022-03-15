@@ -1,4 +1,4 @@
-import { DarkTheme, DefaultTheme } from 'react-native-paper';
+import {DarkTheme, DefaultTheme} from 'react-native-paper';
 import {
   DefaultTheme as defThemeNav,
   DarkTheme as darkThemeNav,
@@ -8,7 +8,7 @@ const bRm = 50;
 
 const lightColorSet = {
   primary: '#EF4E36',
-  primaryVariant: 'rgb(0, 158, 127)',
+  primaryVariant: '#009e7f',
   secondary: '#009E7F',
   muted: '#333333',
   error: '#CF6679',
@@ -24,7 +24,7 @@ const lightColorSet = {
 
 const darkColorSet = {
   primary: '#EF4E36',
-  primaryVariant: 'rgb(0, 158, 127)',
+  primaryVariant: '#009e7f',
   secondary: '#009E7F',
   muted: '#333333',
   error: '#CF6679',

@@ -84,6 +84,7 @@ project.ext.react = [
 apply from: "../../node_modules/react-native/react.gradle"
 apply from: "../../node_modules/@sentry/react-native/sentry.gradle"
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 
 /**
  * Set this to true to create two separate APKs instead of one:
@@ -138,6 +139,8 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        GOOGLE_MAP_API_KEY project.env.get("GOOGLE_MAP_API_KEY")
+
     }
     splits {
         abi {

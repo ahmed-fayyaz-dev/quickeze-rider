@@ -1,27 +1,27 @@
 import React from 'react';
-import { Image, View, StyleSheet } from 'react-native';
 import {
   DrawerContentScrollView,
   DrawerItem,
   DrawerItemList,
 } from '@react-navigation/drawer';
 import Animated from 'react-native-reanimated';
-import { useTheme as paperTheme } from 'react-native-paper';
+import {useTheme as paperTheme} from 'react-native-paper';
 import Constants from 'expo-constants';
-import { useTheme } from '@react-navigation/native';
-import { CustomCaption, CustomSubheading, CustomText } from './customText';
-import { icons } from '../../assets/images/index';
-import { IonIcons, removeStorageItem } from '../constants';
-import { iconSize } from '../styles/navCss';
-import { CustomIconButton } from './buttons';
-import { bRss, mgS, onBackgroundDark } from '../styles';
-import { GapH, GapV } from './gap';
+import {useTheme} from '@react-navigation/native';
+import {CustomCaption, CustomSubheading, CustomText} from './customText';
+import {icons} from '../../assets/images/index';
+import {IonIcons, removeStorageItem} from '../constants';
+import {iconSize} from '../styles/navCss';
+import {CustomIconButton} from './buttons';
+import {bRss, mgS, onBackgroundDark} from '../styles';
+import {GapH, GapV} from './gap';
 // import globalStyles from "../styles/index";
 
-function DrawerContent({ state, navigation, ...props }) {
-  const { colors } = useTheme();
-  const { colors: paperColors } = paperTheme();
+function DrawerContent(props) {
+  const {colors} = useTheme();
+  const {colors: paperColors} = paperTheme();
   const style = styles(paperColors);
+  // const {navigation} = props;
 
   function BackIcon() {
     return (
@@ -39,9 +39,9 @@ function DrawerContent({ state, navigation, ...props }) {
     removeStorageItem('id');
     removeStorageItem('password');
     props.logout();
-    navigation.reset({
+    props.navigation.reset({
       index: 0,
-      routes: [{ name: 'authStack' }],
+      routes: [{name: 'authStack'}],
     });
   };
 
@@ -52,13 +52,13 @@ function DrawerContent({ state, navigation, ...props }) {
           <BackIcon />
 
           <View style={[style.accountInfo]}>
-            <Image
+            {/* <Image
               resizeMode="cover"
               source={{
                 uri: props.profileUrl,
               }}
               style={[style.roundImage]}
-            />
+            /> */}
             <GapH small />
 
             <View>
@@ -77,7 +77,7 @@ function DrawerContent({ state, navigation, ...props }) {
         <DrawerItemList {...props} />
         <DrawerItem
           onPress={signOutFunc}
-          icon={({ size, color }) => (
+          icon={({size, color}) => (
             <IonIcons size={size} name="exit-outline" color={color} />
           )}
           label="Sign Out"
@@ -103,47 +103,48 @@ function DrawerContent({ state, navigation, ...props }) {
 
 export default DrawerContent;
 
-const styles = (colors) => StyleSheet.create({
-  container: { flex: 1 },
+const styles = colors =>
+  StyleSheet.create({
+    container: {flex: 1},
 
-  menuText: {
-    fontWeight: 'bold',
-    margin: 10,
-    textAlign: 'left',
-    color: onBackgroundDark,
-    backgroundColor: colors.notification,
-    padding: mgS,
-    borderRadius: bRss,
-  },
+    menuText: {
+      fontWeight: 'bold',
+      margin: 10,
+      textAlign: 'left',
+      color: onBackgroundDark,
+      backgroundColor: colors.notification,
+      padding: mgS,
+      borderRadius: bRss,
+    },
 
-  textLeft: { textAlign: 'left' },
+    textLeft: {textAlign: 'left'},
 
-  drawerBottomView: {
-    marginBottom: 10,
-    paddingHorizontal: 20,
-    flexDirection: 'row-reverse',
-    justifyContent: 'space-between',
-  },
+    drawerBottomView: {
+      marginBottom: 10,
+      paddingHorizontal: 20,
+      flexDirection: 'row-reverse',
+      justifyContent: 'space-between',
+    },
 
-  drawerTopView: {
-    flexDirection: 'row-reverse',
-    // paddingHorizontal: 10,
-  },
+    drawerTopView: {
+      flexDirection: 'row-reverse',
+      // paddingHorizontal: 10,
+    },
 
-  roundImage: {
-    width: 65,
-    height: 65,
-    borderRadius: 65 / 2,
-    overflow: 'hidden',
-  },
+    roundImage: {
+      width: 65,
+      height: 65,
+      borderRadius: 65 / 2,
+      overflow: 'hidden',
+    },
 
-  accountInfo: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    margin: mgS,
-    // justifyContent: "space-around",
-  },
+    accountInfo: {
+      flex: 1,
+      flexDirection: 'row',
+      alignItems: 'center',
+      margin: mgS,
+      // justifyContent: "space-around",
+    },
 
-  logoImage: { maxWidth: 80 },
-});
+    logoImage: {maxWidth: 80, maxHeight: 50},
+  });

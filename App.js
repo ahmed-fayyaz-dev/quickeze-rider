@@ -1,22 +1,24 @@
 import React from 'react';
-import { Provider as StoreProvider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
+import {Provider as StoreProvider} from 'react-redux';
+import {PersistGate} from 'redux-persist/integration/react';
 import * as Sentry from '@sentry/react-native';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 
-import configureStore from './src/redux/store';
+import {store, persistor} from './src/redux/store';
 import AppNavigator from './src/navigator/navigation';
-import { settings } from './settings';
+import {settings} from './settings';
 
 settings;
 
 function App() {
   return (
-    <StoreProvider store={configureStore().store}>
-      <PersistGate loading={null} persistor={configureStore().persistor}>
-        {/* <StatusBar style="auto" /> */}
-        <AppNavigator />
-      </PersistGate>
-    </StoreProvider>
+    <SafeAreaProvider>
+      <StoreProvider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <AppNavigator />
+        </PersistGate>
+      </StoreProvider>
+    </SafeAreaProvider>
   );
 }
 
