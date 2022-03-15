@@ -13,16 +13,16 @@ target 'quickezeRider' do
       Pod::UI.warn e
     end
   end
+
+  rn_maps_path = '../node_modules/react-native-maps'
+  pod 'react-native-google-maps', :path => rn_maps_path
+
   config = use_native_modules!
 
   use_react_native!(
-    # React Native Maps dependencies
-    rn_maps_path = '../node_modules/react-native-maps'
-    pod 'react-native-google-maps', :path => rn_maps_path
-
     :path => config[:reactNativePath],
     # to enable hermes on iOS, change `false` to `true` and then install pods
-    :hermes_enabled => true
+    :hermes_enabled => false
   )
 
   target 'quickezeRiderTests' do

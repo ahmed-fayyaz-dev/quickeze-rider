@@ -7,7 +7,9 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "lint --fix": "eslint --fix .",
+    "clean": "\\rm -fr ./node_modules dist/* ios/build ios/Pods ios/KScoreApp.xcarchive android/build android/app/build public/js public/assets && yarn"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.16.1",
@@ -30,6 +32,7 @@
     "react": "17.0.2",
     "react-freeze": "^1.0.0",
     "react-native": "0.67.3",
+    "react-native-config": "^1.4.5",
     "react-native-dotenv": "^3.3.1",
     "react-native-dropdown-picker": "^5.3.0",
     "react-native-gesture-handler": "^2.3.0",
@@ -45,6 +48,7 @@
     "react-redux": "^7.2.6",
     "redux": "^4.1.2",
     "redux-devtools": "^3.7.0",
+    "redux-ignore": "^1.2.5",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.1"
   },
@@ -63,7 +67,6 @@
     "jest": "^26.6.3",
     "metro-react-native-babel-preset": "^0.66.2",
     "prettier": "^2.5.1",
-    "react-native-config": "^1.4.5",
     "react-test-renderer": "17.0.2"
   },
   "jest": {

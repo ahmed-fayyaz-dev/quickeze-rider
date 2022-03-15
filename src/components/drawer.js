@@ -1,4 +1,5 @@
 import React from 'react';
+import {Image, View, StyleSheet} from 'react-native';
 import {
   DrawerContentScrollView,
   DrawerItem,
