@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Checkbox } from 'react-native-paper';
+import {Checkbox} from 'react-native-paper';
 
-export function CustomCheckbox({ status, onPress, children }) {
+export function CustomCheckbox({status, onPress, children}) {
     // const [checked, setChecked] = React.useState(false);
 
     return (
