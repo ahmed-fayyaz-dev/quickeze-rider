@@ -1,25 +1,24 @@
-import {createStore, applyMiddleware} from 'redux';
-import {persistStore, persistReducer} from 'redux-persist';
-import {composeWithDevTools} from '@redux-devtools/extension';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { composeWithDevTools } from '@redux-devtools/extension';
+import { createStore, applyMiddleware } from 'redux';
+import { persistStore, persistReducer } from 'redux-persist';
 import thunk from 'redux-thunk';
+import { saveOnLogin } from './middleware/otherMiddleWare';
+import { ServiceMiddleware } from './middleware/serviceMiddleWare.js';
 import rootReducers from './reducer';
 
-import {ServiceMiddleware} from './middleware/serviceMiddleWare.js';
-import {saveOnLogin} from './middleware/otherMiddleWare';
-
 const persistConfig = {
-  key: 'root',
-  storage: AsyncStorage,
-  blacklist: ['quarterReducer', 'fYearReducer'],
+    key: 'root',
+    storage: AsyncStorage,
+    blacklist: ['quarterReducer', 'fYearReducer'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducers);
 const middleware = [thunk, ServiceMiddleware, saveOnLogin];
 const store = createStore(
-  persistedReducer,
-  composeWithDevTools(applyMiddleware(...middleware)),
+    persistedReducer,
+    composeWithDevTools(applyMiddleware(...middleware)),
 );
-let persistor = persistStore(store);
+const persistor = persistStore(store);
 
-export {store, persistor};
+export { store, persistor };

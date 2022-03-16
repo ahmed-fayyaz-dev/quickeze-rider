@@ -1,17 +1,17 @@
-import * as types from '../constants/constants';
+import * as types from 'src/redux/common/constants/constants';
 
 const initial = {
-  loading: false,
-  data: null,
-  error: null,
+    loading: false,
+    data: null,
+    error: null,
 };
 export default function (state = initial, action) {
-  switch (action.type) {
+    switch (action.type) {
     case types.LOCATION:
-      return {
-        ...state, loading: false, data: action.payload, error: null,
-      };
+        return {
+            ...state, loading: false, data: action.payload, error: null,
+        };
     default:
-      return state;
-  }
+        return state;
+    }
 }

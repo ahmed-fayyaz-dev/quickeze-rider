@@ -1,10 +1,11 @@
 import {
-  SENTRY_DSN as sentryDsn,
-  SERVER_URL as serverurl,
-  GOOGLE_MAP_API_KEY as googleMapApiKey,
-  DELIVERY_DISTANCE_IN_KM as deliveryDistanceInKm,
-  GOOGLE_MAP_DISTANCE_ENDPOINT as googleMapDistanceEndpoint,
-} from '@env';
+    SENTRY_DSN as sentryDsn,
+    SERVER_URL as serverurl,
+    GOOGLE_MAP_API_KEY as googleMapApiKey,
+    DELIVERY_DISTANCE_IN_KM as deliveryDistanceInKm,
+    GOOGLE_MAP_DISTANCE_ENDPOINT as googleMapDistanceEndpoint,
+    // eslint-disable-next-line import/no-unresolved
+} from "@env";
 
 export const SENTRY_DSN = sentryDsn;
 

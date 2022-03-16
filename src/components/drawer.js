@@ -5,17 +5,17 @@ import {
   DrawerItem,
   DrawerItemList,
 } from '@react-navigation/drawer';
-import Animated from 'react-native-reanimated';
-import {useTheme as paperTheme} from 'react-native-paper';
-import Constants from 'expo-constants';
 import {useTheme} from '@react-navigation/native';
-import {CustomCaption, CustomSubheading, CustomText} from './customText';
-import {icons} from '../../assets/images/index';
-import {IonIcons, removeStorageItem} from '../constants';
-import {iconSize} from '../styles/navCss';
+import Constants from 'expo-constants';
+import {useTheme as paperTheme} from 'react-native-paper';
+import Animated from 'react-native-reanimated';
 import {CustomIconButton} from './buttons';
-import {bRss, mgS, onBackgroundDark} from '../styles';
+import {CustomCaption, CustomSubheading, CustomText} from './customText';
 import {GapH, GapV} from './gap';
+import {icons} from 'assets/images/index';
+import {IonIcons, removeStorageItem} from 'src/constants';
+import {bRss, mgS, onBackgroundDark} from 'src/styles';
+import {iconSize} from 'src/styles/navCss';
 // import globalStyles from "../styles/index";
 
 function DrawerContent(props) {

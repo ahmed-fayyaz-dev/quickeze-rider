@@ -1,14 +1,11 @@
+// Config For Autocomplete of Absolute Imports
 {
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      // "*": ["."],
-      "root/*": ["."],
-      "src/*": ["./src"],
-      "appConstants/*": ["./appConstants"],
-      "components/*": ["./src/components"],
-      "helper/*": ["./src/redux/helper/helper"]
+      "src": ["./src/*"],
+      "assets": ["./assets/*"],
+      "appConstants": ["./appConstants"]
     }
-  },
-  "exclude": ["node_modules"]
+  }
 }

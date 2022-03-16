@@ -1,21 +1,21 @@
-import * as types from '../constants/constants';
+import * as types from 'src/screens/login/constants/constants';
 
 const initial = {
-  loading: false,
-  data: {},
-  error: null,
+    loading: false,
+    data: {},
+    error: null,
 };
 export default function (state = initial, action) {
-  switch (action.type) {
+    switch (action.type) {
     case types.LOGIN_ACCOUNT_ATTEMPT:
-      return { ...state, loading: true };
+        return { ...state, loading: true };
     case types.LOGIN_ACCOUNT_SUCCESS:
-      return {
-        ...state, loading: false, data: action.payload, error: null,
-      };
+        return {
+            ...state, loading: false, data: action.payload, error: null,
+        };
     case types.LOGIN_ACCOUNT_FAIL:
-      return { ...state, loading: false, error: action.payload };
+        return { ...state, loading: false, error: action.payload };
     default:
-      return state;
-  }
+        return state;
+    }
 }

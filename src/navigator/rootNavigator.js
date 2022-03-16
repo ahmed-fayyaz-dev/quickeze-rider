@@ -2,27 +2,27 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { connect } from 'react-redux';
 
-import AuthStack from './navSlices/authStack';
 import DrawerNav from './drawerNav';
+import AuthStack from './navSlices/authStack';
 
 const Stack = createNativeStackNavigator();
 
 function RootNavigator({
-  loggedIn,
-  // ...props
+    loggedIn,
+    // ...props
 }) {
-  return (
-    <Stack.Navigator
-      initialRouteName={loggedIn.current ? 'drawerNav' : 'authStack'}
-      screenOptions={{ headerShown: false }}
-    >
-      <Stack.Screen name="authStack" component={AuthStack} />
-      <Stack.Screen name="drawerNav" component={DrawerNav} />
-    </Stack.Navigator>
-  );
+    return (
+        <Stack.Navigator
+            initialRouteName={loggedIn.current ? 'drawerNav' : 'authStack'}
+            screenOptions={{ headerShown: false }}
+        >
+            <Stack.Screen name="authStack" component={AuthStack} />
+            <Stack.Screen name="drawerNav" component={DrawerNav} />
+        </Stack.Navigator>
+    );
 }
 
 function mapStateToProps({ submitLoginReducer }) {
-  return { submitLoginReducer };
+    return { submitLoginReducer };
 }
 export default connect(mapStateToProps, {})(RootNavigator);

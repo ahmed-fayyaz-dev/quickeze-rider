@@ -1,6 +1,6 @@
 import getDashboardDataReducer from './getDashboardDataReducer';
 
 const reducers = {
-  getDashboardDataReducer,
+    getDashboardDataReducer,
 };
 export default reducers;

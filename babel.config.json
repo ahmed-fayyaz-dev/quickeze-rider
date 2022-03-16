@@ -21,9 +21,8 @@
         "root": ["."],
         "alias": {
           "src": "./src",
-          "appConstants": "./appConstants",
-          "components": "./src/components",
-          "helper": "./src/redux/helper/helper"
+          "assets": "./assets",
+          "appConstants": "./appConstants"
         }
       }
     ],
