@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
-import React, {useState} from 'react';
-import {Button} from 'react-native';
-import Animated, {BounceInUp, Layout, FadeOut} from 'react-native-reanimated';
+import React, { useState } from 'react';
+import { Button } from 'react-native';
+import Animated, { BounceInUp, Layout, FadeOut } from 'react-native-reanimated';
 
-export function Playground() {
+export default function Playground() {
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
     const showDatePicker = () => {

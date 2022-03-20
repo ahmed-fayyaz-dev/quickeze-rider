@@ -1,151 +1,185 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
-import {Image, View, StyleSheet} from 'react-native';
-import {
-  DrawerContentScrollView,
-  DrawerItem,
-  DrawerItemList,
-} from '@react-navigation/drawer';
-import {useTheme} from '@react-navigation/native';
-import Constants from 'expo-constants';
-import {useTheme as paperTheme} from 'react-native-paper';
-import Animated from 'react-native-reanimated';
-import {CustomIconButton} from './buttons';
-import {CustomCaption, CustomSubheading, CustomText} from './customText';
-import {GapH, GapV} from './gap';
-import {icons} from 'assets/images/index';
-import {IonIcons, removeStorageItem} from 'src/constants';
-import {bRss, mgS, onBackgroundDark} from 'src/styles';
-import {iconSize} from 'src/styles/navCss';
-// import globalStyles from "../styles/index";
+import { Image, View, StyleSheet } from 'react-native';
+import { DrawerItem, DrawerContentScrollView } from '@react-navigation/drawer';
+import { useTheme } from '@react-navigation/native';
+import { nativeApplicationVersion } from 'expo-application';
+import { useTheme as paperTheme } from 'react-native-paper';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-function DrawerContent(props) {
-  const {colors} = useTheme();
-  const {colors: paperColors} = paperTheme();
-  const style = styles(paperColors);
-  // const {navigation} = props;
+import { icons } from 'assets/images/index';
+import { CustomIconButton } from 'src/components/buttons';
+import { IonIcons, removeStorageItem } from 'src/constants';
+import { bRss, mgS, onBackgroundDark, pdHm } from 'src/styles';
+import { iconSize } from 'src/styles/navCss';
+import { CustomCaption, CustomSubheading, CustomText } from './customText';
+import { GapH } from './gap';
 
-  function BackIcon() {
-    return (
-      <CustomIconButton
-        name="chevron-back-outline"
+const navigateTo = ({ navigation, name }) => {
+    navigation.closeDrawer();
+    setTimeout(() => navigation.navigate(name), 400);
+};
+
+const signOutFunc = ({ logout, navigation }) => {
+    removeStorageItem('id');
+    removeStorageItem('onboard');
+    removeStorageItem('password');
+    logout();
+    navigation.reset({
+        index: 0,
+        routes: [{ name: 'authStack' }],
+    });
+};
+
+const BackIcon = ({ colors, navigation }) => (
+    <CustomIconButton
         size={iconSize}
         color={colors.primary}
-        onPress={() => props.navigation.toggleDrawer()}
-      />
-    );
-  }
+        name={'chevron-back-outline'}
+        onPress={() => navigation.toggleDrawer()}
+    />
+);
 
-  const signOutFunc = () => {
-    removeStorageItem('onboard');
-    removeStorageItem('id');
-    removeStorageItem('password');
-    props.logout();
-    props.navigation.reset({
-      index: 0,
-      routes: [{name: 'authStack'}],
-    });
-  };
-
-  return (
-    <Animated.View style={[style.container]}>
-      <DrawerContentScrollView {...props}>
-        <View style={[style.drawerTopView]}>
-          <BackIcon />
-
-          <View style={[style.accountInfo]}>
-            {/* <Image
-              resizeMode="cover"
-              source={{
-                uri: props.profileUrl,
-              }}
-              style={[style.roundImage]}
-            /> */}
-            <GapH small />
+const DrawerAccountInfo = ({ colors, profileUrl, submitLoginReducer }) => {
+    const style = styles(colors);
+    return (
+        <View style={[style.accountInfo]}>
+            <Image
+                source={{
+                    uri: profileUrl,
+                }}
+                resizeMode="cover"
+                style={[style.roundImage]}
+            />
+            <GapH small={true} />
 
             <View>
-              <CustomText style={style.textLeft}>
-                {props.submitLoginReducer?.session?.employeename}
-              </CustomText>
-              <CustomCaption style={style.textLeft}>
-                {props.submitLoginReducer?.users?.empCode}
-              </CustomCaption>
+                <CustomText style={style.textLeft}>
+                    {submitLoginReducer?.session?.employeename}
+                </CustomText>
+                <CustomCaption style={style.textLeft}>
+                    {submitLoginReducer?.users?.empCode}
+                </CustomCaption>
             </View>
-          </View>
         </View>
+    );
+};
 
-        <GapV />
-        <CustomSubheading style={[style.menuText]}>MENU</CustomSubheading>
-        <DrawerItemList {...props} />
-        <DrawerItem
-          onPress={signOutFunc}
-          icon={({size, color}) => (
-            <IonIcons size={size} name="exit-outline" color={color} />
-          )}
-          label="Sign Out"
-          labelStyle={[style.signoutLabel]}
-          style={props.drawerItemStyle}
-        />
-      </DrawerContentScrollView>
+const CustomDrawerList = ({ state, descriptors, navigation }) => {
+    return state.routes.map(route => {
+        const {
+            title,
+            drawerIcon,
+            drawerItemStyle,
+            drawerActiveTintColor,
+            drawerActiveBackgroundColor,
+        } = descriptors[route.key].options;
 
-      <View style={[style.drawerBottomView]}>
-        <CustomCaption>
-          App version
-          {Constants.nativeAppVersion}
-        </CustomCaption>
-        <Image
-          resizeMode="contain"
-          source={icons.app.logoSmallB}
-          style={[style.logoImage]}
-        />
-      </View>
-    </Animated.View>
-  );
+        return (
+            <DrawerItem
+                key={route.key}
+                icon={drawerIcon}
+                style={drawerItemStyle}
+                label={title || route.name}
+                activeTintColor={drawerActiveTintColor}
+                activeBackgroundColor={drawerActiveBackgroundColor}
+                onPress={() => navigateTo({ navigation, name: route.name })}
+                focused={
+                    state.routes.findIndex(e => e.name === route.name) ===
+                    state.index
+                }
+            />
+        );
+    });
+};
+
+function DrawerContent(props) {
+    const { colors } = useTheme();
+    const { colors: paperColors } = paperTheme();
+    const style = styles(paperColors);
+    const { state, descriptors, navigation } = props;
+    const { profileUrl, submitLoginReducer, logout, drawerItemStyle } = props;
+
+    return (
+        <SafeAreaView style={style.container}>
+            <View style={[style.drawerTopView]}>
+                {BackIcon({ colors, navigation })}
+                {DrawerAccountInfo({ colors, profileUrl, submitLoginReducer })}
+            </View>
+
+            <DrawerContentScrollView {...props}>
+                <CustomSubheading style={[style.menuText]}>
+                    MENU
+                </CustomSubheading>
+                {/* Drawer Screens List */}
+                {CustomDrawerList({ state, descriptors, navigation })}
+                {/* Drawer Signout item */}
+                <DrawerItem
+                    onPress={() => signOutFunc({ logout, navigation })}
+                    icon={({ size, color }) =>
+                        IonIcons({ size, name: 'exit-outline', color })
+                    }
+                    label="Sign Out"
+                    style={drawerItemStyle}
+                />
+            </DrawerContentScrollView>
+
+            <View style={[style.drawerBottomView]}>
+                <CustomCaption>
+                    App version {nativeApplicationVersion}
+                </CustomCaption>
+                <Image
+                    resizeMode="contain"
+                    source={icons.app.logoSmallB}
+                    style={[style.logoImage]}
+                />
+            </View>
+        </SafeAreaView>
+    );
 }
 
 export default DrawerContent;
 
 const styles = colors =>
-  StyleSheet.create({
-    container: {flex: 1},
+    StyleSheet.create({
+        container: { flex: 1 },
 
-    menuText: {
-      fontWeight: 'bold',
-      margin: 10,
-      textAlign: 'left',
-      color: onBackgroundDark,
-      backgroundColor: colors.notification,
-      padding: mgS,
-      borderRadius: bRss,
-    },
+        menuText: {
+            margin: mgS,
+            padding: mgS,
+            textAlign: 'left',
+            fontWeight: 'bold',
+            borderRadius: bRss,
+            color: onBackgroundDark,
+            backgroundColor: colors.notification,
+        },
 
-    textLeft: {textAlign: 'left'},
+        textLeft: { textAlign: 'left' },
 
-    drawerBottomView: {
-      marginBottom: 10,
-      paddingHorizontal: 20,
-      flexDirection: 'row-reverse',
-      justifyContent: 'space-between',
-    },
+        drawerBottomView: {
+            marginBottom: mgS,
+            paddingHorizontal: pdHm,
+            flexDirection: 'row-reverse',
+            justifyContent: 'space-between',
+        },
 
-    drawerTopView: {
-      flexDirection: 'row-reverse',
-      // paddingHorizontal: 10,
-    },
+        drawerTopView: {
+            flexDirection: 'row-reverse',
+        },
 
-    roundImage: {
-      width: 65,
-      height: 65,
-      borderRadius: 65 / 2,
-      overflow: 'hidden',
-    },
+        roundImage: {
+            width: 65,
+            height: 65,
+            overflow: 'hidden',
+            borderRadius: 65 / 2,
+        },
 
-    accountInfo: {
-      flex: 1,
-      flexDirection: 'row',
-      alignItems: 'center',
-      margin: mgS,
-      // justifyContent: "space-around",
-    },
+        accountInfo: {
+            flex: 1,
+            flexDirection: 'row',
+            alignItems: 'center',
+            margin: mgS,
+        },
 
-    logoImage: {maxWidth: 80, maxHeight: 50},
-  });
+        logoImage: { maxWidth: 80, maxHeight: 80 },
+    });

@@ -1,20 +1,21 @@
-import React, {useState, useEffect, useRef, useCallback} from 'react';
-import {Appearance, I18nManager} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
+// eslint-disable-next-line no-unused-vars
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { Appearance, I18nManager } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 import i18n from 'i18n-js';
-import {Provider as PaperProvider} from 'react-native-paper';
+import { Provider as PaperProvider } from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
 
-import RootNavigator from './rootNavigator';
-import {getStorageItem} from 'src/constants';
-import {callApi} from 'src/constants/apiCall';
-import {setLanguage} from 'src/redux/common/actions/actions';
-import {submitGetDashboardData} from 'src/screens/dashboard/actions/actions';
-import {submitLoginAccount} from 'src/screens/login/actions/actions';
+import { getStorageItem } from 'src/constants';
+import { callApi } from 'src/constants/apiCall';
+import { setLanguage } from 'src/redux/common/actions/actions';
+import { submitGetDashboardData } from 'src/screens/dashboard/actions/actions';
+import { submitLoginAccount } from 'src/screens/login/actions/actions';
+import { CombinedLightTheme, CombinedDarkTheme } from 'src/styles/theme';
 
-import {CombinedLightTheme, CombinedDarkTheme} from 'src/styles/theme';
+import RootNavigator from './rootNavigator';
 
 // App nav
 function AppNavigator(props) {
@@ -33,7 +34,6 @@ function AppNavigator(props) {
         async function effect() {
             changeTheme(Appearance.getColorScheme() || 'light');
             setRedux();
-
             board.current = await getStorageItem('onboard');
 
             if (board.current) {
@@ -61,7 +61,7 @@ function AppNavigator(props) {
         }
     };
 
-    const themeListener = useCallback(({colorScheme}) => {
+    const themeListener = useCallback(({ colorScheme }) => {
         changeTheme(colorScheme || 'light');
     }, []);
 
@@ -102,7 +102,6 @@ function AppNavigator(props) {
                 data,
                 callApiReducer: submitLoginReducer,
                 submitCallApi: submitLoginAccount,
-
                 successFunc: async () => {
                     loggedIn.current = true;
                     setReady(true);

@@ -35,6 +35,7 @@
     "react-native-config": "^1.4.5",
     "react-native-dotenv": "^3.3.1",
     "react-native-dropdown-picker": "^5.3.0",
+    "react-native-fast-image": "^8.5.11",
     "react-native-gesture-handler": "^2.3.0",
     "react-native-maps": "0.30.1",
     "react-native-paper": "^4.11.2",
@@ -55,6 +56,9 @@
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",
+    "@bam.tech/react-native-make": "^3.0.3",
+    "@faker-js/faker": "^6.0.0",
+    "@react-native-masked-view/masked-view": "^0.2.6",
     "babel-jest": "^26.6.3",
     "babel-plugin-module-resolver": "^4.1.0",
     "eslint": "^8.11.0",
@@ -66,7 +70,7 @@
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.3.0",
     "jest": "^26.6.3",
-    "metro-react-native-babel-preset": "^0.66.2",
+    "metro-react-native-babel-preset": "^0.69.1",
     "prettier": "2.6.0",
     "react-test-renderer": "17.0.2"
   },

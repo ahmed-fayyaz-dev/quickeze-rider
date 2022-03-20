@@ -1,63 +1,84 @@
 {
-  "env": {
-    "browser": true,
-    "es2021": true
-  },
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
-    "prettier"
-  ],
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
+    "env": {
+        "browser": true,
+        "es2021": true
     },
-    "ecmaVersion": "latest",
-    "sourceType": "module"
-  },
-  "settings": {
-    "import/resolver": {
-      "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
-      },
-      "babel-module": {}
-    },
-    "import/extensions": [".js", ".jsx", ".json"]
-  },
-  "plugins": ["react", "module-resolver", "import"],
-  "rules": {
-    // "indent": "error",
-    "react/prop-types": 0,
-    "no-unused-vars": "warn",
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
-    //Module Import Rules (Absolute)
-    "module-resolver/use-alias": 1,
-    // Import Rules
-    "import/default": "error",
-    "import/export": "error",
-    "import/order": [
-      "error",
-      {
-        "groups": ["builtin", "external", "parent", "sibling", "index"],
-        "alphabetize": {
-          "order": "asc"
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:react-hooks/recommended",
+        "prettier"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
         },
-        "pathGroups": [
-          {
-            "pattern": "react-native",
-            "group": "builtin",
-            "position": "before"
-          },
-          {
-            "pattern": "react",
-            "group": "builtin",
-            "position": "before"
-          }
-        ],
-        "pathGroupsExcludedImportTypes": ["react-native", "react"]
-      }
-    ]
-  }
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        },
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            },
+            "babel-module": {}
+        },
+        "import/extensions": [".js", ".jsx", ".json"]
+    },
+    "plugins": ["react", "module-resolver", "import"],
+    "rules": {
+        // "indent": "error",
+        "react/prop-types": 0,
+        "no-unused-vars": "warn",
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn",
+        "react/react-in-jsx-scope": 0,
+        "react/jsx-uses-react": "error",
+        "react/jsx-uses-vars": "error",
+        //Module Import Rules (Absolute)
+        "module-resolver/use-alias": 1,
+        // Import Rules
+        "import/default": "error",
+        "import/export": "error",
+        "import/order": [
+            "error",
+            {
+                "groups": ["builtin", "external", "parent", "sibling", "index"],
+                "alphabetize": {
+                    "order": "asc"
+                },
+                "pathGroups": [
+                    {
+                        "pattern": "src/screens/*",
+                        "group": "parent",
+                        "position": "after"
+                    },
+                    {
+                        "pattern": "assets/**",
+                        "group": "parent",
+                        "position": "before"
+                    },
+                    {
+                        "pattern": "src/**",
+                        "group": "parent",
+                        "position": "before"
+                    },
+                    {
+                        "pattern": "react-native",
+                        "group": "builtin",
+                        "position": "before"
+                    },
+                    {
+                        "pattern": "react",
+                        "group": "builtin",
+                        "position": "before"
+                    }
+                ],
+                "pathGroupsExcludedImportTypes": ["react-native", "react"]
+            }
+        ]
+    }
 }

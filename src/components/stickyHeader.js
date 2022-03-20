@@ -3,9 +3,9 @@ import { View, Image, StyleSheet } from 'react-native';
 import { Surface, useTheme } from 'react-native-paper';
 import Animated, { RollOutRight, RollInLeft } from 'react-native-reanimated';
 
+import globalStyles, { bRms, mgHs, mgVs } from 'src/styles';
 import { CustomCaption, CustomTitle } from './customText';
 import { GapH } from './gap';
-import globalStyles, { bRms, mgHs, mgVs } from 'src/styles';
 
 const absoluteTop = 20;
 

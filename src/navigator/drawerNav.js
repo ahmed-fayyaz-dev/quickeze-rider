@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-    Dimensions, Image, StyleSheet, View,
-} from 'react-native';
+import { Dimensions, Image, StyleSheet, View } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { format } from 'date-fns';
 import { useTheme } from 'react-native-paper';
@@ -11,40 +9,39 @@ import { icons } from 'assets/images';
 import { CustomCaption } from 'src/components/customText';
 import DrawerContent from 'src/components/drawer';
 import { IonIcons } from 'src/constants';
-
 import { logout } from 'src/redux/common/actions/actions';
-
-// screens
-import Dashboard from 'src/screens/dashboard';
-import { Playground } from 'src/screens/playground';
 import { mgMs } from 'src/styles';
 import { drawerActiveTint, drawerIcon } from 'src/styles/navCss';
 
+import Dashboard from 'src/screens/dashboard';
+import Playground from 'src/screens/playground';
+import OrdersStack from './navSlices/ordersStack';
+
+const DrawerIcons = ({ size, focused, icon }) => (
+    <Image
+        source={icon}
+        style={[focused ? null : null, { height: size, width: size }]}
+    />
+);
+
+const headerRight = ({ style }) => (
+    <View>
+        <CustomCaption style={style.time}>
+            {format(new Date(), 'EEEE, MMMM')}
+        </CustomCaption>
+        <CustomCaption style={style.time}>
+            {format(new Date(), 'd, yyy')}
+        </CustomCaption>
+    </View>
+);
+
 const Drawer = createDrawerNavigator();
 
-function DrawerNav(props) {
+function DrawerNav({ logout, submitLoginReducer }) {
     const { colors } = useTheme();
     const style = styles(colors);
 
-    function DrawerIcons({ size, focused, icon }) {
-        return (
-            <Image
-                source={icon}
-                style={[focused ? null : null, { height: size, width: size }]}
-            />
-        );
-    }
-
-    const headerRight = () => (
-        <View>
-            <CustomCaption style={style.time}>
-                {format(new Date(), 'EEEE, MMMM')}
-            </CustomCaption>
-            <CustomCaption style={style.time}>
-                {format(new Date(), 'd, yyy')}
-            </CustomCaption>
-        </View>
-    );
+    const dashboardHeaderRight = () => headerRight({ style: style });
 
     return (
         <Drawer.Navigator
@@ -58,35 +55,46 @@ function DrawerNav(props) {
                 headerTintColor: drawerActiveTint,
                 drawerStyle: style.drawer,
                 drawerItemStyle: style.drawerItem,
-                drawerIcon: ({ color, size }) => (
-                    <IonIcons name={drawerIcon} size={size} color={color} />
-                ),
+                drawerIcon: ({ color, size }) =>
+                    IonIcons({ name: drawerIcon, size, color }),
             }}
-            drawerContent={(dCprops) => (
+            drawerContent={dCprops => (
                 <DrawerContent
                     {...dCprops}
-                    logout={props.logout}
-                    submitLoginReducer={props.submitLoginReducer.data}
+                    logout={logout}
+                    submitLoginReducer={submitLoginReducer.data}
                     drawerItemStyle={style.drawerItem}
                 />
-            )}
-        >
+            )}>
             <Drawer.Screen
                 name="dashboard"
                 component={Dashboard}
                 options={{
                     title: 'Dashboard',
                     headerTitleContainerStyle: { height: 0, width: 0 },
-                    headerRight,
+                    headerRight: dashboardHeaderRight,
+                    drawerIcon: ({ color, focused, size }) =>
+                        DrawerIcons({
+                            color,
+                            focused,
+                            size,
+                            icon: icons.drawer.report,
+                        }),
+                }}
+            />
 
-                    drawerIcon: ({ color, focused, size }) => (
-                        <DrawerIcons
-                            color={color}
-                            focused={focused}
-                            size={size}
-                            icon={icons.drawer.report}
-                        />
-                    ),
+            <Drawer.Screen
+                name="orderStack"
+                component={OrdersStack}
+                options={{
+                    title: 'Orders',
+                    drawerIcon: ({ color, focused, size }) =>
+                        DrawerIcons({
+                            color,
+                            focused,
+                            size,
+                            icon: icons.drawer.topSale,
+                        }),
                 }}
             />
 
@@ -106,7 +114,7 @@ export default connect(mapStateToProps, {
 })(DrawerNav);
 
 const styles = () =>
-// colors
+    // colors
     StyleSheet.create({
         drawerItem: {},
 

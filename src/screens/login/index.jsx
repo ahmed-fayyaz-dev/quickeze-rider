@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
-import React, {useState} from 'react';
-import {ScrollView, View, StyleSheet, Image, StatusBar} from 'react-native';
-import {useTheme, Divider} from 'react-native-paper';
+import React, { useState } from 'react';
+import { ScrollView, View, StyleSheet, Image, StatusBar } from 'react-native';
+import { useTheme, Divider } from 'react-native-paper';
 import Animated, {
     BounceInDown,
     BounceOutDown,
@@ -9,23 +9,23 @@ import Animated, {
     FadeIn,
     FadeOut,
 } from 'react-native-reanimated';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
-import {submitLoginAccount} from './actions/actions';
-import {icons} from 'assets/images';
-import {CustomCheckbox} from 'src/components/CustomCheckbox';
+import { submitLoginAccount } from './actions/actions';
+import { icons } from 'assets/images';
+import { CustomCheckbox } from 'src/components/CustomCheckbox';
 import CustomInput from 'src/components/CustomInput';
-import {CustomRoundButton} from 'src/components/buttons';
-import {CustomSnackbar} from 'src/components/customSnackbar';
+import { CustomRoundButton } from 'src/components/buttons';
+import { CustomSnackbar } from 'src/components/customSnackbar';
 import {
     CustomCaption,
     CustomSubheading,
     CustomText,
 } from 'src/components/customText';
-import {GapV} from 'src/components/gap';
-import {IonIcons, setStorageItem} from 'src/constants';
-import {callApi} from 'src/constants/apiCall';
-import {submitGetDashboardData} from 'src/screens/dashboard/actions/actions';
+import { GapV } from 'src/components/gap';
+import { IonIcons, setStorageItem } from 'src/constants';
+import { callApi } from 'src/constants/apiCall';
+import { submitGetDashboardData } from 'src/screens/dashboard/actions/actions';
 import gloabalStyle, {
     bRm,
     iconSizeL,
@@ -35,8 +35,8 @@ import gloabalStyle, {
     onBackgroundDark,
 } from 'src/styles/index';
 
-function Login({navigation, submitLoginReducer, submitLoginAccount}) {
-    const {colors} = useTheme();
+function Login({ navigation, submitLoginReducer, submitLoginAccount }) {
+    const { colors } = useTheme();
     const gStyle = gloabalStyle(colors);
     const style = styles(colors);
 
@@ -57,7 +57,7 @@ function Login({navigation, submitLoginReducer, submitLoginAccount}) {
 
         navigation.reset({
             index: 0,
-            routes: [{name: 'drawerNav'}],
+            routes: [{ name: 'drawerNav' }],
         });
     }
 
@@ -232,6 +232,7 @@ export const styles = colors =>
         image: {
             alignSelf: 'center',
             height: 66,
+            tintColor: 'white',
         },
 
         divider: {
@@ -247,7 +248,7 @@ export const styles = colors =>
             fontWeight: 'bold',
         },
 
-        icon: {alignSelf: 'center'},
+        icon: { alignSelf: 'center' },
 
         loginView: {
             backgroundColor: colors.surface,

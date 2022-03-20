@@ -2,8 +2,8 @@ import React from 'react';
 import {View} from 'react-native';
 import {Button, FAB, IconButton, useTheme} from 'react-native-paper';
 
-import {CustomSubheading, CustomText} from './customText';
 import gloablStyle, {bRss, hitSlopS, mgS} from 'src/styles/index';
+import {CustomSubheading, CustomText} from './customText';
 
 export function CustomRoundButton({
     title,

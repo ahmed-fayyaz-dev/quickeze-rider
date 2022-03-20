@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-    StyleSheet, View, Image, TouchableOpacity,
-} from 'react-native';
+import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import Animated, { ZoomOut } from 'react-native-reanimated';
 
@@ -33,7 +31,7 @@ export default function WelcomeScreen({ navigation }) {
             <View style={[style.container, style.revCol, style.itemCentre]}>
                 <TouchableOpacity hitSlop={hitSlopS} onPress={navigate}>
                     <CustomText style={style.textNext}>
-            Next
+                        Next
                         {'>>'}
                     </CustomText>
                 </TouchableOpacity>
@@ -47,46 +45,48 @@ export default function WelcomeScreen({ navigation }) {
                 <GapV small />
 
                 <CustomText style={[style.text]}>
-          Welcome to ZETA Enterprises Pvt. Ltd.
+                    Welcome to Quickeze.
                 </CustomText>
             </View>
         </Animated.View>
     );
 }
 
-const styles = (colors) => StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: colors.notification,
-    },
+const styles = colors =>
+    StyleSheet.create({
+        container: {
+            flex: 1,
+            backgroundColor: colors.notification,
+        },
 
-    revCol: { flexDirection: 'column-reverse' },
+        revCol: { flexDirection: 'column-reverse' },
 
-    imageLogo: {
-        height: 66,
-    },
+        imageLogo: {
+            height: 66,
+            tintColor: 'white',
+        },
 
-    imageView: { marginTop: '60%', alignItems: 'center' },
+        imageView: { marginTop: '60%', alignItems: 'center' },
 
-    text: {
-        marginTop: '3%',
-        fontWeight: 'bold',
-        color: 'white',
-    },
+        text: {
+            marginTop: '3%',
+            fontWeight: 'bold',
+            color: 'white',
+        },
 
-    textComment: {
-        marginBottom: '30%',
-        textAlignVertical: 'center',
-        color: 'white',
-    },
+        textComment: {
+            marginBottom: '30%',
+            textAlignVertical: 'center',
+            color: 'white',
+        },
 
-    textNext: {
-        fontWeight: 'bold',
-        marginBottom: '8%',
-        color: 'white',
-    },
+        textNext: {
+            fontWeight: 'bold',
+            marginBottom: '8%',
+            color: 'white',
+        },
 
-    itemCentre: {
-        alignItems: 'center',
-    },
-});
+        itemCentre: {
+            alignItems: 'center',
+        },
+    });
