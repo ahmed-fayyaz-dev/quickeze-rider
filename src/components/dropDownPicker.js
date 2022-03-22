@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
-import {StyleSheet, View} from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
-import {useTheme} from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 
-import {IonIcons} from 'src/constants';
+import { IonIcons } from 'src/helpers';
 import globalStyles, {
     bRss,
     buttonText,
@@ -13,8 +13,11 @@ import globalStyles, {
     // mgS,
     zIndexM,
     pdHs,
+    zIndexL,
+    pdVs,
+    pdVss,
 } from 'src/styles';
-import {CustomText} from './customText';
+import { CustomText } from './customText';
 
 export function CustomDropDownPicker({
     title,
@@ -26,15 +29,15 @@ export function CustomDropDownPicker({
     modalTitle,
     searchable,
 }) {
-    const {colors} = useTheme();
+    const { colors } = useTheme();
     const style = styles(colors);
     const gStyle = globalStyles(colors);
 
     const [openDropDown, setOpenDropDown] = useState(false);
 
     return (
-        <View style={[gStyle.titledButtonView, gStyle.elevationS]}>
-            <CustomText style={[gStyle.titledButtonTitle]}>{title}</CustomText>
+        <View style={[style.titledButtonView, gStyle.elevationS]}>
+            <CustomText style={[style.titledButtonTitle]}>{title}</CustomText>
             <DropDownPicker
                 open={openDropDown}
                 value={value}
@@ -129,7 +132,7 @@ const styles = colors =>
             backgroundColor: colors.surface,
         },
 
-        closeIcon: {color: colors.primary},
+        closeIcon: { color: colors.primary },
 
         listItem: {
             // borderRadius: bRss,
@@ -147,5 +150,24 @@ const styles = colors =>
         selectedContainer: {
             backgroundColor: colors.primary,
             marginTop: StyleSheet.hairlineWidth,
+        },
+
+        titledButtonTitle: {
+            textAlign: 'left',
+            position: 'absolute',
+            zIndex: zIndexL,
+            fontWeight: 'bold',
+            borderRadius: bRss,
+            top: -pdVs,
+            left: pdHs,
+            paddingHorizontal: pdVss,
+            backgroundColor: colors.text,
+        },
+
+        titledButtonView: {
+            borderWidth: 1,
+            borderRadius: bRss,
+            backgroundColor: colors.surface,
+            // backgroundColor: colorDictionary.colorSet[appearance].background,
         },
     });

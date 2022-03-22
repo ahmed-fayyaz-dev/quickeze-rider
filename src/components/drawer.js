@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import { Image, View, StyleSheet } from 'react-native';
 import { DrawerItem, DrawerContentScrollView } from '@react-navigation/drawer';
@@ -9,7 +8,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { icons } from 'assets/images/index';
 import { CustomIconButton } from 'src/components/buttons';
-import { IonIcons, removeStorageItem } from 'src/constants';
+import { IonIcons, removeStorageItem } from 'src/helpers';
 import { bRss, mgS, onBackgroundDark, pdHm } from 'src/styles';
 import { iconSize } from 'src/styles/navCss';
 import { CustomCaption, CustomSubheading, CustomText } from './customText';

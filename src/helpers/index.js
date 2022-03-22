@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Dimensions, Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { format } from 'date-fns';
 import * as Device from 'expo-device';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -15,6 +16,10 @@ export const isIos = Platform.OS === 'ios';
 export const success = 'success';
 
 export const versionCode = '0.0.1';
+
+export const currency = 'Pkr';
+
+export const timeFormat = 'hh:mm aaa, dd MMM';
 
 export const deviceInfo = {
     brand: Device.brand,
@@ -42,7 +47,7 @@ export const setStorageItem = async (key, value) => {
     }
 };
 
-export const getStorageItem = async (key) => {
+export const getStorageItem = async key => {
     try {
         const jsonValue = await AsyncStorage.getItem(key);
         return jsonValue != null ? JSON.parse(jsonValue) : null;
@@ -52,7 +57,7 @@ export const getStorageItem = async (key) => {
     }
 };
 
-export const removeStorageItem = async (key) => {
+export const removeStorageItem = async key => {
     try {
         return await AsyncStorage.removeItem(key);
     } catch (e) {
@@ -68,18 +73,43 @@ export function BottomBarIcons({ name, size, color }) {
         </View>
     );
 }
-export function IonIcons({
-    name, size, color, style,
-}) {
+export function IonIcons({ name, size, color, style }) {
     return <Ionicons name={name} size={size} color={color} style={style} />;
 }
 
-export const validateEmail = (email) => {
-    const re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)/;
+export const validateEmail = email => {
+    const re =
+        /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)/;
     return re.test(email);
 };
 
 export function validatePassword(val) {
-    const re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()+=-?;,./{}|":<>[\]\\' ~_]).{8,}/;
+    const re =
+        /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()+=-?;,./{}|":<>[\]\\' ~_]).{8,}/;
     return re.test(val);
 }
+
+export const getCloser = (value, checkOne, checkTwo) =>
+    Math.abs(value - checkOne) < Math.abs(value - checkTwo)
+        ? checkOne
+        : checkTwo;
+
+export const getOrderStatus = status => {
+    switch (status) {
+        case 0:
+            return 'not Recieved';
+        case 1:
+            return 'Preparing';
+        case 2:
+            return 'Dispatched';
+        case 3:
+            return 'Recieved';
+        case 4:
+            return 'Completed';
+
+        default:
+            return 'Error';
+    }
+};
+
+export const converTime = time => format(time, timeFormat);

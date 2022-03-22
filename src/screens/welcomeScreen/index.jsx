@@ -6,7 +6,7 @@ import Animated, { ZoomOut } from 'react-native-reanimated';
 import { icons } from 'assets/images';
 import { CustomText, CustomCaption } from 'src/components/customText';
 import { GapV } from 'src/components/gap';
-import { setStorageItem } from 'src/constants/index';
+import { setStorageItem } from 'src/helpers/index';
 import { hitSlopS } from 'src/styles/index';
 
 export default function WelcomeScreen({ navigation }) {

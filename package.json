@@ -12,6 +12,7 @@
     "clean": "\\rm -fr ./node_modules dist/* ios/build ios/Pods ios/KScoreApp.xcarchive android/build android/app/build public/js public/assets && yarn"
   },
   "dependencies": {
+    "@faker-js/faker": "^6.0.0",
     "@react-native-async-storage/async-storage": "^1.16.1",
     "@react-native-community/netinfo": "^8.1.0",
     "@react-navigation/drawer": "^6.3.1",
@@ -38,6 +39,7 @@
     "react-native-fast-image": "^8.5.11",
     "react-native-gesture-handler": "^2.3.0",
     "react-native-maps": "0.30.1",
+    "react-native-modalize": "^2.0.13",
     "react-native-paper": "^4.11.2",
     "react-native-reanimated": "2.3.0",
     "react-native-responsive-fontsize": "^0.5.1",
@@ -57,7 +59,6 @@
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",
     "@bam.tech/react-native-make": "^3.0.3",
-    "@faker-js/faker": "^6.0.0",
     "@react-native-masked-view/masked-view": "^0.2.6",
     "babel-jest": "^26.6.3",
     "babel-plugin-module-resolver": "^4.1.0",

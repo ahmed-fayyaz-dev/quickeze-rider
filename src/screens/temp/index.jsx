@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from 'react';
 // import i18n from "i18n-js";
 import { View, StyleSheet } from 'react-native';
@@ -46,8 +45,6 @@ function Temp() {
             <CustomSnackbar
                 visible={visibleSnack}
                 onDismiss={onDismissSnackBar}
-                style={gStyle.snackBar}
-                textStyle={gStyle.snackText}
                 msg={`${snackMsg}`}
             />
         </Animated.View>

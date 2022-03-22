@@ -1,17 +1,18 @@
-import React, {useState} from 'react';
-import {StyleSheet} from 'react-native';
-import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
-import {useTheme} from 'react-native-paper';
+import React, { useState } from 'react';
+import { StyleSheet } from 'react-native';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import { useTheme } from 'react-native-paper';
 import Animated from 'react-native-reanimated';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
-import {submitGetDashboardData} from './actions/actions';
-import {CustomSnackbar} from 'src/components/customSnackbar';
+import { CustomSnackbar } from 'src/components/customSnackbar';
 // import { GapV } from 'src/components/gap';
 // import { StickyHeader } from 'src/components/stickyHeader';
 // import VirtualizedView from 'src/components/virtualizedBackedContainer';
-import {callApi} from 'src/constants/apiCall';
-import gloabalStyle, {mgMs, mgVm, zIndexM} from 'src/styles/index';
+import { callApi } from 'src/helpers/apiCall';
+import gloabalStyle, { mgMs, zIndexM } from 'src/styles/index';
+
+import { submitGetDashboardData } from './actions/actions';
 
 function Dashboard({
     // submitLoginReducer,
@@ -19,7 +20,7 @@ function Dashboard({
     //
     getDashboardDataReducer,
 }) {
-    const {colors} = useTheme();
+    const { colors } = useTheme();
     const gStyle = gloabalStyle();
     const style = styles(colors);
 
@@ -74,22 +75,20 @@ function Dashboard({
             <CustomSnackbar
                 visible={visibleSnack}
                 onDismiss={onDismissSnackBar}
-                style={gStyle.snackBar}
-                textStyle={gStyle.snackText}
                 msg={`${snackMsg}`}
             />
         </Animated.View>
     );
 }
 
-function mapStateToProps({submitLoginReducer, getDashboardDataReducer}) {
+function mapStateToProps({ submitLoginReducer, getDashboardDataReducer }) {
     return {
         submitLoginReducer,
         getDashboardDataReducer,
     };
 }
 
-export default connect(mapStateToProps, {submitGetDashboardData})(Dashboard);
+export default connect(mapStateToProps, { submitGetDashboardData })(Dashboard);
 
 const styles = colors =>
     StyleSheet.create({
@@ -102,7 +101,7 @@ const styles = colors =>
 
         content: {
             flex: 1,
-            marginTop: mgVm,
+            marginTop: mgMs,
             paddingHorizontal: mgMs,
         },
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { getStorageItem } from 'src/constants';
+import { getStorageItem } from 'src/helpers';
 
 import Login from 'src/screens/login';
 import WelcomeScreen from 'src/screens/welcomeScreen';
@@ -30,8 +30,7 @@ function AuthStack() {
                 headerShown: false,
                 headerTintColor: 'red',
                 headerMode: 'float',
-            }}
-        >
+            }}>
             <Stack.Screen name="welcome" component={WelcomeScreen} />
             <Stack.Screen name="login" component={Login} />
         </Stack.Navigator>

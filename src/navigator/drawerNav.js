@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { icons } from 'assets/images';
 import { CustomCaption } from 'src/components/customText';
 import DrawerContent from 'src/components/drawer';
-import { IonIcons } from 'src/constants';
+import { IonIcons } from 'src/helpers';
 import { logout } from 'src/redux/common/actions/actions';
 import { mgMs } from 'src/styles';
 import { drawerActiveTint, drawerIcon } from 'src/styles/navCss';

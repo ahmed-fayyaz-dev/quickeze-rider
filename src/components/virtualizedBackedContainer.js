@@ -1,16 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FlatList, RefreshControl } from 'react-native';
 
 export default function VirtualizedView(props) {
-    const { style, contentContainerStyle } = props;
+    const {
+        style,
+        contentContainerStyle,
+        refresh,
+        refreshing = false,
+        onRefresh,
+    } = props;
+    const [refreshState] = useState(refreshing);
+
     return (
         <FlatList
             data={[]}
             refreshControl={
-                props.refresh && (
+                refresh && (
                     <RefreshControl
-                        refreshing={props.refreshing}
-                        onRefresh={props.onRefresh}
+                        refreshing={refreshState}
+                        onRefresh={onRefresh}
                     />
                 )
             }
@@ -20,9 +28,7 @@ export default function VirtualizedView(props) {
             keyExtractor={() => 'dummy'}
             renderItem={null}
             contentContainerStyle={[{ flexGrow: 1 }, contentContainerStyle]}
-            ListHeaderComponent={() => (
-                <>{props.children}</>
-            )}
+            ListHeaderComponent={() => <>{props.children}</>}
             ListHeaderComponentStyle={style}
         />
     );

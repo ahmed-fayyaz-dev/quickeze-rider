@@ -4,7 +4,7 @@ import { TextInput, HelperText } from 'react-native-paper';
 function CustomInput({
     onChange,
     label,
-    state,
+    value,
     secure,
     helper,
     helperVisible,
@@ -12,7 +12,7 @@ function CustomInput({
     roundness,
     ...props
 }) {
-    const [localstate, setLocalstate] = React.useState(secure);
+    const [stateSecure, setStateSecure] = React.useState(secure);
     function onChangeText(v) {
         onChange(v);
     }
@@ -21,17 +21,20 @@ function CustomInput({
             <TextInput
                 mode="outlined"
                 label={label}
-                value={state}
-                onChangeText={(text) => onChangeText(text)}
+                // value={state} // Controlled Input
+                defaultValue={value} //Uncontrolled
+                onChangeText={text => onChangeText(text)}
                 theme={{ roundness: roundness || 5 }}
-                secureTextEntry={localstate}
+                secureTextEntry={stateSecure}
                 keyboardType={keyboardType}
                 right={
                     secure && (
                         <TextInput.Icon
                             forceTextInputFocus={false}
-                            name={!localstate ? 'eye-outline' : 'eye-off-outline'}
-                            onPress={() => setLocalstate(!localstate)}
+                            name={
+                                !stateSecure ? 'eye-outline' : 'eye-off-outline'
+                            }
+                            onPress={() => setStateSecure(!stateSecure)}
                         />
                     )
                 }

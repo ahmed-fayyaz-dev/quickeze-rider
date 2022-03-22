@@ -1,9 +1,10 @@
 import React from 'react';
-import { Snackbar } from 'react-native-paper';
+import { StyleSheet } from 'react-native';
+import { Snackbar, useTheme } from 'react-native-paper';
+
 import { CustomCaption } from './customText';
 
 export function CustomSnackbar({
-    style,
     visible,
     onDismiss,
     textStyle,
@@ -11,6 +12,9 @@ export function CustomSnackbar({
     msg,
     duration,
 }) {
+    const { colors } = useTheme();
+    const style = styles(colors);
+
     return (
         <Snackbar
             visible={visible}
@@ -19,9 +23,20 @@ export function CustomSnackbar({
             style={style}
             action={{
                 onPress,
-            }}
-        >
+            }}>
             <CustomCaption style={textStyle}>{msg}</CustomCaption>
         </Snackbar>
     );
 }
+
+const styles = colors =>
+    StyleSheet.create({
+        snackBar: {
+            bottom: 50,
+            backgroundColor: colors.background,
+        },
+
+        snackText: {
+            color: colors.text,
+        },
+    });

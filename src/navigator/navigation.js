@@ -8,8 +8,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
 
-import { getStorageItem } from 'src/constants';
-import { callApi } from 'src/constants/apiCall';
+import { getStorageItem } from 'src/helpers';
+import { callApi } from 'src/helpers/apiCall';
 import { setLanguage } from 'src/redux/common/actions/actions';
 import { submitGetDashboardData } from 'src/screens/dashboard/actions/actions';
 import { submitLoginAccount } from 'src/screens/login/actions/actions';

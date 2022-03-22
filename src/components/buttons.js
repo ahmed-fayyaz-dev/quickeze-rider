@@ -1,25 +1,33 @@
 import React from 'react';
-import {View} from 'react-native';
-import {Button, FAB, IconButton, useTheme} from 'react-native-paper';
+import { View, StyleSheet } from 'react-native';
+import { Button, FAB, IconButton, useTheme } from 'react-native-paper';
 
-import gloablStyle, {bRss, hitSlopS, mgS} from 'src/styles/index';
-import {CustomSubheading, CustomText} from './customText';
+import gloablStyle, {
+    bRs,
+    bRss,
+    buttonHeight,
+    hitSlopS,
+    mgS,
+    pdHs,
+    pdVs,
+    pdVss,
+    zIndexL,
+} from 'src/styles';
+import { CustomSubheading, CustomText } from './customText';
 
 export function CustomRoundButton({
     title,
     onPress,
     loading,
     icon,
-    style,
-    contentStyle,
     compact,
     mode,
     uppercase,
     children,
     ...props
 }) {
-    const {colors} = useTheme();
-    const gStyle = gloablStyle(colors);
+    const { colors } = useTheme();
+    const style = styles(colors);
 
     return (
         <Button
@@ -30,9 +38,9 @@ export function CustomRoundButton({
             uppercase={uppercase}
             compact={compact}
             // color={colors.notification}
-            style={[gStyle.roundButton, style]}
+            style={[style.roundButton, style]}
             icon={icon}
-            contentStyle={[gStyle.fdrr, gStyle.roundButton, contentStyle]}
+            contentStyle={[style.fdrr, style.roundButton]}
             {...props}>
             {title}
             <>{children}</>
@@ -46,12 +54,12 @@ export function CustomSquareButton({
     onPress,
     loading,
     icon,
-    style,
-    contentStyle,
     mode,
+    children,
     ...props
 }) {
-    const {colors} = useTheme();
+    const { colors } = useTheme();
+    const style = styles(colors);
     const gStyle = gloablStyle(colors);
 
     return (
@@ -64,33 +72,33 @@ export function CustomSquareButton({
             icon={icon}
             // compact
             style={[gStyle.elevationS, style]}
-            contentStyle={[contentStyle]}
-            theme={{roundness: bRss}}
+            theme={{ roundness: bRss }}
             {...props}>
             {title}
+            {children}
         </Button>
     );
 }
 
-export function CustomIconButton({onPress, bg, size, color, name, style}) {
+export function CustomIconButton({ onPress, bg, size, color, name }) {
     return (
         <IconButton
             hitSlop={hitSlopS}
             icon={name}
             color={color}
-            style={[bg && {backgroundColor: bg}, style]}
+            style={[bg && { backgroundColor: bg }]}
             size={size}
             onPress={onPress}
         />
     );
 }
 
-export function CustomFab({onPress, color, icon, small, style, visible}) {
+export function CustomFab({ onPress, color, icon, small, visible }) {
     return (
         <FAB
             visible={visible}
             hitSlop={hitSlopS}
-            style={[{margin: mgS}, style]}
+            style={[{ margin: mgS }]}
             small={small}
             icon={icon}
             color={color}
@@ -100,24 +108,21 @@ export function CustomFab({onPress, color, icon, small, style, visible}) {
 }
 
 export function CustomDateButton({
-    // color,
     title,
     value,
     onPress,
     loading,
     icon,
-    style,
-    contentStyle,
     mode,
     ...props
 }) {
-    const {colors} = useTheme();
-    // const styleLocal = styleL(colors);
+    const { colors } = useTheme();
+    const style = styles(colors);
     const gStyle = gloablStyle(colors);
 
     return (
-        <View style={[gStyle.titledButtonView, gStyle.elevationS]}>
-            <CustomText style={[gStyle.titledButtonTitle]}>{title}</CustomText>
+        <View style={[style.titledButtonView, gStyle.elevationS]}>
+            <CustomText style={[style.titledButtonTitle]}>{title}</CustomText>
             <Button
                 mode={mode || 'text'}
                 onPress={onPress}
@@ -127,8 +132,8 @@ export function CustomDateButton({
                 icon={icon}
                 // compact
                 style={[style]}
-                contentStyle={[gStyle.titledButton, contentStyle]}
-                theme={{roundness: bRss}}
+                contentStyle={[style.titledButton]}
+                theme={{ roundness: bRss }}
                 {...props}>
                 <CustomSubheading>{value}</CustomSubheading>
             </Button>
@@ -136,4 +141,60 @@ export function CustomDateButton({
     );
 }
 
-// const styleL = (colors) => StyleSheet.create({});
+const styles = colors =>
+    StyleSheet.create({
+        roundButton: {
+            minHeight: buttonHeight,
+            justifyContent: 'center',
+            borderColor: colors.primary,
+            width: '100%',
+            alignSelf: 'center',
+        },
+
+        roundButtonS: {
+            minHeight: buttonHeight,
+            justifyContent: 'center',
+            width: '45%',
+            alignSelf: 'center',
+        },
+
+        squareButton: {
+            justifyContent: 'center',
+            borderRadius: bRs,
+            minWidth: 30,
+        },
+
+        compactButton: {
+            minHeight: 0,
+            flexDirection: 'row',
+            justifyContent: 'center',
+        },
+
+        titledButtonTitle: {
+            textAlign: 'left',
+            position: 'absolute',
+            zIndex: zIndexL,
+            fontWeight: 'bold',
+            borderRadius: bRss,
+            top: -pdVs,
+            left: pdHs,
+            paddingHorizontal: pdVss,
+            backgroundColor: colors.text,
+        },
+
+        titledButtonView: {
+            borderWidth: 1,
+            borderRadius: bRss,
+            backgroundColor: colors.surface,
+            // backgroundColor: colorDictionary.colorSet[appearance].background,
+        },
+
+        titledButton: {
+            minHeight: buttonHeight,
+            justifyContent: 'flex-start',
+        },
+
+        fdrr: {
+            flexDirection: 'row-reverse',
+        },
+    });

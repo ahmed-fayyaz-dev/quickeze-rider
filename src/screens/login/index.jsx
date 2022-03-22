@@ -11,7 +11,6 @@ import Animated, {
 } from 'react-native-reanimated';
 import { connect } from 'react-redux';
 
-import { submitLoginAccount } from './actions/actions';
 import { icons } from 'assets/images';
 import { CustomCheckbox } from 'src/components/CustomCheckbox';
 import CustomInput from 'src/components/CustomInput';
@@ -23,8 +22,8 @@ import {
     CustomText,
 } from 'src/components/customText';
 import { GapV } from 'src/components/gap';
-import { IonIcons, setStorageItem } from 'src/constants';
-import { callApi } from 'src/constants/apiCall';
+import { IonIcons, setStorageItem } from 'src/helpers';
+import { callApi } from 'src/helpers/apiCall';
 import { submitGetDashboardData } from 'src/screens/dashboard/actions/actions';
 import gloabalStyle, {
     bRm,
@@ -34,6 +33,7 @@ import gloabalStyle, {
     mgS,
     onBackgroundDark,
 } from 'src/styles/index';
+import { submitLoginAccount } from './actions/actions';
 
 function Login({ navigation, submitLoginReducer, submitLoginAccount }) {
     const { colors } = useTheme();
@@ -102,7 +102,7 @@ function Login({ navigation, submitLoginReducer, submitLoginAccount }) {
             entering={FadeIn}
             exiting={FadeOut}
             style={style.container}>
-            <ScrollView contentContainerStyle={[gStyle.fg, style.content]}>
+            <ScrollView contentContainerStyle={[style.content]}>
                 <Animated.View
                     entering={BounceInDown}
                     exiting={BounceOutDown}
@@ -123,7 +123,7 @@ function Login({ navigation, submitLoginReducer, submitLoginAccount }) {
                     <CustomInput
                         colors={colors}
                         onChange={setId}
-                        label="Employee Id"
+                        label="UserId / Email"
                         state={id}
                         roundness={bRm}
                     />
@@ -141,7 +141,7 @@ function Login({ navigation, submitLoginReducer, submitLoginAccount }) {
 
                     <GapV small />
 
-                    <View style={gStyle.fdr}>
+                    <View style={style.fdr}>
                         <CustomCheckbox
                             status={remember}
                             onPress={() => setRemember(!remember)}
@@ -152,7 +152,7 @@ function Login({ navigation, submitLoginReducer, submitLoginAccount }) {
 
                     <GapV large />
 
-                    <View style={gStyle.bottomContainer}>
+                    <View style={style.bottomContainer}>
                         <GapV />
 
                         <CustomRoundButton
@@ -175,7 +175,7 @@ function Login({ navigation, submitLoginReducer, submitLoginAccount }) {
                     />
 
                     <GapV small />
-                    <Divider style={[gStyle.divider, style.divider]} />
+                    <Divider style={[style.divider]} />
                     <GapV small />
 
                     <CustomCaption style={style.subText}>
@@ -188,8 +188,6 @@ function Login({ navigation, submitLoginReducer, submitLoginAccount }) {
             <CustomSnackbar
                 visible={visibleSnack}
                 onDismiss={onDismissSnackBar}
-                style={gStyle.snackBar}
-                textStyle={gStyle.snackText}
                 msg={`${snackMsg}`}
             />
         </Animated.View>
@@ -227,6 +225,7 @@ export const styles = colors =>
 
         content: {
             flexDirection: 'column-reverse',
+            flexGrow: 1,
         },
 
         image: {
@@ -235,9 +234,13 @@ export const styles = colors =>
             tintColor: 'white',
         },
 
+        fdr: { flexDirection: 'row' },
+
         divider: {
             alignSelf: 'center',
             backgroundColor: onBackgroundDark,
+            height: 1,
+            width: '80%',
         },
 
         subText: {
@@ -266,5 +269,10 @@ export const styles = colors =>
             shadowRadius: 11.14,
             elevation: 17,
             zIndex: 17,
+        },
+
+        bottomContainer: {
+            flexDirection: 'column-reverse',
+            flex: 1,
         },
     });

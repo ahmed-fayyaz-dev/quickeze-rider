@@ -1,8 +1,8 @@
-import {Alert} from 'react-native';
+import { Alert } from 'react-native';
 import axios from 'axios';
-import {deviceInfo, versionCode} from 'src/constants';
+import { deviceInfo, versionCode } from 'src/helpers';
 import * as commonTypes from 'src/redux/common/constants/constants';
-import {ServerUrl} from 'src/redux/helper/helper';
+import { ServerUrl } from 'src/redux/helper/helper';
 import * as types from 'src/screens/dashboard/constants/constants';
 
 const getConfig = (data, type, getState) => {
@@ -32,7 +32,7 @@ const getConfig = (data, type, getState) => {
 
 export function submitGetDashboardData(data) {
     return async (dispatch, getState) => {
-        dispatch({type: types.GET_DASHBOARD_DATA_ALL_ATTEMPT});
+        dispatch({ type: types.GET_DASHBOARD_DATA_ALL_ATTEMPT });
 
         try {
             return await axios(getConfig(data, 'CM', getState)).then(
@@ -53,8 +53,8 @@ export function submitGetDashboardData(data) {
             );
             // Reseting Default Settings if API req fail
             dispatch(
-                {type: types.GET_DASHBOARD_DATA_ALL_FAIL, payload: error},
-                {type: commonTypes.G_DATE, payload: new Date()},
+                { type: types.GET_DASHBOARD_DATA_ALL_FAIL, payload: error },
+                { type: commonTypes.G_DATE, payload: new Date() },
             );
 
             throw new Error(error);
