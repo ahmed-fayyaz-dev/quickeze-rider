@@ -43,13 +43,14 @@ function AppNavigator(props) {
             }
         }
         effect();
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
         const unsubscribe = Appearance.addChangeListener(themeListener);
         return () => {
-            unsubscribe;
+            unsubscribe.remove();
         };
     }, [themeListener]);
 

@@ -1,6 +1,11 @@
 let myOrderList = [];
 
 export const AddToMyOrders = item => {
-    myOrderList = [item, ...myOrderList];
-    console.log('MyOrders', myOrderList);
+    if (myOrderList.includes(item)) {
+        return '⚠️ Error : Already Added !';
+    } else {
+        myOrderList = [item, ...myOrderList];
+        console.log('MyOrders', myOrderList);
+        return '✅ Addedd SuccessFully';
+    }
 };

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useCallback, lazy } from 'react';
 // import i18n from "i18n-js";
 import { View, StyleSheet } from 'react-native';
@@ -6,7 +7,6 @@ import Animated, { Layout } from 'react-native-reanimated';
 import { connect, batch } from 'react-redux';
 
 import { CustomSnackbar } from 'src/components/customSnackbar';
-import VirtualizedView from 'src/components/virtualizedBackedContainer';
 import { success } from 'src/helpers';
 import gloabalStyle from 'src/styles/index';
 
@@ -14,16 +14,18 @@ import {
     initialLimit,
     initialOffset,
     FlatList,
-    AcceptOrder,
+    addToMyOrders,
 } from './components/helpers';
 import { getOrdersFromOffsetId } from './dataFormat';
+const ListCard = lazy(() => import('./components/orderListCard'));
 
 function Orders() {
     // const t = (v) => i18n.t(v); // Getting translated text
     const { colors } = useTheme();
-    const gStyle = gloabalStyle();
+    const gStyle = gloabalStyle(colors);
     // const style = styles(colors);
 
+    const [ready, setReady] = useState(false);
     const [visibleSnack, setVisibleSnack] = useState(false);
     const [snackMsg, setSnackMsg] = useState('');
     const [loadingMore, setLoadingMore] = useState(false);
@@ -38,29 +40,16 @@ function Orders() {
         setVisibleSnack(false);
     }
 
-    // eslint-disable-next-line no-unused-vars
     function showSnack(msg) {
+        setVisibleSnack(false);
         setSnackMsg(msg);
         setVisibleSnack(true);
     }
 
     function handleAccept(orderIndex, orderId) {
-        // console.log('handle', orderIndex, orderId);
-        try {
-            if (orderList[orderIndex]?.orderId === orderId) {
-                AcceptOrder(orderList[orderIndex]);
-            } else {
-                console.log('else', orderId);
-                AcceptOrder(
-                    orderList.filter(
-                        orderItem => orderItem.orderId === orderId,
-                    ),
-                );
-            }
-        } catch (e) {
-            throw e.message;
-            // throw { message: `order of id : ${orderId} can't be found` };
-        }
+        let res = addToMyOrders({ orderIndex, orderId, orderList });
+
+        showSnack(`${res}`);
     }
 
     function getOrderList() {
@@ -74,6 +63,7 @@ function Orders() {
                     let id = orders[orders.length - 1].orderId;
                     setListOffset(id);
                     setOrderList(orders);
+                    setReady(true);
                 });
             }
         } catch (e) {
@@ -89,39 +79,53 @@ function Orders() {
                 const { orders } = res;
                 //Id of the last recieved Item
                 let id = orders[orders.length - 1].orderId;
-                setListOffset(id);
                 batch(() => {
+                    setListOffset(id);
                     setOrderList([...orderList, ...orders]);
-                    // orderList.push(...orders);
                     setLoadingMore(false);
                 });
+            } else {
+                showSnack(res?.message);
+                setLoadingMore(false);
             }
         } catch (e) {
+            setLoadingMore(false);
             throw e.message;
         }
     }
+
     const _loadMoreOrderList = useCallback(loadMoreOrderList, [
         listOffset,
         orderList,
     ]);
 
+    const _handleAccept = useCallback(handleAccept, [orderList]);
+
+    const ListItem = ({ item, index }) => {
+        return (
+            <ListCard data={item} orderIndex={index} onPress={_handleAccept} />
+        );
+    };
+
+    const _ListItem = useCallback(ListItem, [_handleAccept]);
+
     const _List = useCallback(
-        () => FlatList(orderList, loadingMore, _loadMoreOrderList),
-        [orderList, loadingMore, _loadMoreOrderList],
+        () =>
+            FlatList({
+                orderList,
+                ListItem: _ListItem,
+                loadingMore: loadingMore,
+                loadMore: _loadMoreOrderList,
+                refresh: true,
+                onRefresh: getOrderList,
+            }),
+        [orderList, _ListItem, loadingMore, _loadMoreOrderList],
     );
 
     return (
         <Animated.View layout={Layout.springify()} style={gStyle.container}>
-            <VirtualizedView
-                refresh
-                onRefresh={getOrderList}
-                contentContainerStyle={[gStyle.fg]}>
-                <View style={gStyle.content}>
-                    {/* Content */}
-                    <_List />
-                    {/* {_List()} */}
-                </View>
-            </VirtualizedView>
+            {/* Content */}
+            {ready && <_List />}
 
             {/* Modals and popups */}
             <CustomSnackbar
@@ -140,5 +144,3 @@ function mapStateToProps({ submitLoginReducer }) {
 }
 
 export default connect(mapStateToProps, {})(Orders);
-
-const styles = colors => StyleSheet.create({});

@@ -1,4 +1,4 @@
-import React, { Suspense, useCallback } from 'react';
+import React, { Suspense } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { useTheme } from 'react-native-paper';
 
@@ -35,17 +35,15 @@ function ListCard({ data, orderIndex, onPress }) {
             <GapH small />
         </>
     );
-    // const OrderImage = useCallback(ImageRef, [orderImage]);
 
     const Products = () => (
-        <CustomCaption style={style.productNames}>
+        <CustomCaption style={style.productNames} numberOfLines={1}>
             {products.map(
                 (pItem, i, arr) =>
                     pItem.productName + (i !== arr.length - 1 ? ', ' : ''),
             )}
         </CustomCaption>
     );
-    // const ProductNames = useCallback(Products, [products, style]);
 
     const OrderDesc = () => (
         <View style={style.textView}>
@@ -75,17 +73,19 @@ function ListCard({ data, orderIndex, onPress }) {
         );
     };
 
-    return (
-        <Suspense fallback={<Loader show />}>
-            <SingleSidedShadowBottom key={orderId}>
-                <View style={[style.container, gStyle.elevationS]}>
-                    <CardRow />
-                    <GapV small />
-                    <CardBottom />
-                </View>
-            </SingleSidedShadowBottom>
-        </Suspense>
-    );
+    if (orderId)
+        return (
+            <Suspense fallback={<Loader show />}>
+                <SingleSidedShadowBottom key={orderId}>
+                    <View style={[style.container, gStyle.elevationS]}>
+                        <CardRow />
+                        <GapV small />
+                        <CardBottom />
+                    </View>
+                </SingleSidedShadowBottom>
+            </Suspense>
+        );
+    else return null;
 }
 
 export default ListCard;

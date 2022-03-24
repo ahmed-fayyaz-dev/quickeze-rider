@@ -2,16 +2,9 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Snackbar, useTheme } from 'react-native-paper';
 
-import { CustomCaption } from './customText';
+import { CustomText } from './customText';
 
-export function CustomSnackbar({
-    visible,
-    onDismiss,
-    textStyle,
-    onPress,
-    msg,
-    duration,
-}) {
+export function CustomSnackbar({ visible, onDismiss, onPress, msg, duration }) {
     const { colors } = useTheme();
     const style = styles(colors);
 
@@ -20,11 +13,11 @@ export function CustomSnackbar({
             visible={visible}
             onDismiss={onDismiss}
             duration={duration || 2000}
-            style={style}
+            style={[style.snackBar]}
             action={{
                 onPress,
             }}>
-            <CustomCaption style={textStyle}>{msg}</CustomCaption>
+            <CustomText style={style.snackText}>{msg}</CustomText>
         </Snackbar>
     );
 }
@@ -33,10 +26,10 @@ const styles = colors =>
     StyleSheet.create({
         snackBar: {
             bottom: 50,
-            backgroundColor: colors.background,
+            backgroundColor: colors.text,
         },
 
         snackText: {
-            color: colors.text,
+            color: colors.background,
         },
     });
