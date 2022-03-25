@@ -128,7 +128,9 @@ function AppNavigator(props) {
                     icon: props => <Ionicons {...props} />,
                 }}>
                 <NavigationContainer theme={theme}>
+                    {/* <Portal.Host> */}
                     <RootNavigator loggedIn={loggedIn} />
+                    {/* </Portal.Host> */}
                 </NavigationContainer>
             </PaperProvider>
         );

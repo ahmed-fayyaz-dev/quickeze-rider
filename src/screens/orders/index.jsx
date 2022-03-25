@@ -1,39 +1,46 @@
-/* eslint-disable no-unused-vars */
-import React, { useState, useEffect, useCallback, lazy } from 'react';
+import React, { useState, useEffect, useCallback, lazy, useRef } from 'react';
 // import i18n from "i18n-js";
-import { View, StyleSheet } from 'react-native';
+import { FlatList as RnFlatList } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import Animated, { Layout } from 'react-native-reanimated';
 import { connect, batch } from 'react-redux';
 
+import { CustomSquareButton } from 'src/components/buttons';
 import { CustomSnackbar } from 'src/components/customSnackbar';
 import { success } from 'src/helpers';
 import gloabalStyle from 'src/styles/index';
 
+import DetailModal from './components/detailModal';
 import {
     initialLimit,
     initialOffset,
     FlatList,
     addToMyOrders,
 } from './components/helpers';
+import ListCard from './components/orderListCard';
 import { getOrdersFromOffsetId } from './dataFormat';
-const ListCard = lazy(() => import('./components/orderListCard'));
 
 function Orders() {
     // const t = (v) => i18n.t(v); // Getting translated text
     const { colors } = useTheme();
     const gStyle = gloabalStyle(colors);
     // const style = styles(colors);
+    const detailModelRef = useRef(null);
 
     const [ready, setReady] = useState(false);
-    const [visibleSnack, setVisibleSnack] = useState(false);
     const [snackMsg, setSnackMsg] = useState('');
-    const [loadingMore, setLoadingMore] = useState(false);
-    const [listOffset, setListOffset] = useState(initialOffset);
     const [orderList, setOrderList] = useState(null);
+    const [loadingMore, setLoadingMore] = useState(false);
+    const [visibleSnack, setVisibleSnack] = useState(false);
+    const [selectedIndex, setSelectedIndex] = useState(null);
+    const [listOffset, setListOffset] = useState(initialOffset);
 
     useEffect(() => {
-        getOrderList();
+        async function effect() {
+            await getOrderList();
+        }
+
+        effect();
     }, []);
 
     function onDismissSnackBar() {
@@ -41,18 +48,26 @@ function Orders() {
     }
 
     function showSnack(msg) {
-        setVisibleSnack(false);
-        setSnackMsg(msg);
-        setVisibleSnack(true);
+        batch(() => {
+            setVisibleSnack(false);
+            setSnackMsg(msg);
+            setVisibleSnack(true);
+        });
     }
 
-    function handleAccept(orderIndex, orderId) {
-        let res = addToMyOrders({ orderIndex, orderId, orderList });
+    async function handleAccept(orderIndex, orderId) {
+        let res = await addToMyOrders({ orderIndex, orderId, orderList });
 
+        detailModelRef.current?.close();
         showSnack(`${res}`);
     }
 
-    function getOrderList() {
+    function showDetailModal(index, orderId) {
+        setSelectedIndex(index);
+        detailModelRef.current?.open();
+    }
+
+    async function getOrderList() {
         try {
             // Passing initial Limits and off set so that on refresh always load new data
             const res = getOrdersFromOffsetId(initialOffset, initialLimit);
@@ -71,7 +86,7 @@ function Orders() {
         }
     }
 
-    function loadMoreOrderList() {
+    async function loadMoreOrderList() {
         try {
             setLoadingMore(true);
             const res = getOrdersFromOffsetId(listOffset, initialLimit);
@@ -85,8 +100,10 @@ function Orders() {
                     setLoadingMore(false);
                 });
             } else {
-                showSnack(res?.message);
-                setLoadingMore(false);
+                batch(() => {
+                    showSnack(res?.message);
+                    setLoadingMore(false);
+                });
             }
         } catch (e) {
             setLoadingMore(false);
@@ -99,15 +116,27 @@ function Orders() {
         orderList,
     ]);
 
-    const _handleAccept = useCallback(handleAccept, [orderList]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const _handleAccept = useCallback(handleAccept, [
+        orderList,
+        selectedIndex,
+        detailModelRef,
+    ]);
+
+    const _showDetailModal = useCallback(showDetailModal, [detailModelRef]);
 
     const ListItem = ({ item, index }) => {
         return (
-            <ListCard data={item} orderIndex={index} onPress={_handleAccept} />
+            <ListCard
+                data={item}
+                orderIndex={index}
+                onPress={_handleAccept}
+                onCardPress={_showDetailModal}
+            />
         );
     };
 
-    const _ListItem = useCallback(ListItem, [_handleAccept]);
+    const _ListItem = useCallback(ListItem, [_handleAccept, _showDetailModal]);
 
     const _List = useCallback(
         () =>
@@ -122,17 +151,50 @@ function Orders() {
         [orderList, _ListItem, loadingMore, _loadMoreOrderList],
     );
 
+    const AcceptButton = () =>
+        CustomSquareButton({
+            title: 'title',
+            onPress: () => console.log('presed'),
+        });
+
+    // const TestList = () => (
+    //     <RnFlatList
+    //         data={orderList}
+    //         renderItem={_ListItem}
+    //         keyExtractor={(item, i) => {
+    //             return `${item} : ${i}`;
+    //         }}
+    //         onEndReached={_loadMoreOrderList}
+    //     />
+    // );
+
+    const Snack = () => (
+        <CustomSnackbar
+            visible={visibleSnack}
+            onDismiss={onDismissSnackBar}
+            msg={`${snackMsg}`}
+        />
+    );
+
     return (
         <Animated.View layout={Layout.springify()} style={gStyle.container}>
             {/* Content */}
+
             {ready && <_List />}
 
+            {/* {ready && <TestList />} */}
+
             {/* Modals and popups */}
-            <CustomSnackbar
-                visible={visibleSnack}
-                onDismiss={onDismissSnackBar}
-                msg={`${snackMsg}`}
+
+            <DetailModal
+                ref={detailModelRef}
+                item={orderList ? orderList[selectedIndex] : null}
+                index={selectedIndex}
+                onPress={_handleAccept}
+                btn={AcceptButton}
             />
+
+            <Snack />
         </Animated.View>
     );
 }

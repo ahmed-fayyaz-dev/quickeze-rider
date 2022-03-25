@@ -1,6 +1,6 @@
 let myOrderList = [];
 
-export const AddToMyOrders = item => {
+export const AddToMyOrders = async item => {
     if (myOrderList.includes(item)) {
         return '⚠️ Error : Already Added !';
     } else {

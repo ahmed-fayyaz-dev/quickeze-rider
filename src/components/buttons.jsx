@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { Button, FAB, IconButton, useTheme } from 'react-native-paper';
 
 import gloablStyle, {
@@ -38,7 +39,7 @@ export function CustomRoundButton({
             uppercase={uppercase}
             compact={compact}
             // color={colors.notification}
-            style={[style.roundButton, style]}
+            style={[style.roundButton]}
             icon={icon}
             contentStyle={[style.fdrr, style.roundButton]}
             {...props}>
@@ -71,12 +72,41 @@ export function CustomSquareButton({
             color={color}
             icon={icon}
             // compact
-            style={[gStyle.elevationS, style]}
+            style={[style.squareButton]}
             theme={{ roundness: bRss }}
             {...props}>
             {title}
             {children}
         </Button>
+    );
+}
+
+export function CutomButtonRNGH({
+    title,
+    onPress,
+    children,
+    icon,
+    mode,
+    loading,
+}) {
+    const { colors } = useTheme();
+    const style = styles(colors);
+
+    return (
+        <TouchableWithoutFeedback onPress={onPress}>
+            <Button
+                mode={mode || 'contained'}
+                onPress={onPress}
+                loading={loading}
+                disabled={loading}
+                icon={icon}
+                // compact
+                style={[style.squareButton]}
+                theme={{ roundness: bRss }}>
+                {title}
+                {children}
+            </Button>
+        </TouchableWithoutFeedback>
     );
 }
 
@@ -121,7 +151,7 @@ export function CustomDateButton({
     const gStyle = gloablStyle(colors);
 
     return (
-        <View style={[style.titledButtonView, gStyle.elevationS]}>
+        <View style={[style.titledButtonView]}>
             <CustomText style={[style.titledButtonTitle]}>{title}</CustomText>
             <Button
                 mode={mode || 'text'}
@@ -159,8 +189,6 @@ const styles = colors =>
         },
 
         squareButton: {
-            justifyContent: 'center',
-            borderRadius: bRs,
             minWidth: 30,
         },
 

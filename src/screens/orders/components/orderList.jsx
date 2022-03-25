@@ -1,6 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React, { useRef, useState, useCallback, useEffect } from 'react';
-import { Animated, StyleSheet, View, RefreshControl } from 'react-native';
+import {
+    Animated,
+    FlatList,
+    StyleSheet,
+    View,
+    RefreshControl,
+} from 'react-native';
 
 import { Loader } from 'src/components/ActivityIndicators';
 import { CustomSquareButton } from 'src/components/buttons';
@@ -26,23 +32,9 @@ export const List = ({
 }) => {
     const ref = useRef(null);
     const [refreshState] = useState(false);
-    const [shouldScroll, setShouldScroll] = useState(false);
-
-    useEffect(() => {
-        if (ref.current && shouldScroll) {
-            scroll();
-            console.log('scroll');
-        }
-    }, [data, shouldScroll]);
 
     function _loadMore() {
         loadMore();
-        setShouldScroll(true);
-    }
-
-    function scroll() {
-        ref.current.scrollToEnd();
-        setShouldScroll(false);
     }
 
     // const _ListItem = useCallback(ListItem, [data]);
@@ -55,6 +47,7 @@ export const List = ({
             onPress: _loadMore,
             // mode: 'outlined',
             loading: loadingMore,
+            mode: 'text',
         });
 
     const keyExtractor = useCallback(
@@ -130,7 +123,7 @@ export const List = ({
                 style={[styles.header, { transform: [{ translateY }] }]}>
                 <Header headerHeight={headerHeight} />
             </Animated.View> */
-        <Animated.FlatList
+        <FlatList
             // scrollEventThrottle={16}
             // onScroll={handleScroll}
             refreshControl={

@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { useTheme } from 'react-native-paper';
+import { useTheme, TouchableRipple } from 'react-native-paper';
 
 import { Loader } from 'src/components/ActivityIndicators';
 import { CustomSquareButton } from 'src/components/buttons';
@@ -8,11 +8,11 @@ import { CustomCaption, CustomSubheading } from 'src/components/customText';
 import { GapH, GapV } from 'src/components/gap';
 import { SingleSidedShadowBottom } from 'src/components/shadowWrappers';
 import { currency, converTime } from 'src/helpers';
-import globalStyles, { bRs, pdHm, pdVs } from 'src/styles';
+import globalStyles, { bRs, pdHm, pdVs, zIndexL } from 'src/styles';
 import { ListCardHeight } from './helpers';
 import { Image } from './orderListImage';
 
-function ListCard({ data, orderIndex, onPress }) {
+function ListCard({ data, orderIndex, onPress, onCardPress }) {
     const {
         orderId,
         orderName,
@@ -25,8 +25,12 @@ function ListCard({ data, orderIndex, onPress }) {
     const style = styles(colors);
     const gStyle = globalStyles(colors);
 
-    function handleAccept() {
-        onPress(orderIndex, orderId);
+    async function handleAccept() {
+        await onPress(orderIndex, orderId);
+    }
+
+    function _onCardPress() {
+        onCardPress(orderIndex, orderId);
     }
 
     const ImageRef = () => (
@@ -75,13 +79,18 @@ function ListCard({ data, orderIndex, onPress }) {
 
     if (orderId)
         return (
-            <Suspense fallback={<Loader show />}>
+            <Suspense fallback={() => <Loader show />}>
                 <SingleSidedShadowBottom key={orderId}>
-                    <View style={[style.container, gStyle.elevationS]}>
-                        <CardRow />
-                        <GapV small />
-                        <CardBottom />
-                    </View>
+                    <TouchableRipple
+                        // rippleColor="rgba(0,0,0,.37)"
+                        style={[gStyle.elevationS, style.container]}
+                        onPress={_onCardPress}>
+                        <>
+                            <CardRow />
+                            <GapV small />
+                            <CardBottom />
+                        </>
+                    </TouchableRipple>
                 </SingleSidedShadowBottom>
             </Suspense>
         );

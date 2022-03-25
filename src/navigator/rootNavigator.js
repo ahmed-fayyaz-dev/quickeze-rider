@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 import DrawerNav from './drawerNav';
 import AuthStack from './navSlices/authStack';
-
 const Stack = createNativeStackNavigator();
 
 function RootNavigator({
@@ -14,8 +13,7 @@ function RootNavigator({
     return (
         <Stack.Navigator
             initialRouteName={loggedIn.current ? 'drawerNav' : 'authStack'}
-            screenOptions={{ headerShown: false }}
-        >
+            screenOptions={{ headerShown: false }}>
             <Stack.Screen name="authStack" component={AuthStack} />
             <Stack.Screen name="drawerNav" component={DrawerNav} />
         </Stack.Navigator>

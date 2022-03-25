@@ -8,9 +8,10 @@ let arr = [];
 for (var i = 0; i < 20; i++) {
     arr.push({
         orderId: faker.datatype.uuid(),
+        orderNumber: faker.datatype.hexaDecimal(9),
         creationTime: faker.date.recent(),
         orderName: faker.company.companyName(),
-        orderImage: faker.image.business(),
+        orderImage: faker.image.imageUrl(300, null, 'food', true),
         destination: {
             longitude: faker.address.longitude(),
             latitude: faker.address.latitude(),
@@ -33,6 +34,7 @@ for (var i = 0; i < 20; i++) {
                 productDescription: faker.commerce.productDescription(),
                 productPrice: faker.commerce.price(),
                 productImage: faker.image.food(),
+                productUnit: faker.datatype.number(8),
             },
             {
                 productId: productId++,
@@ -41,9 +43,13 @@ for (var i = 0; i < 20; i++) {
                 productDescription: faker.commerce.productDescription(),
                 productPrice: faker.commerce.price(),
                 productImage: faker.image.food(),
+                productUnit: faker.datatype.number(8),
             },
         ],
+        subTotalPrice: faker.commerce.price(),
+        deliveryFee: faker.commerce.price(70, 200),
         totalPrice: faker.commerce.price(),
+        currencyCode: faker.finance.currencyCode(),
         orderStatus: faker.datatype.number({ min: 0, max: 4 }),
     });
 }

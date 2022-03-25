@@ -26,18 +26,18 @@ export const FlatList = ({
     );
 };
 
-const AcceptOrder = item => {
-    return AddToMyOrders(item);
+const AcceptOrder = async item => {
+    return await AddToMyOrders(item);
 };
 
-export function addToMyOrders({ orderIndex, orderId, orderList }) {
+export async function addToMyOrders({ orderIndex, orderId, orderList }) {
     // console.log('handle', orderIndex, orderId);
     try {
         if (orderList[orderIndex]?.orderId === orderId) {
-            return AcceptOrder(orderList[orderIndex]);
+            return await AcceptOrder(orderList[orderIndex]);
         } else {
             // console.log('else', orderId);
-            return AcceptOrder(
+            return await AcceptOrder(
                 orderList.filter(orderItem => orderItem.orderId === orderId),
             );
         }

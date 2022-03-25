@@ -89,6 +89,12 @@ const Styles = () => {
             paddingTop: mgM,
         },
 
+        contentBody: {
+            flex: 1,
+            paddingHorizontal: pdHm,
+            paddingTop: mgS,
+        },
+
         contentCenter: {
             flex: 1,
             justifyContent: 'center',

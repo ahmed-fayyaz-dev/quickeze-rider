@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Sentry from '@sentry/react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import {
     SafeAreaProvider,
     initialWindowMetrics,
@@ -15,13 +15,15 @@ settings;
 
 function App() {
     return (
-        <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-            <StoreProvider store={store}>
-                <PersistGate loading={null} persistor={persistor}>
-                    <AppNavigator />
-                </PersistGate>
-            </StoreProvider>
-        </SafeAreaProvider>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+            <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+                <StoreProvider store={store}>
+                    <PersistGate loading={null} persistor={persistor}>
+                        <AppNavigator />
+                    </PersistGate>
+                </StoreProvider>
+            </SafeAreaProvider>
+        </GestureHandlerRootView>
     );
 }
 
