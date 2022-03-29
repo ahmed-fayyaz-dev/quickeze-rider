@@ -9,3 +9,18 @@ export const AddToMyOrders = async item => {
         return '✅ Addedd SuccessFully';
     }
 };
+
+export const getMyOrders = () => {
+    return {
+        myOrders: myOrderList,
+        status: 'success',
+        message: 'successfully Fetched',
+    };
+};
+
+export const getMoreMyOrders = () => {
+    return {
+        status: 'error',
+        message: '⚠️ No more Orders to Load',
+    };
+};

@@ -7,8 +7,8 @@ import { DarkTheme, DefaultTheme } from 'react-native-paper';
 const bRm = 50;
 
 const lightColorSet = {
-    primary: '#EF4E36',
-    primaryVariant: '#009e7f',
+    primary: '#9E001F',
+    primaryVariant: '#00D1A8',
     secondary: '#009E7F',
     muted: '#333333',
     error: '#CF6679',
@@ -23,8 +23,8 @@ const lightColorSet = {
 };
 
 const darkColorSet = {
-    primary: '#EF4E36',
-    primaryVariant: '#009e7f',
+    primary: '#9E001F',
+    primaryVariant: '#00D1A8',
     secondary: '#009E7F',
     muted: '#333333',
     error: '#CF6679',

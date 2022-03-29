@@ -1,5 +1,11 @@
 import { faker } from '@faker-js/faker';
 
+let latBoundaryMin = 25.3894007;
+let latBoundaryMax = 35.3894007;
+
+let longBoundaryMin = 67.3532207;
+let longBoundaryMax = 74.3532207;
+
 let productId = Math.random();
 let arr = [];
 //  Order Status = 0 = notRecieved, 1 = preparing, 2 = dispatched,
@@ -13,15 +19,21 @@ for (var i = 0; i < 20; i++) {
         orderName: faker.company.companyName(),
         orderImage: faker.image.imageUrl(300, null, 'food', true),
         destination: {
-            longitude: faker.address.longitude(),
-            latitude: faker.address.latitude(),
+            longitude: faker.address.longitude(
+                longBoundaryMax,
+                longBoundaryMin,
+            ),
+            latitude: faker.address.latitude(latBoundaryMax, latBoundaryMin),
         },
         destinationGeoHash: {},
         destinationAddress: faker.address.streetAddress(),
         destinationNumber: faker.phone.phoneNumber(),
         source: {
-            longitude: faker.address.longitude(),
-            latitude: faker.address.latitude(),
+            longitude: faker.address.longitude(
+                longBoundaryMax,
+                longBoundaryMin,
+            ),
+            latitude: faker.address.latitude(latBoundaryMax, latBoundaryMin),
         },
         sourceGeoHash: {},
         sourceAddress: faker.address.streetAddress(),
@@ -50,7 +62,7 @@ for (var i = 0; i < 20; i++) {
         deliveryFee: faker.commerce.price(70, 200),
         totalPrice: faker.commerce.price(),
         currencyCode: faker.finance.currencyCode(),
-        orderStatus: faker.datatype.number({ min: 0, max: 4 }),
+        orderStatus: faker.datatype.number({ min: 0, max: 3 }),
     });
 }
 

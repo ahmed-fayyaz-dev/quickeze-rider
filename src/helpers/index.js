@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Dimensions, Platform } from 'react-native';
+import { View, Dimensions, Platform, Linking } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { format } from 'date-fns';
 import * as Device from 'expo-device';
@@ -112,4 +112,39 @@ export const getOrderStatus = status => {
     }
 };
 
+export const getChangeOrderToTitle = status => {
+    switch (status) {
+        case 0:
+            return 'In Preparation';
+        case 1:
+            return 'Dispatched';
+        case 2:
+            return 'Customer Recieved';
+        case 3:
+            return 'Recieved Money';
+        case 4:
+            return 'Completed';
+
+        default:
+            return 'Error';
+    }
+};
+
 export const converTime = time => format(time, timeFormat);
+
+export const OpenMapsWithLangLat = (loc, title) => {
+    const { latitude, longitude } = loc;
+
+    const scheme = Platform.select({
+        ios: 'maps:0,0?q=',
+        android: 'geo:0,0?q=',
+    });
+    const latLng = `${latitude},${longitude}`;
+    const label = title;
+    const url = Platform.select({
+        ios: `${scheme}${label}@${latLng}`,
+        android: `${scheme}${latLng}(${label})`,
+    });
+
+    Linking.openURL(url);
+};

@@ -13,6 +13,8 @@ import gloablStyle, {
     pdVs,
     pdVss,
     zIndexL,
+    iconSize,
+    primaryColor,
 } from 'src/styles';
 import { CustomSubheading, CustomText } from './customText';
 
@@ -102,6 +104,7 @@ export function CutomButtonRNGH({
                 icon={icon}
                 // compact
                 style={[style.squareButton]}
+                contentStyle={style.fdrr}
                 theme={{ roundness: bRss }}>
                 {title}
                 {children}
@@ -110,13 +113,22 @@ export function CutomButtonRNGH({
     );
 }
 
-export function CustomIconButton({ onPress, bg, size, color, name }) {
+export function CustomIconButton({
+    onPress,
+    bg,
+    size = iconSize,
+    color = primaryColor,
+    name,
+}) {
+    const { colors } = useTheme();
+    const style = styles(colors);
+
     return (
         <IconButton
             hitSlop={hitSlopS}
             icon={name}
             color={color}
-            style={[bg && { backgroundColor: bg }]}
+            style={[bg && { backgroundColor: bg }, style.iconButton]}
             size={size}
             onPress={onPress}
         />
@@ -174,7 +186,7 @@ export function CustomDateButton({
 const styles = colors =>
     StyleSheet.create({
         roundButton: {
-            minHeight: buttonHeight,
+            minHeight: buttonHeight + 10,
             justifyContent: 'center',
             borderColor: colors.primary,
             width: '100%',
@@ -189,7 +201,13 @@ const styles = colors =>
         },
 
         squareButton: {
+            justifyContent: 'center',
+            minHeight: buttonHeight,
             minWidth: 30,
+        },
+
+        iconButton: {
+            justifyContent: 'center',
         },
 
         compactButton: {

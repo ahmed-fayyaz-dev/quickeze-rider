@@ -15,6 +15,7 @@ import { drawerActiveTint, drawerIcon } from 'src/styles/navCss';
 
 import Dashboard from 'src/screens/dashboard';
 import Playground from 'src/screens/playground';
+import MyOrdersStack from './navSlices/myOrderStack';
 import OrdersStack from './navSlices/ordersStack';
 
 const DrawerIcons = ({ size, focused, icon }) => (
@@ -88,6 +89,21 @@ function DrawerNav({ logout, submitLoginReducer }) {
                 component={OrdersStack}
                 options={{
                     title: 'Orders',
+                    drawerIcon: ({ color, focused, size }) =>
+                        DrawerIcons({
+                            color,
+                            focused,
+                            size,
+                            icon: icons.drawer.topSale,
+                        }),
+                }}
+            />
+
+            <Drawer.Screen
+                name="myOrderStack"
+                component={MyOrdersStack}
+                options={{
+                    title: 'My Orders',
                     drawerIcon: ({ color, focused, size }) =>
                         DrawerIcons({
                             color,

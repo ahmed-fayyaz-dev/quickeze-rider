@@ -9,9 +9,6 @@ import { RFValue } from 'react-native-responsive-fontsize';
 
 import { colorDictionary } from './theme';
 
-export const iconSize = 30;
-export const iconSizeL = 42;
-
 export const pdHm = 10;
 export const pdHs = 5;
 
@@ -27,8 +24,9 @@ export const mgS = 10;
 export const mgSs = 5;
 
 export const searchBarHeight = 53;
-export const IconSize = 29;
-export const buttonHeight = 50;
+export const iconSize = RFValue(13);
+export const iconSizeL = 42;
+export const buttonHeight = 40;
 
 export const sBh = StatusBar.currentHeight;
 
@@ -52,6 +50,7 @@ export const dark = 'dark';
 
 export const onBackgroundDark = colorDictionary.colorSet.dark.onBackground;
 export const onBackgroundLight = colorDictionary.colorSet.light.onBackground;
+export const primaryColor = colorDictionary.colorSet.light.primary;
 
 export const hitSlopS = {
     top: 30,
@@ -69,11 +68,15 @@ const Styles = () => {
         appearance = light;
     }
 
+    if (appearanceInv === undefined || appearanceInv === null) {
+        appearance = dark;
+    }
+
     return StyleSheet.create({
         divider: {
-            backgroundColor: colorDictionary.colorSet[appearance].onBackground,
+            // backgroundColor: colorDictionary.colorSet[appearance].onBackground,
             height: 1,
-            width: '80%',
+            flex: 1,
             alignSelf: 'center',
         },
 

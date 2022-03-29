@@ -5,7 +5,6 @@ import { useTheme } from 'react-native-paper';
 import Animated, { Layout } from 'react-native-reanimated';
 import { connect, batch } from 'react-redux';
 
-import { CustomSquareButton } from 'src/components/buttons';
 import { CustomSnackbar } from 'src/components/customSnackbar';
 import { success } from 'src/helpers';
 import gloabalStyle from 'src/styles/index';
@@ -151,12 +150,6 @@ function Orders() {
         [orderList, _ListItem, loadingMore, _loadMoreOrderList],
     );
 
-    const AcceptButton = () =>
-        CustomSquareButton({
-            title: 'title',
-            onPress: () => console.log('presed'),
-        });
-
     // const TestList = () => (
     //     <RnFlatList
     //         data={orderList}
@@ -191,7 +184,6 @@ function Orders() {
                 item={orderList ? orderList[selectedIndex] : null}
                 index={selectedIndex}
                 onPress={_handleAccept}
-                btn={AcceptButton}
             />
 
             <Snack />

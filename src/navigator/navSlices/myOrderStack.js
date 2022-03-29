@@ -1,20 +1,20 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import Orders from 'src/screens/orders';
+import MyOrders from 'src/screens/myOrders';
 
 const Stack = createNativeStackNavigator();
 
-function OrderStack() {
+function MyOrderStack() {
     return (
         <Stack.Navigator
-            initialRouteName={'orders'}
+            initialRouteName={'My Orders'}
             screenOptions={{
                 headerShown: false,
             }}>
-            <Stack.Screen name="orders" component={Orders} />
+            <Stack.Screen name="myOrders" component={MyOrders} />
         </Stack.Navigator>
     );
 }
 
-export default OrderStack;
+export default MyOrderStack;
