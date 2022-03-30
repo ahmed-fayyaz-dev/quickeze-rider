@@ -5,7 +5,7 @@ import { List } from './orderList';
 
 export const initialOffset = 0;
 export const initialLimit = 9;
-export const ListCardHeight = 150;
+export const ListCardHeight = 170;
 
 export const FlatList = ({
     orderList,

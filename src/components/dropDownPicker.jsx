@@ -167,6 +167,7 @@ const styles = colors =>
         titledButtonView: {
             borderWidth: 1,
             borderRadius: bRss,
+            borderColor: colors.primary,
             backgroundColor: colors.surface,
             // backgroundColor: colorDictionary.colorSet[appearance].background,
         },

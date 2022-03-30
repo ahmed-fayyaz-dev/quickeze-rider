@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import { View, StyleSheet } from 'react-native';
+import { Grid, Col } from 'react-native-easy-grid';
 import { useTheme, TouchableRipple } from 'react-native-paper';
 
 import { Loader } from 'src/components/ActivityIndicators';
@@ -9,6 +10,7 @@ import { GapH, GapV } from 'src/components/gap';
 import { SingleSidedShadowBottom } from 'src/components/shadowWrappers';
 import { currency, converTime, getOrderStatus } from 'src/helpers';
 import globalStyles, { bRs, pdHm, pdVs } from 'src/styles';
+import DropDown from './changeOrderStatusDropdown';
 import { ListCardHeight } from './helpers';
 import { Image } from './orderListImage';
 
@@ -64,18 +66,20 @@ function ListCard({ data, orderIndex, onPress, onCardPress }) {
         </View>
     );
 
-    const OrderStatus = () => (
-        <CustomSubheading style={style.orderStatus}>
-            {_getOrderStatus()}
-        </CustomSubheading>
-    );
+    const OrderStatus = () => <DropDown selectedValue={orderStatus} />;
 
     const CardBottom = () => {
         return (
-            <View style={style.buttonView}>
-                <CustomCaption>{converTime(creationTime)}</CustomCaption>
-                {OrderStatus()}
-            </View>
+            <>
+                <View style={style.buttonView}>
+                    {/* <Grid> */}
+                    <CustomCaption>{converTime(creationTime)}</CustomCaption>
+
+                    <GapH />
+                    <Col size={50}>{OrderStatus()}</Col>
+                    {/* </Grid> */}
+                </View>
+            </>
         );
     };
 
