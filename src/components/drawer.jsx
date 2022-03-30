@@ -16,7 +16,7 @@ import { GapH } from './gap';
 
 const navigateTo = ({ navigation, name }) => {
     navigation.closeDrawer();
-    setTimeout(() => navigation.navigate(name), 400);
+    setTimeout(() => navigation.navigate(name), 800);
 };
 
 const signOutFunc = ({ logout, navigation }) => {
@@ -99,40 +99,48 @@ function DrawerContent(props) {
     const { state, descriptors, navigation } = props;
     const { profileUrl, submitLoginReducer, logout, drawerItemStyle } = props;
 
+    const Header = () => (
+        <View style={[style.drawerTopView]}>
+            {BackIcon({ colors, navigation })}
+            {DrawerAccountInfo({ colors, profileUrl, submitLoginReducer })}
+        </View>
+    );
+
+    const Footer = () => (
+        <View style={[style.drawerBottomView]}>
+            <CustomCaption>
+                App version {nativeApplicationVersion}
+            </CustomCaption>
+            <Image
+                resizeMode="contain"
+                source={icons.app.logoSmallB}
+                style={[style.logoImage]}
+            />
+        </View>
+    );
+
+    const DrawerContent = () => (
+        <DrawerContentScrollView {...props}>
+            <CustomSubheading style={[style.menuText]}>MENU</CustomSubheading>
+            {/* Drawer Screens List */}
+            {CustomDrawerList({ state, descriptors, navigation })}
+            {/* Drawer Signout item */}
+            <DrawerItem
+                onPress={() => signOutFunc({ logout, navigation })}
+                icon={({ size, color }) =>
+                    IonIcons({ size, name: 'exit-outline', color })
+                }
+                label="Sign Out"
+                style={drawerItemStyle}
+            />
+        </DrawerContentScrollView>
+    );
+
     return (
         <SafeAreaView style={style.container}>
-            <View style={[style.drawerTopView]}>
-                {BackIcon({ colors, navigation })}
-                {DrawerAccountInfo({ colors, profileUrl, submitLoginReducer })}
-            </View>
-
-            <DrawerContentScrollView {...props}>
-                <CustomSubheading style={[style.menuText]}>
-                    MENU
-                </CustomSubheading>
-                {/* Drawer Screens List */}
-                {CustomDrawerList({ state, descriptors, navigation })}
-                {/* Drawer Signout item */}
-                <DrawerItem
-                    onPress={() => signOutFunc({ logout, navigation })}
-                    icon={({ size, color }) =>
-                        IonIcons({ size, name: 'exit-outline', color })
-                    }
-                    label="Sign Out"
-                    style={drawerItemStyle}
-                />
-            </DrawerContentScrollView>
-
-            <View style={[style.drawerBottomView]}>
-                <CustomCaption>
-                    App version {nativeApplicationVersion}
-                </CustomCaption>
-                <Image
-                    resizeMode="contain"
-                    source={icons.app.logoSmallB}
-                    style={[style.logoImage]}
-                />
-            </View>
+            {Header()}
+            {DrawerContent()}
+            {Footer()}
         </SafeAreaView>
     );
 }

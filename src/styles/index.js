@@ -80,7 +80,6 @@ const Styles = () => {
             alignSelf: 'center',
         },
 
-        //App
         container: {
             flex: 1,
             backgroundColor: colorDictionary.colorSet[appearance].background,
@@ -105,7 +104,7 @@ const Styles = () => {
             paddingTop: pdVm,
         },
 
-        bottomContainer: {
+        revBottomContainer: {
             flexDirection: 'column-reverse',
             flex: 1,
         },

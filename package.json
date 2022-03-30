@@ -9,7 +9,7 @@
         "test": "jest",
         "lint": "eslint .",
         "lint-fix": "eslint --fix .",
-        "clean": "\\rm -fr ./node_modules dist/* ios/build ios/Pods ios/KScoreApp.xcarchive android/build android/app/build public/js public/assets && yarn"
+        "clean": "\\rm -fr ./node_modules dist/* ios/build ios/Pods ios/quickezeRider.xcarchive android/build android/app/build public/js public/assets && yarn"
     },
     "dependencies": {
         "@babel/preset-typescript": "^7.16.7",
@@ -31,6 +31,7 @@
         "expo-device": "~4.1.0",
         "expo-font": "~10.0.4",
         "expo-keep-awake": "~10.0.1",
+        "expo-location": "~14.0.1",
         "expo-secure-store": "~11.1.0",
         "i18n-js": "^3.8.0",
         "react": "17.0.2",

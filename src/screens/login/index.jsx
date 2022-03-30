@@ -97,93 +97,98 @@ function Login({ navigation, submitLoginReducer, submitLoginAccount }) {
         }
     }
 
+    const TopView = () => (
+        <View>
+            <Image
+                resizeMode="contain"
+                source={icons.app.logoLargeW}
+                style={style.image}
+            />
+
+            <GapV small />
+            <Divider style={[style.divider]} />
+            <GapV small />
+
+            <CustomCaption style={style.subText}>
+                Please Login to your Account
+            </CustomCaption>
+
+            <GapV />
+        </View>
+    );
+
+    const LoginView = () => (
+        <Animated.View
+            entering={BounceInDown}
+            exiting={BounceOutDown}
+            layout={Layout.springify()}
+            style={style.loginView}>
+            <IonIcons
+                style={style.icon}
+                name="person-outline"
+                size={iconSizeL}
+            />
+
+            <CustomSubheading style={style.title}>LOGIN</CustomSubheading>
+
+            <GapV small />
+
+            <CustomInput
+                colors={colors}
+                onChange={setId}
+                label="UserId / Email"
+                state={id}
+                roundness={bRm}
+            />
+
+            <GapV small />
+
+            <CustomInput
+                colors={colors}
+                onChange={setPassword}
+                label="Password"
+                state={password}
+                secure
+                roundness={bRm}
+            />
+
+            <GapV small />
+
+            <View style={style.fdr}>
+                <CustomCheckbox
+                    status={remember}
+                    onPress={() => setRemember(!remember)}
+                />
+
+                <CustomText>Remember Me</CustomText>
+            </View>
+
+            <GapV large />
+
+            <View style={style.revBottomContainer}>
+                <GapV />
+
+                <CustomRoundButton
+                    title="Login"
+                    colors={colors}
+                    gStyle={gStyle}
+                    loading={loading}
+                    icon="arrow-forward"
+                    // onPress={onPress}
+                    onPress={navigate}
+                />
+            </View>
+        </Animated.View>
+    );
+
     return (
         <Animated.View
             entering={FadeIn}
             exiting={FadeOut}
             style={style.container}>
             <ScrollView contentContainerStyle={[style.content]}>
-                <Animated.View
-                    entering={BounceInDown}
-                    exiting={BounceOutDown}
-                    layout={Layout.springify()}
-                    style={style.loginView}>
-                    <IonIcons
-                        style={style.icon}
-                        name="person-outline"
-                        size={iconSizeL}
-                    />
-
-                    <CustomSubheading style={style.title}>
-                        LOGIN
-                    </CustomSubheading>
-
-                    <GapV small />
-
-                    <CustomInput
-                        colors={colors}
-                        onChange={setId}
-                        label="UserId / Email"
-                        state={id}
-                        roundness={bRm}
-                    />
-
-                    <GapV small />
-
-                    <CustomInput
-                        colors={colors}
-                        onChange={setPassword}
-                        label="Password"
-                        state={password}
-                        secure
-                        roundness={bRm}
-                    />
-
-                    <GapV small />
-
-                    <View style={style.fdr}>
-                        <CustomCheckbox
-                            status={remember}
-                            onPress={() => setRemember(!remember)}
-                        />
-
-                        <CustomText>Remember Me</CustomText>
-                    </View>
-
-                    <GapV large />
-
-                    <View style={style.bottomContainer}>
-                        <GapV />
-
-                        <CustomRoundButton
-                            title="Login"
-                            colors={colors}
-                            gStyle={gStyle}
-                            loading={loading}
-                            icon="arrow-forward"
-                            // onPress={onPress}
-                            onPress={navigate}
-                        />
-                    </View>
-                </Animated.View>
-
-                <View>
-                    <Image
-                        resizeMode="contain"
-                        source={icons.app.logoLargeW}
-                        style={style.image}
-                    />
-
-                    <GapV small />
-                    <Divider style={[style.divider]} />
-                    <GapV small />
-
-                    <CustomCaption style={style.subText}>
-                        Please Login to your Account
-                    </CustomCaption>
-
-                    <GapV />
-                </View>
+                {LoginView()}
+                {TopView()}
             </ScrollView>
             <CustomSnackbar
                 visible={visibleSnack}
@@ -231,7 +236,7 @@ export const styles = colors =>
         image: {
             alignSelf: 'center',
             height: 66,
-            tintColor: 'white',
+            tintColor: onBackgroundDark,
         },
 
         fdr: { flexDirection: 'row' },
@@ -271,7 +276,7 @@ export const styles = colors =>
             zIndex: 17,
         },
 
-        bottomContainer: {
+        revBottomContainer: {
             flexDirection: 'column-reverse',
             flex: 1,
         },

@@ -7,12 +7,9 @@ export const icons = {
     tab: {},
     auth: {},
     drawer: {
-        bank: require('./icons/bank.png'),
-        expense: require('./icons/expenses.png'),
-        report: require('./icons/reports.png'),
-        topSale: require('./icons/topSales.png'),
-        regionSale: require('./icons/regionSale.png'),
-        dashboard: require('./icons/dashboardIcon.png'),
+        orders: require('./icons/orders.png'),
+        nearby: require('./icons/nearby.png'),
+        myorders: require('./icons/myorders.png'),
     },
     app: {
         logoSmallB: require('./icons/logoSmall-b.png'),

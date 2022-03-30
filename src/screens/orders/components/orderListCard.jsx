@@ -8,7 +8,7 @@ import { CustomCaption, CustomSubheading } from 'src/components/customText';
 import { GapH, GapV } from 'src/components/gap';
 import { SingleSidedShadowBottom } from 'src/components/shadowWrappers';
 import { currency, converTime } from 'src/helpers';
-import globalStyles, { bRs, pdHm, pdVs, zIndexL } from 'src/styles';
+import globalStyles, { bRs, pdHm, pdVs } from 'src/styles';
 import { ListCardHeight } from './helpers';
 import { Image } from './orderListImage';
 
@@ -30,7 +30,7 @@ function ListCard({ data, orderIndex, onPress, onCardPress }) {
     }
 
     function _onCardPress() {
-        onCardPress(orderIndex, orderId);
+        setTimeout(() => onCardPress(orderIndex, orderId), 800);
     }
 
     const ImageRef = () => (

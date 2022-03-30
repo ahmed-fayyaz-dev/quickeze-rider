@@ -41,7 +41,6 @@ export function CustomRoundButton({
             uppercase={uppercase}
             compact={compact}
             // color={colors.notification}
-            style={[style.roundButton]}
             icon={icon}
             contentStyle={[style.fdrr, style.roundButton]}
             {...props}>
@@ -74,7 +73,7 @@ export function CustomSquareButton({
             color={color}
             icon={icon}
             // compact
-            style={[style.squareButton]}
+            contentStyle={[style.squareButton]}
             theme={{ roundness: bRss }}
             {...props}>
             {title}

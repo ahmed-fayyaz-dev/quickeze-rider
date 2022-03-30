@@ -79,7 +79,7 @@ function DrawerNav({ logout, submitLoginReducer }) {
                             color,
                             focused,
                             size,
-                            icon: icons.drawer.report,
+                            icon: icons.drawer.nearby,
                         }),
                 }}
             />
@@ -94,7 +94,7 @@ function DrawerNav({ logout, submitLoginReducer }) {
                             color,
                             focused,
                             size,
-                            icon: icons.drawer.topSale,
+                            icon: icons.drawer.orders,
                         }),
                 }}
             />
@@ -109,7 +109,7 @@ function DrawerNav({ logout, submitLoginReducer }) {
                             color,
                             focused,
                             size,
-                            icon: icons.drawer.topSale,
+                            icon: icons.drawer.myorders,
                         }),
                 }}
             />
