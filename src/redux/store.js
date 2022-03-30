@@ -10,7 +10,8 @@ import rootReducers from './reducer';
 const persistConfig = {
     key: 'root',
     storage: AsyncStorage,
-    blacklist: ['quarterReducer', 'fYearReducer'],
+    // blacklist: ['quarterReducer', 'fYearReducer'],
+    whitelist: ['submitLoginReducer', 'languageReducer'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducers);

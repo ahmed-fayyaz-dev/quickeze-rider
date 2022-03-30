@@ -1,9 +1,7 @@
 import axios from 'axios';
 
-// MiddlewaresForLoginSuccess
-
 // ServiceMiddleware
-export const ServiceMiddleware = (store) => (next) => async (action) => {
+export const ServiceMiddleware = store => next => async action => {
     if (action === undefined || !action.serviceName) {
         if (action === undefined) {
             action = { type: '' };
@@ -12,9 +10,8 @@ export const ServiceMiddleware = (store) => (next) => async (action) => {
         return;
     }
 
-    const {
-        serviceName, method, headers, onLoad, onSuccess, onFailure, data,
-    } = action;
+    const { serviceName, method, headers, onLoad, onSuccess, onFailure, data } =
+        action;
     const { dispatch } = store;
 
     setBySentType(onLoad, dispatch);
@@ -42,7 +39,7 @@ const setBySentType = (callBack, dispatch, data = {}) => {
         }
         dispatch(callBack);
     } else if (callBack instanceof Array && typeof callBack === 'object') {
-        callBack.forEach((ele) => {
+        callBack.forEach(ele => {
             dispatch(ele);
         });
     }
