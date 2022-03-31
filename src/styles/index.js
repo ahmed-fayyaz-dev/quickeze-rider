@@ -62,14 +62,14 @@ export const hitSlopS = {
 const Styles = () => {
     let appearance = useColorScheme() || light;
     // eslint-disable-next-line no-unused-vars
-    const appearanceInv = (useColorScheme() === light ? dark : light) || dark;
+    let appearanceInv = (useColorScheme() === light ? dark : light) || dark;
 
     if (appearance === undefined || appearance === null) {
         appearance = light;
     }
 
     if (appearanceInv === undefined || appearanceInv === null) {
-        appearance = dark;
+        appearanceInv = dark;
     }
 
     return StyleSheet.create({
