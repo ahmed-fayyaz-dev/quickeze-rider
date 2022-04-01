@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { ScrollView, View, StyleSheet, Image, StatusBar } from 'react-native';
 import { useTheme, Divider } from 'react-native-paper';
@@ -12,49 +11,27 @@ import Animated, {
 import { connect } from 'react-redux';
 
 import { icons } from 'assets/images';
-import { CustomCheckbox } from 'src/components/CustomCheckbox';
-import CustomInput from 'src/components/CustomInput';
-import { CustomRoundButton } from 'src/components/buttons';
 import { CustomSnackbar } from 'src/components/customSnackbar';
-import {
-    CustomCaption,
-    CustomSubheading,
-    CustomText,
-} from 'src/components/customText';
+import { CustomCaption, CustomSubheading } from 'src/components/customText';
 import { GapV } from 'src/components/gap';
-import { IonIcons, setStorageItem } from 'src/helpers';
-import { callApi } from 'src/helpers/apiCall';
+import { IonIcons } from 'src/helpers';
 import { submitGetDashboardData } from 'src/screens/dashboard/actions/actions';
-import gloabalStyle, {
-    bRm,
-    iconSizeL,
-    mgM,
-    mgMs,
-    mgS,
-    onBackgroundDark,
-} from 'src/styles/index';
+import { iconSizeL, mgM, mgMs, mgS, onBackgroundDark } from 'src/styles/index';
 import { submitLoginAccount } from './actions/actions';
+
+import { Form } from './components/form';
 
 function Login({ navigation, submitLoginReducer, submitLoginAccount }) {
     const { colors } = useTheme();
-    const gStyle = gloabalStyle(colors);
     const style = styles(colors);
 
-    const [id, setId] = useState('');
-    const [password, setPassword] = useState('');
-    const [remember, setRemember] = useState(false);
+    const [formState, setFormState] = useState();
     const [loading, setLoadingState] = useState(false);
     const [visibleSnack, setVisibleSnack] = useState(false);
     const [snackMsg, setSnackMsg] = useState('');
 
     // Navigate
     function navigate() {
-        // if (remember) {
-        //   setStorageItem('id', id);
-        //   setStorageItem('password', password);
-        //   setStorageItem('onboard', true);
-        // }
-
         navigation.reset({
             index: 0,
             routes: [{ name: 'drawerNav' }],
@@ -63,10 +40,7 @@ function Login({ navigation, submitLoginReducer, submitLoginAccount }) {
 
     // OnLoginPress
     async function handleSubmitLogin() {
-        // const data = {
-        //   email: id.toLocaleLowerCase(),
-        //   password,
-        // };
+        // const data = formState;
         // await callApi({
         //   data,
         //   setLoading: setLoadingState,
@@ -89,12 +63,9 @@ function Login({ navigation, submitLoginReducer, submitLoginAccount }) {
         setVisibleSnack(true);
     }
 
-    function onPress() {
-        if (id !== '' && password !== '') {
-            handleSubmitLogin();
-        } else {
-            showSnack('Enter Values');
-        }
+    function onPress(v) {
+        setFormState(v);
+        handleSubmitLogin();
     }
 
     const TopView = () => (
@@ -104,8 +75,8 @@ function Login({ navigation, submitLoginReducer, submitLoginAccount }) {
                 source={icons.app.logoLargeW}
                 style={style.image}
             />
-
             <GapV small />
+
             <Divider style={[style.divider]} />
             <GapV small />
 
@@ -130,54 +101,9 @@ function Login({ navigation, submitLoginReducer, submitLoginAccount }) {
             />
 
             <CustomSubheading style={style.title}>LOGIN</CustomSubheading>
-
             <GapV small />
 
-            <CustomInput
-                colors={colors}
-                onChange={setId}
-                label="UserId / Email"
-                state={id}
-                roundness={bRm}
-            />
-
-            <GapV small />
-
-            <CustomInput
-                colors={colors}
-                onChange={setPassword}
-                label="Password"
-                state={password}
-                secure
-                roundness={bRm}
-            />
-
-            <GapV small />
-
-            <View style={style.fdr}>
-                <CustomCheckbox
-                    status={remember}
-                    onPress={() => setRemember(!remember)}
-                />
-
-                <CustomText>Remember Me</CustomText>
-            </View>
-
-            <GapV large />
-
-            <View style={style.revBottomContainer}>
-                <GapV />
-
-                <CustomRoundButton
-                    title="Login"
-                    colors={colors}
-                    gStyle={gStyle}
-                    loading={loading}
-                    icon="arrow-forward"
-                    // onPress={onPress}
-                    onPress={navigate}
-                />
-            </View>
+            <Form onSubmit={navigate} />
         </Animated.View>
     );
 
@@ -220,7 +146,7 @@ export default connect(mapStateToProps, {
     submitGetDashboardData,
 })(Login);
 
-export const styles = colors =>
+const styles = colors =>
     StyleSheet.create({
         container: {
             backgroundColor: colors.notification,
@@ -236,7 +162,6 @@ export const styles = colors =>
         image: {
             alignSelf: 'center',
             height: 66,
-            tintColor: onBackgroundDark,
         },
 
         fdr: { flexDirection: 'row' },

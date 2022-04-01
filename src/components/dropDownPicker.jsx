@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
-import { useTheme } from 'react-native-paper';
+import { useTheme, TextInput } from 'react-native-paper';
 
 import { IonIcons } from 'src/helpers';
 import globalStyles, {
@@ -16,6 +16,7 @@ import globalStyles, {
     zIndexL,
     pdVs,
     pdVss,
+    bRm,
 } from 'src/styles';
 import { CustomText } from './customText';
 
@@ -31,12 +32,12 @@ export function CustomDropDownPicker({
 }) {
     const { colors } = useTheme();
     const style = styles(colors);
-    const gStyle = globalStyles(colors);
+    const gStyle = globalStyles();
 
     const [openDropDown, setOpenDropDown] = useState(false);
 
     return (
-        <View style={[style.titledButtonView, gStyle.elevationS]}>
+        <View style={[style.titledButtonView]}>
             <CustomText style={[style.titledButtonTitle]}>{title}</CustomText>
             <DropDownPicker
                 open={openDropDown}
@@ -100,9 +101,9 @@ export function CustomDropDownPicker({
 const styles = colors =>
     StyleSheet.create({
         dropDown: {
-            backgroundColor: colors.surface,
-            // backgroundColor: colors.background,
-            borderRadius: bRss,
+            // backgroundColor: colors.surface,
+            backgroundColor: colors.background,
+            borderRadius: bRm,
             zIndex: zIndexM,
             borderWidth: 0,
             paddingHorizontal: pdHs,
@@ -156,19 +157,19 @@ const styles = colors =>
             textAlign: 'left',
             position: 'absolute',
             zIndex: zIndexL,
-            fontWeight: 'bold',
             borderRadius: bRss,
             top: -pdVs,
             left: pdHs,
             paddingHorizontal: pdVss,
-            backgroundColor: colors.text,
+            color: colors.text,
+            backgroundColor: colors.background,
         },
 
         titledButtonView: {
             borderWidth: 1,
-            borderRadius: bRss,
-            borderColor: colors.primary,
-            backgroundColor: colors.surface,
+            borderRadius: bRm,
+            borderColor: colors.placeholder,
+            // backgroundColor: colors.surface,
             // backgroundColor: colorDictionary.colorSet[appearance].background,
         },
     });
