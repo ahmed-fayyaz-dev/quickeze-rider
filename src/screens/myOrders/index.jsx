@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback, lazy, useRef } from 'react';
 // import i18n from "i18n-js";
-import { FlatList as RnFlatList } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import Animated, { Layout } from 'react-native-reanimated';
 import { connect, batch } from 'react-redux';
@@ -8,7 +7,6 @@ import { connect, batch } from 'react-redux';
 import { CustomSnackbar } from 'src/components/customSnackbar';
 import { success } from 'src/helpers';
 import gloabalStyle from 'src/styles/index';
-
 import DetailModal from './components/detailModal';
 import { FlatList } from './components/helpers';
 import ListCard from './components/orderListCard';
@@ -81,6 +79,7 @@ function MyOrders() {
             const res = getMoreMyOrders();
             if (res.status === success) {
                 const { myOrders } = res;
+
                 batch(() => {
                     setOrderList([...orderList, ...myOrders]);
                     setLoadingMore(false);
@@ -118,7 +117,6 @@ function MyOrders() {
             />
         );
     };
-
     const _ListItem = useCallback(ListItem, [_handleAccept, _showDetailModal]);
 
     const _List = useCallback(

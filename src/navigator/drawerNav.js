@@ -71,6 +71,7 @@ function DrawerNav({ logout, submitLoginReducer }) {
                 name="dashboard"
                 component={Dashboard}
                 options={{
+                    level: 0,
                     title: 'Dashboard',
                     headerTitleContainerStyle: { height: 0, width: 0 },
                     headerRight: dashboardHeaderRight,
@@ -88,6 +89,7 @@ function DrawerNav({ logout, submitLoginReducer }) {
                 name="orderStack"
                 component={OrdersStack}
                 options={{
+                    level: 1,
                     title: 'Orders',
                     drawerIcon: ({ color, focused, size }) =>
                         DrawerIcons({
@@ -103,6 +105,7 @@ function DrawerNav({ logout, submitLoginReducer }) {
                 name="myOrderStack"
                 component={MyOrdersStack}
                 options={{
+                    level: 1,
                     title: 'My Orders',
                     drawerIcon: ({ color, focused, size }) =>
                         DrawerIcons({

@@ -1,10 +1,9 @@
 import React, { Suspense } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Grid, Col } from 'react-native-easy-grid';
+import { Col } from 'react-native-easy-grid';
 import { useTheme, TouchableRipple } from 'react-native-paper';
 
 import { Loader } from 'src/components/ActivityIndicators';
-import { CustomSquareButton } from 'src/components/buttons';
 import { CustomCaption, CustomSubheading } from 'src/components/customText';
 import { GapH, GapV } from 'src/components/gap';
 import { SingleSidedShadowBottom } from 'src/components/shadowWrappers';
