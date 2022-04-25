@@ -26,14 +26,14 @@ const DrawerIcons = ({ size, focused, icon }) => (
 );
 
 const headerRight = ({ style }) => (
-    <View>
+    <>
         <CustomCaption style={style.time}>
             {format(new Date(), 'EEEE, MMMM')}
         </CustomCaption>
         <CustomCaption style={style.time}>
             {format(new Date(), 'd, yyy')}
         </CustomCaption>
-    </View>
+    </>
 );
 
 const Drawer = createDrawerNavigator();

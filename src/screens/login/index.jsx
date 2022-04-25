@@ -1,21 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ScrollView, View, StyleSheet, Image, StatusBar } from 'react-native';
-import { useTheme, Divider } from 'react-native-paper';
-import Animated, {
-    BounceInDown,
-    BounceOutDown,
-    Layout,
-    FadeIn,
-    FadeOut,
-} from 'react-native-reanimated';
+import { useTheme } from 'react-native-paper';
+import Animated from 'react-native-reanimated';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { icons } from 'assets/images';
-import { CustomSnackbar } from 'src/components/customSnackbar';
 import { CustomCaption, CustomSubheading } from 'src/components/customText';
+import { DividerV } from 'src/components/divider';
 import { GapV } from 'src/components/gap';
 import { IonIcons } from 'src/helpers';
+import { entering, exiting, layoutSpring } from 'src/helpers/animation';
 import { iconSizeL, mgM, mgMs, mgS, onBackgroundDark } from 'src/styles/index';
 
 import Form from './components/form';
@@ -23,19 +18,6 @@ import Form from './components/form';
 function Login({ navigation }) {
     const { colors } = useTheme();
     const style = styles(colors);
-
-    const [visibleSnack, setVisibleSnack] = useState(false);
-    const [snackMsg, setSnackMsg] = useState('');
-
-    function onDismissSnackBar() {
-        setVisibleSnack(false);
-    }
-
-    // eslint-disable-next-line no-unused-vars
-    function showSnack(msg) {
-        setSnackMsg(msg);
-        setVisibleSnack(true);
-    }
 
     const TopView = () => (
         <View>
@@ -46,7 +28,7 @@ function Login({ navigation }) {
             />
             <GapV small />
 
-            <Divider style={[style.divider]} />
+            <DividerV m />
             <GapV small />
 
             <CustomCaption style={style.subText}>
@@ -59,9 +41,9 @@ function Login({ navigation }) {
 
     const LoginView = () => (
         <Animated.View
-            entering={BounceInDown}
-            exiting={BounceOutDown}
-            layout={Layout.springify()}
+            entering={entering}
+            exiting={exiting}
+            layout={layoutSpring}
             style={style.loginView}>
             <IonIcons
                 style={style.icon}
@@ -77,20 +59,12 @@ function Login({ navigation }) {
     );
 
     return (
-        <Animated.View
-            entering={FadeIn}
-            exiting={FadeOut}
-            style={style.container}>
+        <View style={style.container}>
             <ScrollView contentContainerStyle={[style.content]}>
                 {LoginView()}
                 {TopView()}
             </ScrollView>
-            <CustomSnackbar
-                visible={visibleSnack}
-                onDismiss={onDismissSnackBar}
-                msg={`${snackMsg}`}
-            />
-        </Animated.View>
+        </View>
     );
 }
 
@@ -124,15 +98,6 @@ const styles = colors =>
             height: 66,
         },
 
-        fdr: { flexDirection: 'row' },
-
-        divider: {
-            alignSelf: 'center',
-            backgroundColor: onBackgroundDark,
-            height: 1,
-            width: '80%',
-        },
-
         subText: {
             color: onBackgroundDark,
         },
@@ -159,10 +124,5 @@ const styles = colors =>
             shadowRadius: 11.14,
             elevation: 17,
             zIndex: 17,
-        },
-
-        revBottomContainer: {
-            flexDirection: 'column-reverse',
-            flex: 1,
         },
     });

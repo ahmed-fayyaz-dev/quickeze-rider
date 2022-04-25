@@ -89,11 +89,6 @@ export function validatePassword(val) {
     return re.test(val);
 }
 
-export const getCloser = (value, checkOne, checkTwo) =>
-    Math.abs(value - checkOne) < Math.abs(value - checkTwo)
-        ? checkOne
-        : checkTwo;
-
 export const getOrderStatus = status => {
     switch (status) {
         case 0:

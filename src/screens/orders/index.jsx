@@ -3,10 +3,11 @@ import React, { useState, useEffect, useCallback, lazy, useRef } from 'react';
 import { FlatList as RnFlatList } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import Animated, { Layout } from 'react-native-reanimated';
+import Toast from 'react-native-root-toast';
 import { connect, batch } from 'react-redux';
 
-import { CustomSnackbar } from 'src/components/customSnackbar';
 import { success } from 'src/helpers';
+import { layoutSpring } from 'src/helpers/animation';
 import gloabalStyle from 'src/styles/index';
 
 import DetailModal from './components/detailModal';
@@ -27,10 +28,8 @@ function Orders() {
     const detailModelRef = useRef(null);
 
     const [ready, setReady] = useState(false);
-    const [snackMsg, setSnackMsg] = useState('');
     const [orderList, setOrderList] = useState(null);
     const [loadingMore, setLoadingMore] = useState(false);
-    const [visibleSnack, setVisibleSnack] = useState(false);
     const [selectedIndex, setSelectedIndex] = useState(null);
     const [listOffset, setListOffset] = useState(initialOffset);
 
@@ -42,16 +41,8 @@ function Orders() {
         effect();
     }, []);
 
-    function onDismissSnackBar() {
-        setVisibleSnack(false);
-    }
-
     function showSnack(msg) {
-        batch(() => {
-            setVisibleSnack(false);
-            setSnackMsg(msg);
-            setVisibleSnack(true);
-        });
+        Toast.show(msg, Toast.durations.SHORT);
     }
 
     async function handleAccept(orderIndex, orderId) {
@@ -161,16 +152,8 @@ function Orders() {
     //     />
     // );
 
-    const Snack = () => (
-        <CustomSnackbar
-            visible={visibleSnack}
-            onDismiss={onDismissSnackBar}
-            msg={`${snackMsg}`}
-        />
-    );
-
     return (
-        <Animated.View layout={Layout.springify()} style={gStyle.container}>
+        <Animated.View layout={layoutSpring} style={gStyle.container}>
             {/* Content */}
 
             {ready && <_List />}
@@ -185,8 +168,6 @@ function Orders() {
                 index={selectedIndex}
                 onPress={_handleAccept}
             />
-
-            <Snack />
         </Animated.View>
     );
 }

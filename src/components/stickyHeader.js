@@ -1,8 +1,9 @@
 import React from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 import { Surface, useTheme } from 'react-native-paper';
-import Animated, { RollOutRight, RollInLeft } from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 
+import { entering, exiting } from 'src/helpers/animation';
 import globalStyles, { bRms, mgS } from 'src/styles';
 import { CustomCaption, CustomTitle } from './customText';
 import { GapH } from './gap';
@@ -28,8 +29,8 @@ export function StickyHeader({
     return (
         <Animated.View
             style={style.container}
-            entering={RollInLeft}
-            exiting={RollOutRight}
+            entering={entering}
+            exiting={exiting}
             // layout={Layout.springify()}
             onLayout={onLayout}>
             <Surface style={[style.accountInfoCard, gStyle.elevationM]}>

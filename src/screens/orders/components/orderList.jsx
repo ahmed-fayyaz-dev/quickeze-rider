@@ -1,24 +1,9 @@
-/* eslint-disable no-unused-vars */
-import React, { useRef, useState, useCallback, useEffect } from 'react';
-import {
-    Animated,
-    FlatList,
-    StyleSheet,
-    View,
-    RefreshControl,
-} from 'react-native';
+import React, { useRef, useState, useCallback } from 'react';
+import { FlatList, StyleSheet, RefreshControl } from 'react-native';
 
 import { CustomSquareButton } from 'src/components/buttons';
-import { Loader } from 'src/components/loaders';
-// import { getCloser } from 'src/helpers';
 import { mgM, pdHs, pdVm, pdVss, zIndexL } from 'src/styles';
 import { ListCardHeight } from './helpers';
-
-// const { diffClamp } = Animated;
-
-// const ListItem = ({ item, index }) => {
-//     return <ListCard data={item} orderIndex={index} />;
-// };
 
 export const List = ({
     // Header,
@@ -61,68 +46,7 @@ export const List = ({
         index,
     });
 
-    // const onEndReached = ({ distanceFromEnd }) => {
-    //     if (distanceFromEnd < 0) return;
-    //     loadMore();
-    // };
-
-    /*   Animation Handlers   */
-    // const scrollY = useRef(new Animated.Value(0));
-    // const scrollYClamped = diffClamp(scrollY.current, 0, headerHeight);
-
-    // const translateY = scrollYClamped.interpolate({
-    //     inputRange: [0, headerHeight],
-    //     outputRange: [0, -headerHeight],
-    // });
-
-    // const translateYNumber = useRef();
-
-    // translateY.addListener(({ value }) => {
-    //     translateYNumber.current = value;
-    // });
-
-    // const handleScroll = Animated.event(
-    //     [
-    //         {
-    //             nativeEvent: {
-    //                 contentOffset: { y: scrollY.current },
-    //             },
-    //         },
-    //     ],
-    //     {
-    //         useNativeDriver: true,
-    //     },
-    // );
-
-    // const handleSnap = ({ nativeEvent }) => {
-    //     const offsetY = nativeEvent.contentOffset.y;
-    //     if (
-    //         !(
-    //             translateYNumber.current === 0 ||
-    //             translateYNumber.current === -headerHeight
-    //         )
-    //     ) {
-    //         if (ref.current) {
-    //             ref.current.scrollToOffset({
-    //                 offset:
-    //                     getCloser(
-    //                         translateYNumber.current,
-    //                         -headerHeight,
-    //                         0,
-    //                     ) === -headerHeight
-    //                         ? offsetY + headerHeight
-    //                         : offsetY - headerHeight,
-    //             });
-    //         }
-    //     }
-    // };
-
     return (
-        // <View style={[styles.container]}>
-        /* <Animated.View
-                style={[styles.header, { transform: [{ translateY }] }]}>
-                <Header headerHeight={headerHeight} />
-            </Animated.View> */
         <FlatList
             // scrollEventThrottle={16}
             // onScroll={handleScroll}

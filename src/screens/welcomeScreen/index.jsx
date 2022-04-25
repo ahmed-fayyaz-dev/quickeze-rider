@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
 import { useTheme } from 'react-native-paper';
-import Animated, { ZoomOut } from 'react-native-reanimated';
 
 import { icons } from 'assets/images';
 import { CustomText, CustomCaption } from 'src/components/customText';
@@ -19,7 +18,7 @@ export default function WelcomeScreen({ navigation }) {
     }
 
     return (
-        <Animated.View exiting={ZoomOut} style={[style.container]}>
+        <View style={[style.container]}>
             <View style={style.imageView}>
                 <Image
                     style={style.imageLogo}
@@ -48,7 +47,7 @@ export default function WelcomeScreen({ navigation }) {
                     Welcome to Quickeze.
                 </CustomText>
             </View>
-        </Animated.View>
+        </View>
     );
 }
 

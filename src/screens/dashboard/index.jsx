@@ -1,37 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { View } from 'react-native';
 import { StyleSheet } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import { useTheme } from 'react-native-paper';
-import Animated from 'react-native-reanimated';
 import { connect } from 'react-redux';
 
-import { CustomSnackbar } from 'src/components/customSnackbar';
+// import { entering, exiting } from 'src/helpers/animation';
 // import { GapV } from 'src/components/gap';
 // import { StickyHeader } from 'src/components/stickyHeader';
-// import VirtualizedView from 'src/components/virtualizedBackedContainer';
-import { callApi } from 'src/helpers/apiCall';
+// import { callApi } from 'src/helpers/apiCall';
 import gloabalStyle, { mgMs, zIndexM } from 'src/styles/index';
 
-import { submitGetDashboardData } from './actions/actions';
-
-function Dashboard({
-    // submitLoginReducer,
-    submitGetDashboardData,
-    //
-    getDashboardDataReducer,
-}) {
+function Dashboard() {
     const { colors } = useTheme();
     const gStyle = gloabalStyle();
     const style = styles(colors);
 
-    const [visibleSnack, setVisibleSnack] = useState(false);
-    const [snackMsg] = useState('');
     // const [refreshing] = useState(false);
     // const [loading, setLoading] = useState(false);
-
-    function onDismissSnackBar() {
-        setVisibleSnack(false);
-    }
 
     // function handleSubmitGetDashboardData() {
     //     callApi({
@@ -46,22 +32,7 @@ function Dashboard({
     // }
 
     return (
-        <Animated.View style={[gStyle.container]}>
-            {/* <VirtualizedView
-        contentContainerStyle={[gStyle.fg]}
-        refresh
-        refreshing={refreshing}
-        onRefresh={async () => {
-          try {
-            handleSubmitGetDashboardData();
-          } catch (e) {
-            console.error(e);
-          }
-        }}>
-        {loading ? null : <View style={[style.content]}></View>}
-        <GapV />
-      </VirtualizedView> */}
-
+        <View style={[gStyle.container]}>
             <MapView
                 provider={PROVIDER_GOOGLE}
                 style={style.map}
@@ -72,23 +43,15 @@ function Dashboard({
                     longitudeDelta: 0.0121,
                 }}
             />
-            <CustomSnackbar
-                visible={visibleSnack}
-                onDismiss={onDismissSnackBar}
-                msg={`${snackMsg}`}
-            />
-        </Animated.View>
+        </View>
     );
 }
 
-function mapStateToProps({ submitLoginReducer, getDashboardDataReducer }) {
-    return {
-        submitLoginReducer,
-        getDashboardDataReducer,
-    };
+function mapStateToProps() {
+    return {};
 }
 
-export default connect(mapStateToProps, { submitGetDashboardData })(Dashboard);
+export default connect(mapStateToProps)(Dashboard);
 
 const styles = colors =>
     StyleSheet.create({

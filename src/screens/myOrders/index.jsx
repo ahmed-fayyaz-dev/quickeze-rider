@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useCallback, lazy, useRef } from 'react';
 // import i18n from "i18n-js";
 import { useTheme } from 'react-native-paper';
-import Animated, { Layout } from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
+import Toast from 'react-native-root-toast';
 import { connect, batch } from 'react-redux';
 
-import { CustomSnackbar } from 'src/components/customSnackbar';
 import { success } from 'src/helpers';
+import { layoutSpring } from 'src/helpers/animation';
 import gloabalStyle from 'src/styles/index';
 import DetailModal from './components/detailModal';
 import { FlatList } from './components/helpers';
@@ -20,10 +21,8 @@ function MyOrders() {
     const detailModelRef = useRef(null);
 
     const [ready, setReady] = useState(false);
-    const [snackMsg, setSnackMsg] = useState('');
     const [orderList, setOrderList] = useState(null);
     const [loadingMore, setLoadingMore] = useState(false);
-    const [visibleSnack, setVisibleSnack] = useState(false);
     const [selectedIndex, setSelectedIndex] = useState(null);
 
     useEffect(() => {
@@ -34,21 +33,9 @@ function MyOrders() {
         effect();
     }, []);
 
-    function onDismissSnackBar() {
-        setVisibleSnack(false);
-    }
-
-    function showSnack(msg) {
-        batch(() => {
-            setVisibleSnack(false);
-            setSnackMsg(msg);
-            setVisibleSnack(true);
-        });
-    }
-
     async function handleAccept(orderIndex, orderId) {
         detailModelRef.current?.close();
-        showSnack(`shackalaca`);
+        Toast.show('Accepted !', Toast.durations.SHORT); //
     }
 
     function showDetailModal(index, orderId) {
@@ -86,7 +73,7 @@ function MyOrders() {
                 });
             } else {
                 batch(() => {
-                    showSnack(res?.message);
+                    Toast.show(res?.message, Toast.durations.SHORT);
                     setLoadingMore(false);
                 });
             }
@@ -143,16 +130,8 @@ function MyOrders() {
     //     />
     // );
 
-    const Snack = () => (
-        <CustomSnackbar
-            visible={visibleSnack}
-            onDismiss={onDismissSnackBar}
-            msg={`${snackMsg}`}
-        />
-    );
-
     return (
-        <Animated.View layout={Layout.springify()} style={gStyle.container}>
+        <Animated.View layout={layoutSpring} style={gStyle.container}>
             {/* Content */}
 
             {ready && <_List />}
@@ -167,8 +146,6 @@ function MyOrders() {
                 index={selectedIndex}
                 onPress={_handleAccept}
             />
-
-            <Snack />
         </Animated.View>
     );
 }

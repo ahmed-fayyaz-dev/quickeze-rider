@@ -1,64 +1,49 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 // import i18n from "i18n-js";
 import { View, StyleSheet } from 'react-native';
 // import { useTheme } from "react-native-paper";
-import Animated, { BounceInUp, Layout, FadeOut } from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
+import Toast from 'react-native-root-toast';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import { CustomSnackbar } from 'src/components/customSnackbar';
 import VirtualizedView from 'src/components/virtualizedBackedContainer';
-import { submitGetDashboardDataDetail } from 'src/screens/dashboard/actions/actions';
+import { entering, exiting } from 'src/helpers/animation';
 import gloabalStyle from 'src/styles/index';
 
 function Temp() {
-    // const t = (v) => i18n.t(v); // Getting translated text
     // const { colors } = useTheme();
     const gStyle = gloabalStyle();
     // const style = styles(colors);
 
-    const [visibleSnack, setVisibleSnack] = useState(false);
-    const [snackMsg, setSnackMsg] = useState('');
-
-    function onDismissSnackBar() {
-        setVisibleSnack(false);
-    }
-
     // eslint-disable-next-line no-unused-vars
     function showSnack(msg) {
-        setSnackMsg(msg);
-        setVisibleSnack(true);
+        Toast.show(msg, Toast.durations.SHORT);
     }
-
-    useEffect(() => () => {}, []);
 
     return (
         <Animated.View
-            entering={BounceInUp}
-            exiting={FadeOut}
-            layout={Layout.springify()}
+            entering={entering}
+            exiting={exiting}
             style={gStyle.container}>
             <VirtualizedView contentContainerStyle={[gStyle.fg]}>
                 <View style={gStyle.content}>{/* Content */}</View>
             </VirtualizedView>
 
             {/* Modals and popups */}
-            <CustomSnackbar
-                visible={visibleSnack}
-                onDismiss={onDismissSnackBar}
-                msg={`${snackMsg}`}
-            />
         </Animated.View>
     );
 }
 
-function mapStateToProps({ detailsBankBalReducer, submitLoginReducer }) {
-    return {
-        detailsBankBalReducer,
-        submitLoginReducer,
-    };
+function mapStateToProps() {
+    return {};
 }
 
-export default connect(mapStateToProps, { submitGetDashboardDataDetail })(Temp);
+function mapDipatchToProps(dispatch, getState) {
+    return bindActionCreators({}, dispatch, getState);
+}
+
+export default connect(mapStateToProps, mapDipatchToProps)(Temp);
 
 // eslint-disable-next-line no-unused-vars
 const styles = colors => StyleSheet.create({});

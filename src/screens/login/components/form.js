@@ -5,11 +5,13 @@ import { useTheme } from 'react-native-paper';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import { ID, PASSWORD, ONBOARD } from 'src/appConstants';
 import { CustomCheckbox } from 'src/components/CustomCheckbox';
 import CustomInput from 'src/components/CustomInput';
 import { CustomRoundButton } from 'src/components/buttons';
 import { CustomText } from 'src/components/customText';
 import { GapV } from 'src/components/gap';
+import { setStorageItem } from 'src/helpers';
 import { callApi } from 'src/helpers/apiCall';
 import { actionLogin } from 'src/screens/login/actions';
 import { loginValidationSchema } from 'src/screens/login/helpers/validationSchema';
@@ -19,7 +21,7 @@ const Form = ({ navigation, actionLogin }) => {
     const style = styles(colors);
     const [loading, setLoading] = useState(false);
 
-    function navigate() {
+    function navigateToApp() {
         navigation.reset({
             index: 0,
             routes: [{ name: 'drawerNav' }],
@@ -27,15 +29,17 @@ const Form = ({ navigation, actionLogin }) => {
     }
 
     function successFunc(values) {
-        // if (values.remember) {
-        //   setStorageItem('id', id);
-        //   setStorageItem('password', password);
-        //   setStorageItem('onboard', true);
-        // }
+        if (values.remember) {
+            setStorageItem(ID, values?.email);
+            setStorageItem(PASSWORD, values?.password);
+            setStorageItem(ONBOARD, true);
+        }
+
+        navigateToApp();
     }
 
     function onSubmit(v) {
-        handleSubmitLogin(v);
+        successFunc(v);
     }
 
     async function handleSubmitLogin(d) {
@@ -51,7 +55,7 @@ const Form = ({ navigation, actionLogin }) => {
 
     return (
         <Formik
-            validationSchema={loginValidationSchema}
+            // validationSchema={loginValidationSchema}
             initialValues={{ email: '', password: '', remember: false }}
             onSubmit={values => {
                 onSubmit(values);
