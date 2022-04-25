@@ -4,8 +4,7 @@
         "baseUrl": ".",
         "paths": {
             "src": ["./src/*"],
-            "assets": ["./assets/*"],
-            "appConstants": ["./appConstants"]
+            "assets": ["./assets/*"]
         }
     }
 }

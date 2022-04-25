@@ -9,63 +9,32 @@ import Animated, {
     FadeOut,
 } from 'react-native-reanimated';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import { icons } from 'assets/images';
 import { CustomSnackbar } from 'src/components/customSnackbar';
 import { CustomCaption, CustomSubheading } from 'src/components/customText';
 import { GapV } from 'src/components/gap';
 import { IonIcons } from 'src/helpers';
-import { submitGetDashboardData } from 'src/screens/dashboard/actions/actions';
 import { iconSizeL, mgM, mgMs, mgS, onBackgroundDark } from 'src/styles/index';
-import { submitLoginAccount } from './actions/actions';
 
-import { Form } from './components/form';
+import Form from './components/form';
 
-function Login({ navigation, submitLoginReducer, submitLoginAccount }) {
+function Login({ navigation }) {
     const { colors } = useTheme();
     const style = styles(colors);
 
-    const [formState, setFormState] = useState();
-    const [loading, setLoadingState] = useState(false);
     const [visibleSnack, setVisibleSnack] = useState(false);
     const [snackMsg, setSnackMsg] = useState('');
-
-    // Navigate
-    function navigate() {
-        navigation.reset({
-            index: 0,
-            routes: [{ name: 'drawerNav' }],
-        });
-    }
-
-    // OnLoginPress
-    async function handleSubmitLogin() {
-        // const data = formState;
-        // await callApi({
-        //   data,
-        //   setLoading: setLoadingState,
-        //   callApiReducer: submitLoginReducer,
-        //   submitCallApi: submitLoginAccount,
-        //   successFunc: () => {
-        //     navigate();
-        //   },
-        //   errFunc: () => {},
-        //   catchFunc: () => {},
-        // });
-    }
 
     function onDismissSnackBar() {
         setVisibleSnack(false);
     }
 
+    // eslint-disable-next-line no-unused-vars
     function showSnack(msg) {
         setSnackMsg(msg);
         setVisibleSnack(true);
-    }
-
-    function onPress(v) {
-        setFormState(v);
-        handleSubmitLogin();
     }
 
     const TopView = () => (
@@ -103,7 +72,7 @@ function Login({ navigation, submitLoginReducer, submitLoginAccount }) {
             <CustomSubheading style={style.title}>LOGIN</CustomSubheading>
             <GapV small />
 
-            <Form onSubmit={navigate} />
+            <Form navigation={navigation} />
         </Animated.View>
     );
 
@@ -125,26 +94,17 @@ function Login({ navigation, submitLoginReducer, submitLoginAccount }) {
     );
 }
 
-function mapStateToProps({
-    submitLoginReducer,
-    getDashboardDataReducer,
-    companyIdReducer,
-    gDateReducer,
-    gMonthReducer,
-}) {
+function mapStateToProps({ submitLoginReducer }) {
     return {
         submitLoginReducer,
-        getDashboardDataReducer,
-        companyIdReducer,
-        gDateReducer,
-        gMonthReducer,
     };
 }
 
-export default connect(mapStateToProps, {
-    submitLoginAccount,
-    submitGetDashboardData,
-})(Login);
+function mapDipatchToProps(dispatch, getState) {
+    return bindActionCreators({}, dispatch, getState);
+}
+
+export default connect(mapStateToProps, mapDipatchToProps)(Login);
 
 const styles = colors =>
     StyleSheet.create({

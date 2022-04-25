@@ -3,9 +3,9 @@ import { View, StyleSheet } from 'react-native';
 import { Col } from 'react-native-easy-grid';
 import { useTheme, TouchableRipple } from 'react-native-paper';
 
-import { Loader } from 'src/components/ActivityIndicators';
 import { CustomCaption, CustomSubheading } from 'src/components/customText';
 import { GapH, GapV } from 'src/components/gap';
+import { Loader } from 'src/components/loaders';
 import { SingleSidedShadowBottom } from 'src/components/shadowWrappers';
 import { currency, converTime, getOrderStatus } from 'src/helpers';
 import globalStyles, { bRs, pdHm, pdVs } from 'src/styles';

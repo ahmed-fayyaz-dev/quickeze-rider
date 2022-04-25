@@ -8,11 +8,13 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
 
+import { bindActionCreators } from 'redux';
+import { ID, PASSWORD, ONBOARD } from 'src/appConstants';
 import { getStorageItem } from 'src/helpers';
 import { callApi } from 'src/helpers/apiCall';
 import { setLanguage } from 'src/redux/common/actions/actions';
 import { submitGetDashboardData } from 'src/screens/dashboard/actions/actions';
-import { submitLoginAccount } from 'src/screens/login/actions/actions';
+import { actionLogin } from 'src/screens/login/actions';
 import { CombinedLightTheme, CombinedDarkTheme } from 'src/styles/theme';
 
 import RootNavigator from './rootNavigator';
@@ -20,7 +22,7 @@ import RootNavigator from './rootNavigator';
 // App nav
 function AppNavigator(props) {
     const {
-        submitLoginAccount,
+        actionLogin,
         //
         submitLoginReducer,
     } = props;
@@ -34,7 +36,7 @@ function AppNavigator(props) {
         async function effect() {
             changeTheme(Appearance.getColorScheme() || 'light');
             setRedux();
-            board.current = await getStorageItem('onboard');
+            board.current = await getStorageItem(ONBOARD);
 
             if (board.current) {
                 await getData();
@@ -90,8 +92,8 @@ function AppNavigator(props) {
     };
 
     async function getData() {
-        const id = await getStorageItem('id');
-        const password = await getStorageItem('password');
+        const id = await getStorageItem(ID);
+        const password = await getStorageItem(PASSWORD);
 
         if (id && password) {
             const data = {
@@ -101,18 +103,14 @@ function AppNavigator(props) {
 
             await callApi({
                 data,
-                callApiReducer: submitLoginReducer,
-                submitCallApi: submitLoginAccount,
+                callApiReducer: {},
+                submitCallApi: actionLogin,
                 successFunc: async () => {
                     loggedIn.current = true;
                     setReady(true);
                 },
-                errFunc: () => {
-                    setReady(true);
-                },
-                catchFunc: () => {
-                    setReady(true);
-                },
+                errFunc: () => setReady(true),
+                catchFunc: () => setReady(true),
                 setLoading: () => {},
             });
         } else {
@@ -128,9 +126,7 @@ function AppNavigator(props) {
                     icon: props => <Ionicons {...props} />,
                 }}>
                 <NavigationContainer theme={theme}>
-                    {/* <Portal.Host> */}
                     <RootNavigator loggedIn={loggedIn} />
-                    {/* </Portal.Host> */}
                 </NavigationContainer>
             </PaperProvider>
         );
@@ -139,36 +135,33 @@ function AppNavigator(props) {
 }
 
 function mapStateToProps({
-    appAppearanceReducer,
-    submitLoginReducer,
-    getDashboardDataReducer,
-    companyIdReducer,
-    gMonthReducer,
     gDateReducer,
+    gMonthReducer,
+    companyIdReducer,
+    submitLoginReducer,
+    appAppearanceReducer,
+    getDashboardDataReducer,
 }) {
     return {
-        appAppearanceReducer,
-        submitLoginReducer,
-        getDashboardDataReducer,
-        companyIdReducer,
-        gMonthReducer,
         gDateReducer,
+        gMonthReducer,
+        companyIdReducer,
+        submitLoginReducer,
+        appAppearanceReducer,
+        getDashboardDataReducer,
     };
 }
 
-// function mapActionsToProps(dispatch) {
-//   return bindActionCreators(
-//     {
-//       setLanguage,
-//       submitLoginAccount,
-//       submitGetDashboardData,
-//     },
-//     dispatch
-//   );
-// }
+function mapActionsToProps(dispatch, getState) {
+    return bindActionCreators(
+        {
+            setLanguage,
+            actionLogin,
+            submitGetDashboardData,
+        },
+        dispatch,
+        getState,
+    );
+}
 
-export default connect(mapStateToProps, {
-    setLanguage,
-    submitLoginAccount,
-    submitGetDashboardData,
-})(AppNavigator);
+export default connect(mapStateToProps, mapActionsToProps)(AppNavigator);

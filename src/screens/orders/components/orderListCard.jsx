@@ -2,10 +2,10 @@ import React, { Suspense } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { useTheme, TouchableRipple } from 'react-native-paper';
 
-import { Loader } from 'src/components/ActivityIndicators';
 import { CustomSquareButton } from 'src/components/buttons';
 import { CustomCaption, CustomSubheading } from 'src/components/customText';
 import { GapH, GapV } from 'src/components/gap';
+import { Loader } from 'src/components/loaders';
 import { SingleSidedShadowBottom } from 'src/components/shadowWrappers';
 import { currency, converTime } from 'src/helpers';
 import globalStyles, { bRs, pdHm, pdVs } from 'src/styles';

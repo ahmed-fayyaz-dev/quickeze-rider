@@ -20,9 +20,6 @@ const navigateTo = ({ navigation, name }) => {
 };
 
 const signOutFunc = ({ logout, navigation }) => {
-    removeStorageItem('id');
-    removeStorageItem('onboard');
-    removeStorageItem('password');
     logout();
     navigation.reset({
         index: 0,
@@ -124,6 +121,7 @@ function DrawerContent(props) {
             <CustomSubheading style={[style.menuText]}>MENU</CustomSubheading>
             {/* Drawer Screens List */}
             {CustomDrawerList({ state, descriptors, navigation })}
+
             {/* Drawer Signout item */}
             <DrawerItem
                 onPress={() => signOutFunc({ logout, navigation })}

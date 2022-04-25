@@ -1,10 +1,16 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import { Button, FAB, IconButton, useTheme } from 'react-native-paper';
+import React from "react";
+import { StyleSheet } from "react-native";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import {
+    Button,
+    FAB,
+    IconButton,
+    useTheme,
+    TextInput,
+    HelperText,
+} from "react-native-paper";
 
-import gloablStyle, {
-    bRs,
+import {
     bRss,
     buttonHeight,
     hitSlopS,
@@ -15,8 +21,9 @@ import gloablStyle, {
     zIndexL,
     iconSize,
     primaryColor,
-} from 'src/styles';
-import { CustomSubheading, CustomText } from './customText';
+    pdVm,
+    pdHm,
+} from "src/styles";
 
 export function CustomRoundButton({
     title,
@@ -24,9 +31,11 @@ export function CustomRoundButton({
     loading,
     icon,
     compact,
+    disabled,
     mode,
     uppercase,
     children,
+    color,
     ...props
 }) {
     const { colors } = useTheme();
@@ -34,16 +43,17 @@ export function CustomRoundButton({
 
     return (
         <Button
-            mode={mode || 'contained'}
+            mode={mode || "contained"}
             onPress={onPress}
             loading={loading}
-            disabled={loading}
+            disabled={disabled || loading}
             uppercase={uppercase}
             compact={compact}
-            // color={colors.notification}
+            color={color}
             icon={icon}
             contentStyle={[style.fdrr, style.roundButton]}
-            {...props}>
+            {...props}
+        >
             {title}
             <>{children}</>
         </Button>
@@ -62,11 +72,10 @@ export function CustomSquareButton({
 }) {
     const { colors } = useTheme();
     const style = styles(colors);
-    const gStyle = gloablStyle(colors);
 
     return (
         <Button
-            mode={mode || 'contained'}
+            mode={mode || "contained"}
             onPress={onPress}
             loading={loading}
             disabled={loading}
@@ -74,37 +83,104 @@ export function CustomSquareButton({
             icon={icon}
             // compact
             contentStyle={[style.squareButton]}
-            theme={{ roundness: bRss }}
-            {...props}>
+            {...props}
+        >
             {title}
             {children}
         </Button>
     );
 }
 
-export function CutomButtonRNGH({
+export function CustomSquareButtonRNGH({
+    color,
+    title,
+    onPress,
+    loading,
+    icon,
+    mode,
+    children,
+    disabled,
+    ...props
+}) {
+    const { colors } = useTheme();
+    const style = styles(colors);
+
+    return (
+        <TouchableWithoutFeedback onPress={onPress} disabled={disabled}>
+            <Button
+                mode={mode || "contained"}
+                onPress={onPress}
+                loading={loading}
+                disabled={loading}
+                color={color}
+                icon={icon}
+                // compact
+                contentStyle={[style.squareButton]}
+                {...props}
+            >
+                {title}
+                {children}
+            </Button>
+        </TouchableWithoutFeedback>
+    );
+}
+
+export function CustomDrawerButton({
+    color,
+    title,
+    onPress,
+    loading,
+    icon,
+    mode,
+    children,
+    ...props
+}) {
+    const { colors } = useTheme();
+    const style = styles(colors);
+
+    return (
+        <Button
+            mode={mode || "contained"}
+            onPress={onPress}
+            loading={loading}
+            disabled={loading}
+            color={color}
+            icon={icon}
+            // compact
+            contentStyle={[style.drawerButton]}
+            {...props}
+        >
+            {title}
+            {children}
+        </Button>
+    );
+}
+
+export function CutomRoundButtonRNGH({
     title,
     onPress,
     children,
     icon,
     mode,
     loading,
+    disabled,
+    ...props
 }) {
     const { colors } = useTheme();
     const style = styles(colors);
 
     return (
-        <TouchableWithoutFeedback onPress={onPress}>
+        <TouchableWithoutFeedback onPress={onPress} disabled={disabled}>
             <Button
-                mode={mode || 'contained'}
-                onPress={onPress}
+                mode={mode || "contained"}
                 loading={loading}
-                disabled={loading}
+                disabled={disabled}
                 icon={icon}
+                contentStyle={[style.fdrr, style.roundButton]}
                 // compact
-                style={[style.squareButton]}
-                contentStyle={style.fdrr}
-                theme={{ roundness: bRss }}>
+                // style={[style.roundButton]}
+                {...props}
+            >
                 {title}
                 {children}
             </Button>
@@ -114,10 +190,10 @@ export function CutomButtonRNGH({
 
 export function CustomIconButton({
     onPress,
-    bg,
     size = iconSize,
     color = primaryColor,
     name,
+    styleP,
 }) {
     const { colors } = useTheme();
     const style = styles(colors);
@@ -127,19 +203,29 @@ export function CustomIconButton({
             hitSlop={hitSlopS}
             icon={name}
             color={color}
-            style={[bg && { backgroundColor: bg }, style.iconButton]}
+            style={[style.iconButton, styleP]}
             size={size}
             onPress={onPress}
         />
     );
 }
 
-export function CustomFab({ onPress, color, icon, small, visible }) {
+export function CustomFab({
+    onPress,
+    color,
+    icon,
+    small,
+    visible,
+    bottomRight,
+}) {
+    const { colors } = useTheme();
+    const style = styles(colors);
+
     return (
         <FAB
             visible={visible}
             hitSlop={hitSlopS}
-            style={[{ margin: mgS }]}
+            style={[style.fab, bottomRight && style.fabBottomRight]}
             small={small}
             icon={icon}
             color={color}
@@ -148,78 +234,116 @@ export function CustomFab({ onPress, color, icon, small, visible }) {
     );
 }
 
-export function CustomDateButton({
-    title,
+export const CustomInputButton = ({
+    label,
     value,
-    onPress,
-    loading,
+    helper,
     icon,
-    mode,
+    editable,
+    multiline,
+    onPress,
+    helperVisible,
+    children,
+    disabled,
     ...props
-}) {
-    const { colors } = useTheme();
-    const style = styles(colors);
-    const gStyle = gloablStyle(colors);
+}) => {
+    // const style = styles(theme.colors);
+    const theme = useTheme();
+
+    const CustomIcon = () => (
+        <TextInput.Icon
+            forceTextInputFocus={false}
+            name={icon}
+            onPress={onPress}
+            disabled={disabled}
+        />
+    );
+
+    const Input = () => (
+        <TextInput
+            mode="outlined"
+            label={label}
+            value={value} // Uncontrolled
+            multiline={multiline}
+            editable={editable}
+            theme={theme}
+            right={icon && CustomIcon()}
+            {...props}
+        >
+            {/* {children} */}
+        </TextInput>
+    );
 
     return (
-        <View style={[style.titledButtonView]}>
-            <CustomText style={[style.titledButtonTitle]}>{title}</CustomText>
-            <Button
-                mode={mode || 'text'}
-                onPress={onPress}
-                loading={loading}
-                disabled={loading}
-                color={colors.surface}
-                icon={icon}
-                // compact
-                style={[style]}
-                contentStyle={[style.titledButton]}
-                theme={{ roundness: bRss }}
-                {...props}>
-                <CustomSubheading>{value}</CustomSubheading>
-            </Button>
-        </View>
-    );
-}
+        <>
+            {/* <TouchableOpacity style={style.container} onPress={onPress}> */}
+            {Input()}
+            {/* </TouchableOpacity> */}
 
-const styles = colors =>
+            {helper && (
+                <HelperText type="error" visible={helperVisible}>
+                    {helper}
+                </HelperText>
+            )}
+        </>
+    );
+};
+
+const styles = (colors) =>
     StyleSheet.create({
+        inputContainer: { flex: 1 },
+
         roundButton: {
             minHeight: buttonHeight + 10,
-            justifyContent: 'center',
+            justifyContent: "center",
             borderColor: colors.primary,
-            width: '100%',
-            alignSelf: 'center',
+            width: "100%",
+            alignSelf: "center",
         },
 
         roundButtonS: {
             minHeight: buttonHeight,
-            justifyContent: 'center',
-            width: '45%',
-            alignSelf: 'center',
+            justifyContent: "center",
+            width: "45%",
+            alignSelf: "center",
         },
 
         squareButton: {
-            justifyContent: 'center',
+            justifyContent: "center",
+            minHeight: buttonHeight,
+            minWidth: 30,
+        },
+
+        drawerButton: {
+            justifyContent: "center",
+            flexDirection: "row-reverse",
             minHeight: buttonHeight,
             minWidth: 30,
         },
 
         iconButton: {
-            justifyContent: 'center',
+            justifyContent: "center",
         },
 
         compactButton: {
             minHeight: 0,
-            flexDirection: 'row',
-            justifyContent: 'center',
+            flexDirection: "row",
+            justifyContent: "center",
+        },
+
+        fab: { margin: mgS },
+
+        fabBottomRight: {
+            position: "absolute",
+            bottom: pdVm,
+            right: pdHm,
         },
 
         titledButtonTitle: {
-            textAlign: 'left',
-            position: 'absolute',
+            textAlign: "left",
+            position: "absolute",
             zIndex: zIndexL,
-            fontWeight: 'bold',
+            fontWeight: "bold",
             borderRadius: bRss,
             top: -pdVs,
             left: pdHs,
@@ -236,10 +360,10 @@ const styles = colors =>
 
         titledButton: {
             minHeight: buttonHeight,
-            justifyContent: 'flex-start',
+            justifyContent: "flex-start",
         },
 
         fdrr: {
-            flexDirection: 'row-reverse',
+            flexDirection: "row-reverse",
         },
     });

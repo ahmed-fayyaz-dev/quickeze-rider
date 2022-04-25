@@ -5,8 +5,8 @@ import i18n from 'i18n-js';
 import { enableFreeze } from 'react-native-screens';
 
 import { languageDictionary } from 'assets/locale/index';
+import { SENTRY_DSN } from 'src/appConstants';
 import { CombinedLightTheme } from 'src/styles/theme';
-import { SENTRY_DSN } from 'appConstants';
 
 export const settings =
     ((i18n.translations = languageDictionary.languageSet),

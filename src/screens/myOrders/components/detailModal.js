@@ -6,7 +6,7 @@ import { Portal, useTheme } from 'react-native-paper';
 
 import { CutomButtonRNGH } from 'src/components/buttons';
 import { CustomTitle, CustomSubheading } from 'src/components/customText';
-import { Divider } from 'src/components/dividers';
+import { DividerV } from 'src/components/divider';
 import { GapV } from 'src/components/gap';
 import {
     windowHeigth,
@@ -71,7 +71,7 @@ const DetailModal = (props, ref) => {
                 <CustomSubheading style={style.subHeading}>
                     Shop
                 </CustomSubheading>
-                <Divider />
+                <DividerV />
             </View>
             <View style={style.btnRow}>
                 <CutomButtonRNGH
@@ -96,7 +96,7 @@ const DetailModal = (props, ref) => {
                 <CustomSubheading style={style.subHeading}>
                     Customer
                 </CustomSubheading>
-                <Divider />
+                <DividerV />
             </View>
             <View style={style.btnRow}>
                 <CutomButtonRNGH

@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet } from 'react-native';
+import React from "react";
+import { StyleSheet } from "react-native";
 import {
     Title,
     Text,
@@ -8,16 +8,17 @@ import {
     Caption,
     Paragraph,
     withTheme,
-} from 'react-native-paper';
+} from "react-native-paper";
 
-import { title, caption, text, buttonText } from 'src/styles';
+import { title, caption, text, buttonText } from "src/styles";
 
 function CText(props) {
     return (
         <Text
             style={[styles.defaultStyle, styles.text, props.style]}
             onPress={props.onPress}
-            numberOfLines={props.numberOfLines}>
+            numberOfLines={props.numberOfLines}
+        >
             {props.children}
         </Text>
     );
@@ -29,7 +30,8 @@ function CTitle(props) {
         <Title
             style={[styles.defaultStyle, styles.title, props.style]}
             onPress={props.onPress}
-            numberOfLines={props.numberOfLines}>
+            numberOfLines={props.numberOfLines}
+        >
             {props.children}
         </Title>
     );
@@ -41,7 +43,8 @@ function CHeadline(props) {
         <Headline
             style={[styles.defaultStyle, props.style]}
             onPress={props.onPress}
-            numberOfLines={props.numberOfLines}>
+            numberOfLines={props.numberOfLines}
+        >
             {props.children}
         </Headline>
     );
@@ -53,7 +56,8 @@ function CSubheading(props) {
         <Subheading
             style={[styles.defaultStyle, styles.subHeading, props.style]}
             onPress={props.onPress}
-            numberOfLines={props.numberOfLines}>
+            numberOfLines={props.numberOfLines}
+        >
             {props.children}
         </Subheading>
     );
@@ -65,7 +69,8 @@ function CParagraph(props) {
         <Paragraph
             style={[styles.defaultStyle, props.style]}
             onPress={props.onPress}
-            numberOfLines={props.numberOfLines}>
+            numberOfLines={props.numberOfLines}
+        >
             {props.children}
         </Paragraph>
     );
@@ -77,7 +82,8 @@ function CCaption(props) {
         <Caption
             style={[styles.defaultStyle, styles.caption, props.style]}
             onPress={props.onPress}
-            numberOfLines={props.numberOfLines}>
+            numberOfLines={props.numberOfLines}
+        >
             {props.children}
         </Caption>
     );
@@ -86,30 +92,29 @@ export const CustomCaption = withTheme(CCaption);
 
 const styles = StyleSheet.create({
     defaultStyle: {
-        // fontFamily: `Poppins_400Regular`,
-        textAlign: 'center',
-        textAlignVertical: 'center',
-        flexShrink: 1,
+    // fontFamily: `Poppins_400Regular`,
+        textAlign: "center",
+        textAlignVertical: "center",
     },
 
     text: {
         fontSize: text,
-        // lineHeight: RFValue(17.1)
+    // lineHeight: RFValue(17.1)
     },
 
     caption: {
         fontSize: caption,
-        // lineHeight: RFValue(14)
+    // lineHeight: RFValue(14)
     },
 
     title: {
         fontSize: title,
-        fontWeight: '800',
-        // lineHeight: RFValue(20),
+        fontWeight: "800",
+    // lineHeight: RFValue(20),
     },
 
     subHeading: {
         fontSize: buttonText,
-        // lineHeight: RFValue(22)
+    // lineHeight: RFValue(22)
     },
 });

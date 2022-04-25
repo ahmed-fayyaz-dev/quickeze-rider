@@ -1,52 +1,89 @@
-import React from 'react';
-import { TextInput, HelperText } from 'react-native-paper';
+import React from "react";
+import { TextInput, HelperText } from "react-native-paper";
 
-function CustomInput({
+const CustomInput = ({
     onChange,
     label,
     value,
+    placeholder,
     secure,
     helper,
-    helperVisible,
+    editable,
+    multiline,
+    onBlur,
     keyboardType,
-    roundness,
+    controlled,
     ...props
-}) {
-    const [stateSecure, setStateSecure] = React.useState(secure);
+}) => {
+    const [localstate, setLocalstate] = React.useState(secure);
+    // const [state, setState] = React.useState(value);
     function onChangeText(v) {
+        // setState(v);
         onChange(v);
     }
+
+    const SecureIcon = () => (
+        <TextInput.Icon
+            forceTextInputFocus={false}
+            name={!localstate ? "eye-outline" : "eye-off-outline"}
+            onPress={() => setLocalstate(!localstate)}
+        />
+    );
+
+    const Input = () => (
+        <TextInput
+            mode="outlined"
+            label={label}
+            // value={value} // Controlled
+            defaultValue={value} // Uncontrolled
+            placeholder={placeholder}
+            onChangeText={onChangeText}
+            onBlur={onBlur}
+            secureTextEntry={localstate}
+            keyboardType={keyboardType}
+            multiline={multiline}
+            editable={editable}
+            right={secure && SecureIcon()}
+            {...props}
+        />
+    );
+
+    const ControlledInput = () => (
+        <TextInput
+            mode="outlined"
+            label={label}
+            value={value} // Controlled
+            // defaultValue={value} // Uncontrolled
+            placeholder={placeholder}
+            onChangeText={onChangeText}
+            onBlur={onBlur}
+            secureTextEntry={localstate}
+            keyboardType={keyboardType}
+            multiline={multiline}
+            editable={editable}
+            right={secure && SecureIcon()}
+            {...props}
+        />
+    );
+
     return (
         <>
-            <TextInput
-                mode="outlined"
-                label={label}
-                // value={state} // Controlled Input
-                defaultValue={value} //Uncontrolled
-                onChangeText={text => onChangeText(text)}
-                theme={{ roundness: roundness || 5 }}
-                secureTextEntry={stateSecure}
-                keyboardType={keyboardType}
-                right={
-                    secure && (
-                        <TextInput.Icon
-                            forceTextInputFocus={false}
-                            name={
-                                !stateSecure ? 'eye-outline' : 'eye-off-outline'
-                            }
-                            onPress={() => setStateSecure(!stateSecure)}
-                        />
-                    )
-                }
-                {...props}
-            />
-            {helper && (
-                <HelperText type="error" visible={helperVisible}>
-                    {helper}
-                </HelperText>
-            )}
+            {controlled ? ControlledInput() : Input()}
+
+            {helper && <HelperText type="error">{helper}</HelperText>}
         </>
     );
-}
+};
+
+// CustomInput.propTypes = {
+//     keyboardType: PropTypes.oneOf([
+//         "default",
+//         "email-address",
+//         "numeric",
+//         "phone-pad",
+//         "number-pad",
+//         "decimal-pad",
+//     ]),
+// };
 
 export default CustomInput;

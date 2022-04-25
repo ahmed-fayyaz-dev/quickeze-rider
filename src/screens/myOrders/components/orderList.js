@@ -8,8 +8,8 @@ import {
     RefreshControl,
 } from 'react-native';
 
-import { Loader } from 'src/components/ActivityIndicators';
 import { CustomSquareButton } from 'src/components/buttons';
+import { Loader } from 'src/components/loaders';
 import { mgM, pdHs, pdVm, pdVss, zIndexL } from 'src/styles';
 import { ListCardHeight } from './helpers';
 

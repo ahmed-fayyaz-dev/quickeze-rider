@@ -3,7 +3,7 @@ import { composeWithDevTools } from '@redux-devtools/extension';
 import { createStore, applyMiddleware } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import thunk from 'redux-thunk';
-import { saveOnLogin } from './middleware/otherMiddleWare';
+import { saveOnLogin, clearOnLogout } from './middleware/otherMiddleWare';
 import { ServiceMiddleware } from './middleware/serviceMiddleWare.js';
 import rootReducers from './reducer';
 
@@ -15,7 +15,7 @@ const persistConfig = {
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducers);
-const middleware = [thunk, ServiceMiddleware, saveOnLogin];
+const middleware = [thunk, ServiceMiddleware, saveOnLogin, clearOnLogout];
 const store = createStore(
     persistedReducer,
     composeWithDevTools(applyMiddleware(...middleware)),
