@@ -1,6 +1,6 @@
-import * as React from "react";
-import { StyleSheet } from "react-native";
-import { ActivityIndicator } from "react-native-paper";
+import * as React from 'react';
+import { StyleSheet, View } from 'react-native';
+import { ActivityIndicator } from 'react-native-paper';
 
 export const Loader = ({
     small,
@@ -9,7 +9,7 @@ export const Loader = ({
 }) => {
     return (
         <ActivityIndicator
-            size={small ? "small" : "large"}
+            size={small ? 'small' : 'large'}
             style={style.loader}
             {...props}
         />
@@ -18,7 +18,7 @@ export const Loader = ({
 
 const style = StyleSheet.create({
     loader: {
-        alignSelf: "center",
+        alignSelf: 'center',
         flex: 1,
     },
 });

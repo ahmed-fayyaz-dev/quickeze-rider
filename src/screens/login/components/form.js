@@ -55,7 +55,7 @@ const Form = ({ navigation, actionLogin }) => {
 
     return (
         <Formik
-            // validationSchema={loginValidationSchema}
+            validationSchema={loginValidationSchema}
             initialValues={{ email: '', password: '', remember: false }}
             onSubmit={values => {
                 onSubmit(values);
@@ -75,22 +75,24 @@ const Form = ({ navigation, actionLogin }) => {
                 return (
                     <>
                         <CustomInput
-                            fieldName="email"
-                            onChange={handleChange('email')}
+                            controlled
+                            value={values.email}
                             label="UserId / Email"
-                            state={values.email}
+                            placeholder="Enter ID / Email"
                             onBlur={handleBlur('email')}
+                            onChange={handleChange('email')}
                             helper={touched.email ? errors.email : null}
                         />
                         <GapV small />
 
                         <CustomInput
                             secure
-                            fieldName="password"
-                            onChange={handleChange('password')}
+                            controlled
                             label="Password"
-                            state={values.password}
-                            onBlur={handleBlur('email')}
+                            value={values.password}
+                            placeholder="Enter Password"
+                            onBlur={handleBlur('password')}
+                            onChange={handleChange('password')}
                             helper={touched.password ? errors.password : null}
                         />
                         <GapV small />
@@ -106,7 +108,7 @@ const Form = ({ navigation, actionLogin }) => {
                         <GapV large />
 
                         <View style={style.revBottomContainer}>
-                            <GapV />
+                            <GapV small />
 
                             <CustomRoundButton
                                 title="Login"
@@ -122,10 +124,8 @@ const Form = ({ navigation, actionLogin }) => {
     );
 };
 
-function mapStateToProps({ submitLoginReducer }) {
-    return {
-        submitLoginReducer,
-    };
+function mapStateToProps() {
+    return {};
 }
 
 function mapDipatchToProps(dispatch, getState) {

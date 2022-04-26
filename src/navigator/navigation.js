@@ -13,29 +13,33 @@ import { ID, PASSWORD, ONBOARD } from 'src/appConstants';
 import { getStorageItem } from 'src/helpers';
 import { callApi } from 'src/helpers/apiCall';
 import { setLanguage } from 'src/redux/common/actions/actions';
-import { submitGetDashboardData } from 'src/screens/dashboard/actions/actions';
 import { actionLogin } from 'src/screens/login/actions';
-import { CombinedLightTheme, CombinedDarkTheme } from 'src/styles/theme';
+import {
+    paperLightTheme,
+    paperDarkTheme,
+    navDarkTheme,
+    navLightTheme,
+} from 'src/styles/theme';
 
 import RootNavigator from './rootNavigator';
 
-// App nav
 function AppNavigator(props) {
     const {
         actionLogin,
         //
-        submitLoginReducer,
+        setLanguage,
     } = props;
 
     const [ready, setReady] = useState(false);
-    const [theme, setTheme] = useState(CombinedLightTheme);
+    const [theme, setTheme] = useState(paperLightTheme);
+    const [navTheme, setNavTheme] = useState(navLightTheme);
     const loggedIn = useRef(false);
     const board = useRef(false);
 
     useEffect(() => {
         async function effect() {
             changeTheme(Appearance.getColorScheme() || 'light');
-            setRedux();
+            setData();
             board.current = await getStorageItem(ONBOARD);
 
             if (board.current) {
@@ -58,9 +62,11 @@ function AppNavigator(props) {
 
     const changeTheme = c => {
         if (c == 'dark') {
-            setTheme(CombinedDarkTheme);
+            setTheme(paperDarkTheme);
+            setNavTheme(navDarkTheme);
         } else {
-            setTheme(CombinedLightTheme);
+            setTheme(paperLightTheme);
+            setNavTheme(navLightTheme);
         }
     };
 
@@ -68,11 +74,11 @@ function AppNavigator(props) {
         changeTheme(colorScheme || 'light');
     }, []);
 
-    const setRedux = async () => {
+    const setData = async () => {
         const language = await getStorageItem('language');
 
         if (language) {
-            props.setLanguage(language);
+            setLanguage(language);
             i18n.locale = language;
 
             if (language == 'ud') {
@@ -101,18 +107,21 @@ function AppNavigator(props) {
                 password,
             };
 
-            await callApi({
-                data,
-                callApiReducer: {},
-                submitCallApi: actionLogin,
-                successFunc: async () => {
-                    loggedIn.current = true;
-                    setReady(true);
-                },
-                errFunc: () => setReady(true),
-                catchFunc: () => setReady(true),
-                setLoading: () => {},
-            });
+            // await callApi({
+            //     data,
+            //     callApiReducer: {},
+            //     submitCallApi: actionLogin,
+            //     successFunc: () => {
+            //         loggedIn.current = true;
+            //         setReady(true);
+            //     },
+            //     errFunc: () => setReady(true),
+            //     catchFunc: () => setReady(true),
+            //     setLoading: () => {},
+            // });
+
+            loggedIn.current = true;
+            setReady(true);
         } else {
             setReady(true);
         }
@@ -125,7 +134,7 @@ function AppNavigator(props) {
                 settings={{
                     icon: props => <Ionicons {...props} />,
                 }}>
-                <NavigationContainer theme={theme}>
+                <NavigationContainer theme={navTheme}>
                     <RootNavigator loggedIn={loggedIn} />
                 </NavigationContainer>
             </PaperProvider>
@@ -134,22 +143,8 @@ function AppNavigator(props) {
     return null;
 }
 
-function mapStateToProps({
-    gDateReducer,
-    gMonthReducer,
-    companyIdReducer,
-    submitLoginReducer,
-    appAppearanceReducer,
-    getDashboardDataReducer,
-}) {
-    return {
-        gDateReducer,
-        gMonthReducer,
-        companyIdReducer,
-        submitLoginReducer,
-        appAppearanceReducer,
-        getDashboardDataReducer,
-    };
+function mapStateToProps() {
+    return {};
 }
 
 function mapActionsToProps(dispatch, getState) {
@@ -157,7 +152,6 @@ function mapActionsToProps(dispatch, getState) {
         {
             setLanguage,
             actionLogin,
-            submitGetDashboardData,
         },
         dispatch,
         getState,

@@ -4,7 +4,7 @@ import {
 } from '@react-navigation/native';
 import { DarkTheme, DefaultTheme } from 'react-native-paper';
 
-const bRm = 50;
+const bRm = 5;
 
 // primary: '#9E001F',
 // primaryVariant: '#00D1A8',
@@ -14,7 +14,7 @@ const lightColorSet = {
     primary: '#9E001F',
     primaryVariant: '#7384E7',
     secondary: '#009E7F',
-    muted: '#333333',
+    muted: '#808080',
     error: '#CF6679',
     background: '#F6F6F6',
     surface: 'white',
@@ -30,7 +30,7 @@ const darkColorSet = {
     primary: '#9E001F',
     primaryVariant: '#7384E7',
     secondary: '#009E7F',
-    muted: '#333333',
+    muted: '#808080',
     error: '#CF6679',
     background: '#121212',
     surface: '#272727',

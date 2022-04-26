@@ -3,6 +3,7 @@ import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
 import { useTheme } from 'react-native-paper';
 
 import { icons } from 'assets/images';
+import { NOT_FIRST_TIME } from 'src/appConstants';
 import { CustomText, CustomCaption } from 'src/components/customText';
 import { GapV } from 'src/components/gap';
 import { setStorageItem } from 'src/helpers/index';
@@ -13,7 +14,7 @@ export default function WelcomeScreen({ navigation }) {
     const style = styles(colors);
 
     function navigate() {
-        setStorageItem('notFirstTime', true);
+        setStorageItem(NOT_FIRST_TIME, true);
         navigation.navigate('login');
     }
 

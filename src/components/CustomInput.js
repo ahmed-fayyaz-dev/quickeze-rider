@@ -1,5 +1,5 @@
-import React from "react";
-import { TextInput, HelperText } from "react-native-paper";
+import React from 'react';
+import { TextInput, HelperText } from 'react-native-paper';
 
 const CustomInput = ({
     onChange,
@@ -25,14 +25,14 @@ const CustomInput = ({
     const SecureIcon = () => (
         <TextInput.Icon
             forceTextInputFocus={false}
-            name={!localstate ? "eye-outline" : "eye-off-outline"}
+            name={!localstate ? 'eye-outline' : 'eye-off-outline'}
             onPress={() => setLocalstate(!localstate)}
         />
     );
 
     const Input = () => (
         <TextInput
-            mode="outlined"
+            mode="flat"
             label={label}
             // value={value} // Controlled
             defaultValue={value} // Uncontrolled
@@ -50,7 +50,7 @@ const CustomInput = ({
 
     const ControlledInput = () => (
         <TextInput
-            mode="outlined"
+            mode="flat"
             label={label}
             value={value} // Controlled
             // defaultValue={value} // Uncontrolled

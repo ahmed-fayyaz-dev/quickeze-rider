@@ -16,4 +16,4 @@ export const PASSWORD = 'PASSWORD';
 
 export const ONBOARD = 'ONBOARD';
 
-export const FIRST_TIME = 'FIRST_TIME';
+export const NOT_FIRST_TIME = 'NOT_FIRST_TIME';

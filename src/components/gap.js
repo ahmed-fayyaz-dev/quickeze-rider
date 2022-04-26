@@ -2,33 +2,37 @@ import React from 'react';
 import { View } from 'react-native';
 import { mgS, mgM, mgL } from 'src/styles';
 
-export function GapV({ small, large, xL }) {
+export function GapV({ small, md, large, xL }) {
     return (
         <View
             style={
                 small
                     ? { marginTop: mgS }
                     : large
-                        ? { marginTop: mgL }
-                        : xL
-                            ? { marginTop: mgL * 2 }
-                            : { marginTop: mgM }
+                    ? { marginTop: mgL }
+                    : xL
+                    ? { marginTop: mgL * 2 }
+                    : md
+                    ? { marginTop: mgM }
+                    : { marginTop: mgM }
             }
         />
     );
 }
 
-export function GapH({ small, large, xL }) {
+export function GapH({ small, md, large, xL }) {
     return (
         <View
             style={
                 small
                     ? { marginLeft: mgS }
                     : large
-                        ? { marginLeft: mgL }
-                        : xL
-                            ? { marginLeft: mgL * 2 }
-                            : { marginLeft: mgM }
+                    ? { marginLeft: mgL }
+                    : xL
+                    ? { marginLeft: mgL * 2 }
+                    : md
+                    ? { marginTop: mgM }
+                    : { marginTop: mgM }
             }
         />
     );

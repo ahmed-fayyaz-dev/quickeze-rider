@@ -16,7 +16,6 @@ function Temp() {
     const gStyle = gloabalStyle();
     // const style = styles(colors);
 
-    // eslint-disable-next-line no-unused-vars
     function showSnack(msg) {
         Toast.show(msg, Toast.durations.SHORT);
     }
@@ -26,7 +25,7 @@ function Temp() {
             entering={entering}
             exiting={exiting}
             style={gStyle.container}>
-            <VirtualizedView contentContainerStyle={[gStyle.fg]}>
+            <VirtualizedView>
                 <View style={gStyle.content}>{/* Content */}</View>
             </VirtualizedView>
 
@@ -45,5 +44,4 @@ function mapDipatchToProps(dispatch, getState) {
 
 export default connect(mapStateToProps, mapDipatchToProps)(Temp);
 
-// eslint-disable-next-line no-unused-vars
 const styles = colors => StyleSheet.create({});

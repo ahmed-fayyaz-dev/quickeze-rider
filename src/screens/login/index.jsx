@@ -1,5 +1,12 @@
 import React from 'react';
-import { ScrollView, View, StyleSheet, Image, StatusBar } from 'react-native';
+import {
+    ScrollView,
+    View,
+    StyleSheet,
+    Image,
+    StatusBar,
+    TouchableOpacity,
+} from 'react-native';
 import { useTheme } from 'react-native-paper';
 import Animated from 'react-native-reanimated';
 import { connect } from 'react-redux';
@@ -11,13 +18,24 @@ import { DividerV } from 'src/components/divider';
 import { GapV } from 'src/components/gap';
 import { IonIcons } from 'src/helpers';
 import { entering, exiting, layoutSpring } from 'src/helpers/animation';
-import { iconSizeL, mgM, mgMs, mgS, onBackgroundDark } from 'src/styles/index';
+import {
+    iconSizeL,
+    mgM,
+    mgMs,
+    mgS,
+    onBackgroundDark,
+    hitSlopS,
+} from 'src/styles/index';
 
 import Form from './components/form';
 
 function Login({ navigation }) {
     const { colors } = useTheme();
     const style = styles(colors);
+
+    function naivgateToSignup() {
+        navigation.navigate('signup');
+    }
 
     const TopView = () => (
         <View>
@@ -28,15 +46,28 @@ function Login({ navigation }) {
             />
             <GapV small />
 
-            <DividerV m />
+            <DividerV m invertBg />
             <GapV small />
 
             <CustomCaption style={style.subText}>
-                Please Login to your Account
+                {`Please Login to your Account`}
             </CustomCaption>
 
             <GapV />
         </View>
+    );
+
+    const SignupView = () => (
+        <TouchableOpacity
+            onPress={naivgateToSignup}
+            hitSlop={hitSlopS}
+            style={style.signupBtn}>
+            <CustomCaption>
+                {`Don't have an account? `}
+                <CustomSubheading
+                    style={style.signupText}>{`Sign up.`}</CustomSubheading>
+            </CustomCaption>
+        </TouchableOpacity>
     );
 
     const LoginView = () => (
@@ -55,6 +86,9 @@ function Login({ navigation }) {
             <GapV small />
 
             <Form navigation={navigation} />
+
+            {SignupView()}
+            <GapV small />
         </Animated.View>
     );
 
@@ -88,28 +122,8 @@ const styles = colors =>
             paddingTop: StatusBar.currentHeight,
         },
 
-        content: {
-            flexDirection: 'column-reverse',
-            flexGrow: 1,
-        },
-
-        image: {
-            alignSelf: 'center',
-            height: 66,
-        },
-
-        subText: {
-            color: onBackgroundDark,
-        },
-
-        title: {
-            fontWeight: 'bold',
-        },
-
-        icon: { alignSelf: 'center' },
-
         loginView: {
-            backgroundColor: colors.surface,
+            backgroundColor: colors.background,
             borderTopStartRadius: 40,
             borderTopEndRadius: 40,
             paddingHorizontal: mgMs,
@@ -124,5 +138,31 @@ const styles = colors =>
             shadowRadius: 11.14,
             elevation: 17,
             zIndex: 17,
+        },
+
+        content: {
+            flexDirection: 'column-reverse',
+            flexGrow: 1,
+        },
+
+        image: {
+            alignSelf: 'center',
+            height: 66,
+            tintColor: onBackgroundDark,
+        },
+
+        subText: {
+            color: onBackgroundDark,
+        },
+
+        title: {
+            fontWeight: 'bold',
+        },
+
+        icon: { alignSelf: 'center' },
+
+        signupText: {
+            fontWeight: 'bold',
+            color: colors?.primary,
         },
     });

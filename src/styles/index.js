@@ -1,14 +1,10 @@
 import React, { useCallback } from 'react';
-import {
-    StyleSheet,
-    StatusBar,
-    useColorScheme,
-    Appearance,
-} from 'react-native';
+import { StyleSheet, StatusBar, useColorScheme } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 import { colorDictionary } from './theme';
 
+export const pdH = 18;
 export const pdHm = 10;
 export const pdHs = 5;
 
@@ -18,8 +14,8 @@ export const pdVs = 10;
 export const pdVss = 5;
 
 export const mgL = 62;
-export const mgM = 35;
-export const mgMs = 20;
+export const mgM = 20;
+export const mgMs = 15;
 export const mgS = 10;
 export const mgSs = 5;
 
@@ -59,6 +55,13 @@ export const hitSlopS = {
     right: 20,
 };
 
+export const hitSlop = {
+    top: 40,
+    bottom: 40,
+    left: 25,
+    right: 25,
+};
+
 const Styles = () => {
     let appearance = useColorScheme() || light;
     // eslint-disable-next-line no-unused-vars
@@ -87,7 +90,7 @@ const Styles = () => {
 
         content: {
             flex: 1,
-            paddingHorizontal: pdHs,
+            paddingHorizontal: pdH,
             paddingTop: mgM,
         },
 
