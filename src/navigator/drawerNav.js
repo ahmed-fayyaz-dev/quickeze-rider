@@ -15,8 +15,10 @@ import { drawerActiveTint, drawerIcon } from 'src/styles/navCss';
 
 import Dashboard from 'src/screens/dashboard';
 import Playground from 'src/screens/playground';
+import Dashboard2Stack from './navSlices/dashboard2Stack';
 import MyOrdersStack from './navSlices/myOrderStack';
 import OrdersStack from './navSlices/ordersStack';
+import ProfileStack from './navSlices/profileStack';
 
 const DrawerIcons = ({ size, focused, icon }) => (
     <Image
@@ -86,6 +88,23 @@ function DrawerNav({ logout, submitLoginReducer }) {
             />
 
             <Drawer.Screen
+                name="dashboard2Stack"
+                component={Dashboard2Stack}
+                options={{
+                    level: 0,
+                    title: 'Dashboard2',
+                    headerTitleContainerStyle: { height: 0, width: 0 },
+                    drawerIcon: ({ color, focused, size }) =>
+                        DrawerIcons({
+                            color,
+                            focused,
+                            size,
+                            icon: icons.drawer.nearby,
+                        }),
+                }}
+            />
+
+            <Drawer.Screen
                 name="orderStack"
                 component={OrdersStack}
                 options={{
@@ -113,6 +132,23 @@ function DrawerNav({ logout, submitLoginReducer }) {
                             focused,
                             size,
                             icon: icons.drawer.myorders,
+                        }),
+                }}
+            />
+
+            <Drawer.Screen
+                name="profileStack"
+                component={ProfileStack}
+                options={{
+                    level: 1,
+                    title: 'My Profile',
+                    headerShown: false,
+                    drawerIcon: ({ color, focused, size }) =>
+                        DrawerIcons({
+                            color,
+                            focused,
+                            size,
+                            icon: icons.drawer.profile,
                         }),
                 }}
             />

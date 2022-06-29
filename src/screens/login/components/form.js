@@ -38,8 +38,9 @@ const Form = ({ navigation, actionLogin }) => {
         navigateToApp();
     }
 
-    function onSubmit(v) {
-        successFunc(v);
+    function onSubmit(values) {
+        // successFunc(values);
+        handleSubmitLogin(values);
     }
 
     async function handleSubmitLogin(d) {

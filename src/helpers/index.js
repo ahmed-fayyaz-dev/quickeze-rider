@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { format } from 'date-fns';
 import * as Device from 'expo-device';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { iconSize } from 'src/styles';
 
 export const windowWidth = Dimensions.get('window').width;
 
@@ -66,14 +67,14 @@ export const removeStorageItem = async key => {
     }
 };
 
-export function BottomBarIcons({ name, size, color }) {
+export function BottomBarIcons({ name, size = iconSize, color }) {
     return (
         <View style={{}}>
             <Ionicons name={name} size={size} color={color} />
         </View>
     );
 }
-export function IonIcons({ name, size, color, style }) {
+export function IonIcons({ name, size = iconSize, color, style }) {
     return <Ionicons name={name} size={size} color={color} style={style} />;
 }
 
@@ -122,6 +123,17 @@ export const getChangeOrderToTitle = status => {
 
         default:
             return 'Error';
+    }
+};
+
+export const getRiderActiveStatus = status => {
+    switch (status) {
+        case 0:
+            return false;
+        case 1:
+            return true;
+        default:
+            return 0;
     }
 };
 

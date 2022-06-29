@@ -4,7 +4,7 @@ import { View, StyleSheet, ScrollView, Button } from 'react-native';
 import { Modalize } from 'react-native-modalize';
 import { Portal, useTheme, DataTable } from 'react-native-paper';
 
-import { CutomButtonRNGH } from 'src/components/buttons';
+import { CutomRoundButtonRNGH } from 'src/components/buttons';
 import { CustomTitle } from 'src/components/customText';
 import { GapV } from 'src/components/gap';
 import { windowHeigth } from 'src/helpers';
@@ -54,7 +54,7 @@ const DetailModal = (props, ref) => {
 
                 {Details()}
 
-                <CutomButtonRNGH
+                <CutomRoundButtonRNGH
                     title={'Accept Order'}
                     onPress={handleAccept}
                 />

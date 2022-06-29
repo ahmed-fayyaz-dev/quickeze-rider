@@ -2,28 +2,19 @@
 import React, { useState } from 'react';
 import { Button } from 'react-native';
 import Animated, { BounceInUp, Layout, FadeOut } from 'react-native-reanimated';
-
+import Banner from 'src/components/banner';
 import { CustomDropDownPicker } from 'src/components/dropDownPicker';
 
 export default function Playground() {
-    const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+    const [visible, setVisible] = React.useState(false);
     const [items, setItems] = useState([
         { label: 'first', value: 1 },
         { label: 'second', value: 2 },
     ]);
     const [value, setValue] = useState(null);
 
-    const showDatePicker = () => {
-        setDatePickerVisibility(true);
-    };
-
-    const hideDatePicker = () => {
-        setDatePickerVisibility(false);
-    };
-
-    const handleConfirm = date => {
-        console.warn('A date has been picked: ', date);
-        hideDatePicker();
+    const showBanner = () => {
+        setVisible(true);
     };
 
     return (
@@ -31,7 +22,12 @@ export default function Playground() {
             entering={BounceInUp}
             exiting={FadeOut}
             layout={Layout.springify()}>
-            <Button title="PRESS ME" onPress={showDatePicker} />
+            <Banner
+                visible={visible}
+                action1={setVisible}
+                action2={setVisible}
+            />
+            <Button title="SHOW BANNER" onPress={showBanner} />
             <CustomDropDownPicker
                 title="Pick"
                 items={items}

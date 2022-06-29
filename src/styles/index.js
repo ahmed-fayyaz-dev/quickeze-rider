@@ -20,7 +20,7 @@ export const mgS = 10;
 export const mgSs = 5;
 
 export const searchBarHeight = 53;
-export const iconSize = RFValue(13);
+export const iconSize = RFValue(16);
 export const iconSizeL = 42;
 export const buttonHeight = 40;
 
@@ -49,8 +49,8 @@ export const onBackgroundLight = colorDictionary.colorSet.light.onBackground;
 export const primaryColor = colorDictionary.colorSet.light.primary;
 
 export const hitSlopS = {
-    top: 30,
-    bottom: 30,
+    top: 10,
+    bottom: 10,
     left: 20,
     right: 20,
 };

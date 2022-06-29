@@ -102,10 +102,8 @@ function Login({ navigation }) {
     );
 }
 
-function mapStateToProps({ submitLoginReducer }) {
-    return {
-        submitLoginReducer,
-    };
+function mapStateToProps() {
+    return {};
 }
 
 function mapDipatchToProps(dispatch, getState) {
@@ -147,7 +145,7 @@ const styles = colors =>
 
         image: {
             alignSelf: 'center',
-            height: 66,
+            height: 180,
             tintColor: onBackgroundDark,
         },
 

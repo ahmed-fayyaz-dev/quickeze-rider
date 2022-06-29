@@ -2,16 +2,15 @@ import React from 'react';
 // import i18n from "i18n-js";
 import { View, StyleSheet } from 'react-native';
 // import { useTheme } from "react-native-paper";
-import Animated from 'react-native-reanimated';
 import Toast from 'react-native-root-toast';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import VirtualizedView from 'src/components/virtualizedBackedContainer';
-import { entering, exiting } from 'src/helpers/animation';
 import gloabalStyle from 'src/styles/index';
+import Form from './editProfileForm';
 
-function Temp() {
+function EditProfile() {
     // const { colors } = useTheme();
     const gStyle = gloabalStyle();
     // const style = styles(colors);
@@ -23,7 +22,10 @@ function Temp() {
     return (
         <View style={gStyle.container}>
             <VirtualizedView>
-                <View style={gStyle.content}>{/* Content */}</View>
+                <View style={gStyle.content}>
+                    {/* Content */}
+                    <Form />
+                </View>
             </VirtualizedView>
 
             {/* Modals and popups */}
@@ -39,6 +41,9 @@ function mapDipatchToProps(dispatch, getState) {
     return bindActionCreators({}, dispatch, getState);
 }
 
-export default connect(mapStateToProps, mapDipatchToProps)(Temp);
+export default connect(mapStateToProps, mapDipatchToProps)(EditProfile);
 
 const styles = colors => StyleSheet.create({});
+
+// todo
+// App Bar with back icon

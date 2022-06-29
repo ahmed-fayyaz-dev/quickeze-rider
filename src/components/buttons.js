@@ -1,6 +1,6 @@
-import React from "react";
-import { StyleSheet } from "react-native";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import React from 'react';
+import { StyleSheet } from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import {
     Button,
     FAB,
@@ -8,7 +8,7 @@ import {
     useTheme,
     TextInput,
     HelperText,
-} from "react-native-paper";
+} from 'react-native-paper';
 
 import {
     bRss,
@@ -23,7 +23,7 @@ import {
     primaryColor,
     pdVm,
     pdHm,
-} from "src/styles";
+} from 'src/styles';
 
 export function CustomRoundButton({
     title,
@@ -43,7 +43,7 @@ export function CustomRoundButton({
 
     return (
         <Button
-            mode={mode || "contained"}
+            mode={mode || 'contained'}
             onPress={onPress}
             loading={loading}
             disabled={disabled || loading}
@@ -52,8 +52,7 @@ export function CustomRoundButton({
             color={color}
             icon={icon}
             contentStyle={[style.fdrr, style.roundButton]}
-            {...props}
-        >
+            {...props}>
             {title}
             <>{children}</>
         </Button>
@@ -75,16 +74,16 @@ export function CustomSquareButton({
 
     return (
         <Button
-            mode={mode || "contained"}
+            mode={mode || 'contained'}
             onPress={onPress}
             loading={loading}
             disabled={loading}
             color={color}
             icon={icon}
+            uppercase={false}
             // compact
             contentStyle={[style.squareButton]}
-            {...props}
-        >
+            {...props}>
             {title}
             {children}
         </Button>
@@ -108,7 +107,7 @@ export function CustomSquareButtonRNGH({
     return (
         <TouchableWithoutFeedback onPress={onPress} disabled={disabled}>
             <Button
-                mode={mode || "contained"}
+                mode={mode || 'contained'}
                 onPress={onPress}
                 loading={loading}
                 disabled={loading}
@@ -116,8 +115,7 @@ export function CustomSquareButtonRNGH({
                 icon={icon}
                 // compact
                 contentStyle={[style.squareButton]}
-                {...props}
-            >
+                {...props}>
                 {title}
                 {children}
             </Button>
@@ -140,7 +138,7 @@ export function CustomDrawerButton({
 
     return (
         <Button
-            mode={mode || "contained"}
+            mode={mode || 'contained'}
             onPress={onPress}
             loading={loading}
             disabled={loading}
@@ -148,8 +146,7 @@ export function CustomDrawerButton({
             icon={icon}
             // compact
             contentStyle={[style.drawerButton]}
-            {...props}
-        >
+            {...props}>
             {title}
             {children}
         </Button>
@@ -172,15 +169,14 @@ export function CutomRoundButtonRNGH({
     return (
         <TouchableWithoutFeedback onPress={onPress} disabled={disabled}>
             <Button
-                mode={mode || "contained"}
+                mode={mode || 'contained'}
                 loading={loading}
                 disabled={disabled}
                 icon={icon}
                 contentStyle={[style.fdrr, style.roundButton]}
                 // compact
                 // style={[style.roundButton]}
-                {...props}
-            >
+                {...props}>
                 {title}
                 {children}
             </Button>
@@ -243,7 +239,7 @@ export const CustomInputButton = ({
     multiline,
     onPress,
     helperVisible,
-    children,
+    // children,
     disabled,
     ...props
 }) => {
@@ -253,6 +249,7 @@ export const CustomInputButton = ({
     const CustomIcon = () => (
         <TextInput.Icon
             forceTextInputFocus={false}
+            color={theme.colors.primary}
             name={icon}
             onPress={onPress}
             disabled={disabled}
@@ -268,8 +265,7 @@ export const CustomInputButton = ({
             editable={editable}
             theme={theme}
             right={icon && CustomIcon()}
-            {...props}
-        >
+            {...props}>
             {/* {children} */}
         </TextInput>
     );
@@ -289,61 +285,61 @@ export const CustomInputButton = ({
     );
 };
 
-const styles = (colors) =>
+const styles = colors =>
     StyleSheet.create({
         inputContainer: { flex: 1 },
 
         roundButton: {
             minHeight: buttonHeight + 10,
-            justifyContent: "center",
+            justifyContent: 'center',
             borderColor: colors.primary,
-            width: "100%",
-            alignSelf: "center",
+            width: '100%',
+            alignSelf: 'center',
         },
 
         roundButtonS: {
             minHeight: buttonHeight,
-            justifyContent: "center",
-            width: "45%",
-            alignSelf: "center",
+            justifyContent: 'center',
+            width: '45%',
+            alignSelf: 'center',
         },
 
         squareButton: {
-            justifyContent: "center",
+            justifyContent: 'center',
             minHeight: buttonHeight,
             minWidth: 30,
         },
 
         drawerButton: {
-            justifyContent: "center",
-            flexDirection: "row-reverse",
+            justifyContent: 'center',
+            flexDirection: 'row-reverse',
             minHeight: buttonHeight,
             minWidth: 30,
         },
 
         iconButton: {
-            justifyContent: "center",
+            justifyContent: 'center',
         },
 
         compactButton: {
             minHeight: 0,
-            flexDirection: "row",
-            justifyContent: "center",
+            flexDirection: 'row',
+            justifyContent: 'center',
         },
 
         fab: { margin: mgS },
 
         fabBottomRight: {
-            position: "absolute",
+            position: 'absolute',
             bottom: pdVm,
             right: pdHm,
         },
 
         titledButtonTitle: {
-            textAlign: "left",
-            position: "absolute",
+            textAlign: 'left',
+            position: 'absolute',
             zIndex: zIndexL,
-            fontWeight: "bold",
+            fontWeight: 'bold',
             borderRadius: bRss,
             top: -pdVs,
             left: pdHs,
@@ -360,10 +356,10 @@ const styles = (colors) =>
 
         titledButton: {
             minHeight: buttonHeight,
-            justifyContent: "flex-start",
+            justifyContent: 'flex-start',
         },
 
         fdrr: {
-            flexDirection: "row-reverse",
+            flexDirection: 'row-reverse',
         },
     });

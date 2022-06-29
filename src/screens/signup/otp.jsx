@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from 'react';
 // import i18n from "i18n-js";
 import { View, StyleSheet } from 'react-native';
-import {
-    CodeField,
-    Cursor,
-    useBlurOnFulfill,
-    useClearByFocusCell,
-} from 'react-native-confirmation-code-field';
 import { useTheme } from 'react-native-paper';
 import Animated from 'react-native-reanimated';
 import Toast from 'react-native-root-toast';

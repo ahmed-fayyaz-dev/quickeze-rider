@@ -1,6 +1,9 @@
 /* eslint-disable no-undef */
 export const images = {
     auth: {},
+    profile: {
+        creditCard: require('./images/creditCard.png'),
+    },
 };
 
 export const icons = {
@@ -10,6 +13,7 @@ export const icons = {
         orders: require('./icons/orders.png'),
         nearby: require('./icons/nearby.png'),
         myorders: require('./icons/myorders.png'),
+        profile: require('./icons/profile.png'),
     },
     app: {
         logoSmallB: require('./icons/logoSmall-b.png'),

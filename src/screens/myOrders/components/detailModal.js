@@ -4,7 +4,7 @@ import { BlurView } from 'expo-blur';
 import { Modalize } from 'react-native-modalize';
 import { Portal, useTheme } from 'react-native-paper';
 
-import { CutomButtonRNGH } from 'src/components/buttons';
+import { CustomSquareButtonRNGH } from 'src/components/buttons';
 import { CustomTitle, CustomSubheading } from 'src/components/customText';
 import { DividerV } from 'src/components/divider';
 import { GapV } from 'src/components/gap';
@@ -74,13 +74,13 @@ const DetailModal = (props, ref) => {
                 <DividerV />
             </View>
             <View style={style.btnRow}>
-                <CutomButtonRNGH
+                <CustomSquareButtonRNGH
                     mode="outline"
                     title={'Location'}
                     icon="location-outline"
                     onPress={handleSourceLocation}
                 />
-                <CutomButtonRNGH
+                <CustomSquareButtonRNGH
                     mode="outline"
                     title={'Call'}
                     icon="call-outline"
@@ -99,13 +99,13 @@ const DetailModal = (props, ref) => {
                 <DividerV />
             </View>
             <View style={style.btnRow}>
-                <CutomButtonRNGH
+                <CustomSquareButtonRNGH
                     mode="outline"
                     title={'Location'}
                     icon="location-outline"
                     onPress={handleDestinationLocation}
                 />
-                <CutomButtonRNGH
+                <CustomSquareButtonRNGH
                     mode="outline"
                     title={'Call'}
                     icon="call-outline"
@@ -120,7 +120,7 @@ const DetailModal = (props, ref) => {
             {SourceButton()}
             {DestinationButton()}
             <GapV small />
-            <CutomButtonRNGH
+            <CustomSquareButtonRNGH
                 title={`Change Status to "${changeOrderText}"`}
                 onPress={handleChangeStatus}
             />
@@ -131,6 +131,8 @@ const DetailModal = (props, ref) => {
         return (
             <View style={gStyle.contentBody}>
                 {Buttons()}
+                <GapV small />
+
                 <CustomTitle>{`Order Details`}</CustomTitle>
                 {Details()}
             </View>

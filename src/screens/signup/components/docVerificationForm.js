@@ -13,8 +13,8 @@ import { setStorageItem } from 'src/helpers';
 import { callApi } from 'src/helpers/apiCall';
 import { docVerificationValidationSchema } from 'src/screens/signup/helpers/validationSchema';
 
-let UPLOAD_IMAGE_ICON = 'document-attach-outline';
-let UPLOAD_BUTTON_ICON = 'cloud-upload';
+const UPLOAD_IMAGE_ICON = 'document-attach-outline';
+const UPLOAD_BUTTON_ICON = 'cloud-upload';
 
 const Form = ({ navigation }) => {
     const { colors } = useTheme();

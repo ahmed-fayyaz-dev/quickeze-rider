@@ -36,8 +36,13 @@ const BackIcon = ({ colors, navigation }) => (
     />
 );
 
-const DrawerAccountInfo = ({ colors, profileUrl, submitLoginReducer }) => {
+const DrawerAccountInfo = ({ colors, submitLoginReducer }) => {
     const style = styles(colors);
+    const profileUrl = submitLoginReducer?.user?.profileUrl;
+    const name = submitLoginReducer?.user?.name;
+    const id = submitLoginReducer?.user?.id;
+    console.log('S', submitLoginReducer);
+
     return (
         <View style={[style.accountInfo]}>
             <Image
@@ -50,12 +55,8 @@ const DrawerAccountInfo = ({ colors, profileUrl, submitLoginReducer }) => {
             <GapH small={true} />
 
             <View>
-                <CustomText style={style.textLeft}>
-                    {submitLoginReducer?.session?.employeename}
-                </CustomText>
-                <CustomCaption style={style.textLeft}>
-                    {submitLoginReducer?.users?.empCode}
-                </CustomCaption>
+                <CustomText style={style.textLeft}>{name}</CustomText>
+                <CustomCaption style={style.textLeft}>{id}</CustomCaption>
             </View>
         </View>
     );
@@ -94,12 +95,12 @@ function DrawerContent(props) {
     const { colors: paperColors } = paperTheme();
     const style = styles(paperColors);
     const { state, descriptors, navigation } = props;
-    const { profileUrl, submitLoginReducer, logout, drawerItemStyle } = props;
+    const { submitLoginReducer, logout, drawerItemStyle } = props;
 
     const Header = () => (
         <View style={[style.drawerTopView]}>
             {BackIcon({ colors, navigation })}
-            {DrawerAccountInfo({ colors, profileUrl, submitLoginReducer })}
+            {DrawerAccountInfo({ colors, submitLoginReducer })}
         </View>
     );
 

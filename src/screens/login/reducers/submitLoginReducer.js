@@ -1,8 +1,10 @@
 import * as types from 'src/screens/login/constants/constants';
+import { dummyUser } from 'src/screens/login/dummyData';
 
 const initial = {
     loading: false,
     data: {},
+    // data: dummyUser,
     error: null,
 };
 export default function (state = initial, action) {
